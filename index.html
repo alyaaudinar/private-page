@@ -138,6 +138,10 @@
 
         /* =====================================================
            BIRTHDAY TITLE
+
+           NAVY
+           BLACK SHADOW
+           NO YELLOW SHADOW
         ===================================================== */
 
         .birthday-title {
@@ -146,11 +150,11 @@
 
             z-index: 20;
 
-            margin: 0 20px 20px 20px;
+            margin: 0 20px 25px 20px;
 
             font-family: 'Poppins', sans-serif;
 
-            font-size: clamp(26px, 5vw, 48px);
+            font-size: clamp(28px, 5vw, 50px);
 
             font-weight: 700;
 
@@ -158,16 +162,20 @@
 
             text-align: center;
 
+            /*
+                NAVY
+            */
+
             color: #001F3F;
 
             /*
-                BLACK SHADOW
+                BLACK SHADOW ONLY
                 NO BLUR
                 20% OPACITY
             */
 
             text-shadow:
-                3px 3px 0 rgba(0, 0, 0, 0.20);
+                4px 4px 0 rgba(0, 0, 0, 0.20) !important;
 
             opacity: 0;
 
@@ -243,9 +251,13 @@
 
             align-items: center;
 
-            width: min(80vw, 500px);
+            /*
+                DIBESARKAN
+            */
 
-            height: min(55vh, 500px);
+            width: min(92vw, 650px);
+
+            height: min(62vh, 600px);
 
         }
 
@@ -267,21 +279,25 @@
 
             display: block;
 
+            /*
+                LEBIH BESAR
+            */
+
+            width: min(85vw, 520px);
+
             max-width: 100%;
 
             max-height: 100%;
-
-            width: auto;
 
             height: auto;
 
             object-fit: contain;
 
-            background: transparent;
+            background: transparent !important;
 
-            border: none;
+            border: none !important;
 
-            box-shadow: none;
+            box-shadow: none !important;
 
             /*
                 HEARTBEAT
@@ -350,25 +366,29 @@
 
             width: auto;
 
-            max-width: 85%;
+            max-width: 90%;
 
             margin-top: 15px;
 
-            padding: 15px 25px;
+            padding: 15px 28px;
 
             border: none;
 
             border-radius: 10px;
 
             /*
-                NAVY
+                NAVY BOX
                 50% OPACITY
             */
 
             background:
                 rgba(0, 31, 63, 0.50);
 
-            color: white;
+            /*
+                WHITE TEXT
+            */
+
+            color: #FFFFFF;
 
             font-family: 'Poppins', sans-serif;
 
@@ -387,17 +407,19 @@
             */
 
             box-shadow:
-                4px 4px 0 rgba(0, 0, 0, 0.20);
+                5px 5px 0 rgba(0, 0, 0, 0.25);
 
             /*
-                NO TEXT SHADOW
+                IMPORTANT:
+                TEXT SHADOW DIHAPUS TOTAL
             */
 
-            text-shadow: none;
+            text-shadow: none !important;
 
             transition:
                 transform 0.25s ease,
-                background 0.25s ease;
+                background 0.25s ease,
+                box-shadow 0.25s ease;
 
         }
 
@@ -406,9 +428,9 @@
         /* =====================================================
            BUTTON HOVER
 
-           CURSOR MASUK:
-           - MEMBESAR
-           - TERLIHAT LEBIH TEBAL
+           MEMBESAR
+           LEBIH TEBAL
+           TEXT TETAP TANPA SHADOW
         ===================================================== */
 
         .birthday-letter-button:hover {
@@ -422,9 +444,13 @@
             font-weight: 700;
 
             box-shadow:
-                5px 5px 0 rgba(0, 0, 0, 0.25);
+                6px 6px 0 rgba(0, 0, 0, 0.30);
 
-            text-shadow: none;
+            /*
+                TETAP TANPA TEXT SHADOW
+            */
+
+            text-shadow: none !important;
 
         }
 
@@ -457,8 +483,8 @@
                 scale(0.2);
 
             /*
-                CONFETTI TERUS BERGERAK
-                SELAMA PAGE B1 TERBUKA
+                TERUS BERGERAK
+                SELAMA B1 TERBUKA
             */
 
             animation:
@@ -474,12 +500,6 @@
 
         /* =====================================================
            CONFETTI BURST
-
-           DARI TENGAH
-           MENYEBAR
-           MEMBESAR
-           MELAMBAT
-           TIDAK FADE
         ===================================================== */
 
         @keyframes confettiBurst {
@@ -542,21 +562,30 @@
 
             .birthday-title {
 
-                font-size: 28px;
+                font-size: 30px;
 
             }
 
 
             .birthday-photo-container {
 
-                width: 85vw;
+                width: 94vw;
 
-                height: 48vh;
+                height: 55vh;
+
+            }
+
+
+            .birthday-photo {
+
+                width: 88vw;
 
             }
 
 
             .birthday-letter-button {
+
+                max-width: 88%;
 
                 font-size: 13px;
 
@@ -688,7 +717,7 @@
                 BANYAK CONFETTI
             */
 
-            const count = 100;
+            const count = 120;
 
 
             for (
@@ -708,9 +737,7 @@
 
 
 
-                /* ==============================
-                   COLOR
-                ============================== */
+                /* COLOR */
 
                 const color =
                     pastelColors[
@@ -727,9 +754,7 @@
 
 
 
-                /* ==============================
-                   RANDOM ANGLE
-                ============================== */
+                /* RANDOM ANGLE */
 
                 const angle =
                     Math.random()
@@ -740,16 +765,14 @@
 
 
 
-                /* ==============================
-                   LARGE SPREAD
-                ============================== */
+                /* LARGER SPREAD */
 
                 const distance =
-                    220
+                    250
                     +
                     Math.random()
                     *
-                    350;
+                    450;
 
 
 
@@ -779,16 +802,14 @@
 
 
 
-                /* ==============================
-                   SCALE
-                ============================== */
+                /* SCALE */
 
                 const scale =
                     1.2
                     +
                     Math.random()
                     *
-                    2.2;
+                    2.3;
 
 
                 confetti.style.setProperty(
@@ -798,9 +819,7 @@
 
 
 
-                /* ==============================
-                   ROTATION
-                ============================== */
+                /* ROTATION */
 
                 const rot1 =
                     (
@@ -845,9 +864,7 @@
 
 
 
-                /* ==============================
-                   SIZE
-                ============================== */
+                /* SIZE */
 
                 const width =
                     7
@@ -874,9 +891,7 @@
 
 
 
-                /* ==============================
-                   SPEED
-                ============================== */
+                /* SPEED */
 
                 const duration =
                     3
@@ -893,9 +908,7 @@
 
 
 
-                /* ==============================
-                   DELAY
-                ============================== */
+                /* DELAY */
 
                 const delay =
                     Math.random()
@@ -909,10 +922,6 @@
                 );
 
 
-
-                /* ==============================
-                   ADD TO PAGE
-                ============================== */
 
                 page.appendChild(
                     confetti
@@ -930,15 +939,12 @@
 
         function openBirthdayLetter() {
 
-
             /*
-                GANTI BAGIAN INI DENGAN
-                LINK GOOGLE DRIVE PDF BIRTHDAY
+                GANTI DENGAN LINK PDF BIRTHDAY
             */
 
             window.location.href =
                 "PASTE_LINK_DRIVE_BIRTHDAY_DI_SINI";
-
 
         }
 
