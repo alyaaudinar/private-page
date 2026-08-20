@@ -2109,15 +2109,17 @@ function loadLetters() {
                 formatDate(letter.date);
 
 
-            button.innerHTML = `
+           button.innerHTML = `
 
-                ${formattedDate}
+    <span class="saved-letter-date">
+        ${formattedDate}
+    </span>
 
-                <span class="saved-letter-name">
-                    ${escapeHTML(letter.author)}
-                </span>
+    <span class="saved-letter-name">
+        ${escapeHTML(letter.author)}
+    </span>
 
-            `;
+`;
 
 
             button.onclick = function() {
