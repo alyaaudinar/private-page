@@ -11,9 +11,7 @@
     <title>Access</title>
 
 
-    <!-- =========================
-         GOOGLE FONT - POPPINS
-    ========================== -->
+    <!-- GOOGLE FONT - POPPINS -->
 
     <link rel="preconnect"
           href="https://fonts.googleapis.com">
@@ -250,9 +248,8 @@
         /* =========================
            STAR MOVEMENT
 
-           bergerak di sekitar
-           posisi awalnya,
-           bukan kiri ke kanan
+           Bergerak random di sekitar
+           posisi masing-masing.
         ========================== */
 
         @keyframes starMove {
@@ -268,32 +265,32 @@
             20% {
 
                 transform:
-                    translate(12px, -8px)
-                    rotate(8deg);
+                    translate(18px, -13px)
+                    rotate(10deg);
 
             }
 
             40% {
 
                 transform:
-                    translate(-10px, 9px)
-                    rotate(-7deg);
+                    translate(-15px, 15px)
+                    rotate(-9deg);
 
             }
 
             60% {
 
                 transform:
-                    translate(8px, 13px)
-                    rotate(5deg);
+                    translate(13px, 20px)
+                    rotate(7deg);
 
             }
 
             80% {
 
                 transform:
-                    translate(-12px, -5px)
-                    rotate(-8deg);
+                    translate(-20px, -10px)
+                    rotate(-10deg);
 
             }
 
@@ -310,8 +307,6 @@
 
         /* =========================
            HIDDEN PAGES
-
-           Untuk tahap berikutnya
         ========================== */
 
         .page {
@@ -339,9 +334,6 @@
 
         /* =========================
            BACK BUTTON
-
-           Akan digunakan untuk
-           page berikutnya
         ========================== */
 
         .back-button {
@@ -434,36 +426,36 @@
                     ];
 
 
-                /* RANDOM SIZE */
+                /* LEBIH BESAR */
 
                 star.style.fontSize =
-                    (15 + Math.random() * 25)
+                    (25 + Math.random() * 25)
                     + "px";
 
 
-                /* RANDOM POSITION */
+                /* MEMENUHI SELURUH LAYAR */
 
                 star.style.left =
-                    (8 + Math.random() * 84)
+                    (2 + Math.random() * 94)
                     + "%";
 
 
                 star.style.top =
-                    (8 + Math.random() * 84)
+                    (2 + Math.random() * 94)
                     + "%";
 
 
-                /* RANDOM MOVEMENT SPEED */
+                /* RANDOM SPEED */
 
                 star.style.animationDuration =
-                    (2.5 + Math.random() * 3)
+                    (3 + Math.random() * 4)
                     + "s";
 
 
                 /* RANDOM START */
 
                 star.style.animationDelay =
-                    (Math.random() * 2)
+                    (Math.random() * 3)
                     + "s";
 
 
@@ -496,7 +488,7 @@
 
 
             <p class="clue">
-                clue: tanggal lahir
+                clue: tanggal lahir pemilik website
             </p>
 
 
@@ -529,9 +521,6 @@
 
     <!-- =========================
          PAGE 1
-         OG LETTER
-         
-         NANTI KITA ISI
     ========================== -->
 
     <div
@@ -565,9 +554,6 @@
 
     <!-- =========================
          B1
-         BIRTHDAY PAGE
-
-         NANTI KITA ISI
     ========================== -->
 
     <div
@@ -607,7 +593,7 @@
 
 
         /* =========================
-           PASSWORD CHECK
+           CHECK PASSWORD
         ========================== */
 
         function checkPassword() {
@@ -630,9 +616,7 @@
 
 
             /*
-             * PASSWORD 1
              * 24122006
-             *
              * → PAGE 1
              */
 
@@ -648,9 +632,7 @@
 
 
             /*
-             * PASSWORD 2
              * 20061215
-             *
              * → B1
              */
 
@@ -686,18 +668,10 @@
         function showPage(pageId) {
 
 
-            /*
-             * HIDE MAIN PAGE
-             */
-
             document.getElementById(
                 "mainPage"
             ).style.display = "none";
 
-
-            /*
-             * HIDE ALL PAGES
-             */
 
             const pages =
                 document.querySelectorAll(
@@ -711,10 +685,6 @@
 
             });
 
-
-            /*
-             * SHOW SELECTED PAGE
-             */
 
             const selectedPage =
                 document.getElementById(
@@ -736,10 +706,6 @@
         function goBack() {
 
 
-            /*
-             * HIDE ALL PAGES
-             */
-
             const pages =
                 document.querySelectorAll(
                     ".page"
@@ -753,18 +719,10 @@
             });
 
 
-            /*
-             * SHOW MAIN PAGE
-             */
-
             document.getElementById(
                 "mainPage"
             ).style.display = "block";
 
-
-            /*
-             * RESET PASSWORD
-             */
 
             document.getElementById(
                 "password"
