@@ -1,2362 +1,2165 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access</title>
 
-<title>Access</title>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+        rel="stylesheet"
+    >
 
-<link
-href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
-rel="stylesheet"
->
+    <style>
 
-<style>
+        /* =====================================================
+           GENERAL
+        ===================================================== */
 
-/* =====================================================
-   GENERAL
-===================================================== */
+        * {
+            box-sizing: border-box;
+        }
 
-* {
-    box-sizing: border-box;
-}
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            min-height: 100%;
+            font-family: 'Poppins', sans-serif;
+        }
 
-html,
-body {
-    margin: 0;
-    width: 100%;
-    min-height: 100%;
-    font-family: 'Poppins', sans-serif;
-}
+        body {
+            background: #f7f5f2;
+            overflow: hidden;
+        }
 
-body {
-    background: #f7f5f2;
-    overflow: hidden;
-}
 
+        /* =====================================================
+           PAGE SYSTEM
+        ===================================================== */
 
-/* =====================================================
-   PAGE SYSTEM
-===================================================== */
+        .page {
+            width: 100%;
+            min-height: 100vh;
 
-.page {
+            display: none;
 
-    width: 100%;
-    min-height: 100vh;
+            position: relative;
 
-    display: none;
+            justify-content: center;
+            align-items: center;
 
-    position: relative;
+            overflow: hidden;
+        }
 
-    justify-content: center;
-    align-items: center;
+        .page.active {
+            display: flex;
+        }
 
-    overflow: hidden;
-}
 
-.page.active {
-    display: flex;
-}
+        /* =====================================================
+           BACK BUTTON
+        ===================================================== */
 
+        .back-button {
+            position: fixed;
 
-/* =====================================================
-   BACK BUTTON
-===================================================== */
+            top: 20px;
+            left: 20px;
 
-.back-button {
+            z-index: 9999;
 
-    position: fixed;
+            padding: 9px 18px;
 
-    top: 20px;
-    left: 20px;
+            border: none;
+            border-radius: 10px;
 
-    z-index: 9999;
+            background: rgba(54, 69, 79, 0.7);
 
-    padding: 9px 18px;
+            color: white;
 
-    border: none;
-    border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
 
-    background: rgba(54,69,79,0.7);
+            cursor: pointer;
 
-    color: white;
+            transition: 0.25s ease;
+        }
 
-    font-family: 'Poppins', sans-serif;
+        .back-button:hover {
+            background: #36454F;
+            transform: scale(1.08);
+        }
 
-    font-size: 13px;
-    font-weight: 700;
 
-    cursor: pointer;
+        /* =====================================================
+           HOME
+        ===================================================== */
 
-    transition: 0.25s ease;
-}
+        #home {
+            background: #f7f5f2;
+        }
 
-.back-button:hover {
+        .login-box {
+            width: 90%;
+            max-width: 400px;
 
-    background: #36454F;
+            text-align: center;
 
-    transform: scale(1.08);
-}
+            position: relative;
+            z-index: 20;
+        }
 
+        .login-box h1 {
+            margin-bottom: 10px;
 
-/* =====================================================
-   HOME
-===================================================== */
+            color: #333;
 
-#home {
-    background: #f7f5f2;
-}
+            font-size: 24px;
+            font-weight: 700;
+        }
 
-.login-box {
+        .clue {
+            margin-bottom: 25px;
 
-    width: 90%;
-    max-width: 400px;
+            color: #888;
 
-    text-align: center;
+            font-size: 14px;
+        }
 
-    position: relative;
+        .password-input {
+            width: 100%;
 
-    z-index: 20;
-}
+            padding: 12px;
 
-.login-box h1 {
+            border: 1px solid #ccc;
+            border-radius: 8px;
 
-    font-size: 24px;
+            background: white;
 
-    font-weight: 700;
+            text-align: center;
 
-    color: #333;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
 
-    margin-bottom: 10px;
-}
+            outline: none;
+        }
 
-.clue {
+        .unlock-button {
+            width: 100%;
 
-    color: #888;
+            margin-top: 12px;
+            padding: 12px;
 
-    font-size: 14px;
+            border: none;
+            border-radius: 8px;
 
-    margin-bottom: 25px;
-}
+            background: #A6A6A6;
 
-.password-input {
+            color: white;
 
-    width: 100%;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
 
-    padding: 12px;
+            cursor: pointer;
 
-    border: 1px solid #ccc;
+            transition: 0.25s ease;
+        }
 
-    border-radius: 8px;
+        .unlock-button:hover {
+            background: #777;
+            transform: scale(1.05);
+        }
 
-    background: white;
+        #message {
+            margin-top: 18px;
 
-    text-align: center;
+            color: #555;
 
-    font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+        }
 
-    font-size: 15px;
 
-    outline: none;
-}
+        /* =====================================================
+           STARS
+        ===================================================== */
 
-.unlock-button {
+        .star {
+            position: fixed;
 
-    width: 100%;
+            width: var(--size);
+            height: var(--size);
 
-    margin-top: 12px;
+            left: var(--left);
+            top: var(--top);
 
-    padding: 12px;
+            background: var(--color);
 
-    border: none;
+            clip-path: polygon(
+                50% 0%,
+                61% 35%,
+                98% 35%,
+                68% 57%,
+                79% 91%,
+                50% 70%,
+                21% 91%,
+                32% 57%,
+                2% 35%,
+                39% 35%
+            );
 
-    border-radius: 8px;
+            opacity: 0.65;
 
-    background: #A6A6A6;
+            pointer-events: none;
 
-    color: white;
+            animation:
+                starMovement
+                var(--duration)
+                ease-in-out
+                infinite
+                alternate;
+        }
 
-    font-family: 'Poppins', sans-serif;
+        @keyframes starMovement {
+            0% {
+                transform:
+                    translate(var(--x1), var(--y1))
+                    rotate(0deg);
+            }
 
-    font-size: 15px;
+            50% {
+                transform:
+                    translate(var(--x2), var(--y2))
+                    rotate(8deg);
+            }
 
-    font-weight: 700;
+            100% {
+                transform:
+                    translate(var(--x3), var(--y3))
+                    rotate(-8deg);
+            }
+        }
 
-    cursor: pointer;
 
-    transition: 0.25s ease;
-}
+        /* =====================================================
+           B1 — BIRTHDAY PAGE
+        ===================================================== */
 
-.unlock-button:hover {
+        #pageB1 {
+            background: #f7f5f2;
 
-    background: #777;
+            flex-direction: column;
 
-    transform: scale(1.05);
-}
+            text-align: center;
 
-#message {
+            position: relative;
 
-    margin-top: 18px;
+            isolation: isolate;
+        }
 
-    font-size: 14px;
 
-    color: #555;
-}
+        /* B1 TITLE */
 
+        .birthday-title {
+            position: relative;
 
-/* =====================================================
-   STARS
-===================================================== */
+            z-index: 100;
 
-.star {
+            margin: 0 20px 25px;
 
-    position: fixed;
+            color: #373757;
 
-    width: var(--size);
-    height: var(--size);
+            font-size: clamp(30px, 7vw, 58px);
+            line-height: 1.2;
 
-    left: var(--left);
-    top: var(--top);
+            font-weight: 700;
 
-    background: var(--color);
+            text-shadow:
+                2px 2px 0 rgba(0, 0, 0, 0.20);
+        }
 
-    clip-path: polygon(
-        50% 0%,
-        61% 35%,
-        98% 35%,
-        68% 57%,
-        79% 91%,
-        50% 70%,
-        21% 91%,
-        32% 57%,
-        2% 35%,
-        39% 35%
-    );
 
-    opacity: 0.65;
+        /* B1 PHOTO */
 
-    pointer-events: none;
+        .birthday-photo {
+            position: relative;
 
-    animation:
-        starMovement
-        var(--duration)
-        ease-in-out
-        infinite
-        alternate;
-}
+            z-index: 100;
 
-@keyframes starMovement {
+            width: min(620px, 90vw);
+            max-height: 58vh;
 
-    0% {
+            height: auto;
 
-        transform:
-            translate(var(--x1),var(--y1))
-            rotate(0deg);
-    }
+            object-fit: contain;
 
-    50% {
+            display: block;
 
-        transform:
-            translate(var(--x2),var(--y2))
-            rotate(8deg);
-    }
+            border: none;
 
-    100% {
+            background: transparent;
 
-        transform:
-            translate(var(--x3),var(--y3))
-            rotate(-8deg);
-    }
-}
+            box-shadow: none;
 
+            animation:
+                heartbeat
+                2.2s
+                ease-in-out
+                infinite;
+        }
 
-/* =====================================================
-   B1
-===================================================== */
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
 
-#pageB1 {
+            25% {
+                transform: scale(1.055);
+            }
 
-    background: #f7f5f2;
+            40% {
+                transform: scale(1);
+            }
 
-    flex-direction: column;
+            60% {
+                transform: scale(1.065);
+            }
 
-    text-align: center;
+            100% {
+                transform: scale(1);
+            }
+        }
 
-    position: relative;
 
-    isolation: isolate;
-}
+        /* B1 BUTTON */
 
+        .birthday-letter-button {
+            position: relative;
 
-/* =====================================================
-   B1 TITLE
-===================================================== */
+            z-index: 120;
 
-.birthday-title {
+            margin-top: 30px;
+            padding: 17px 27px;
 
-    position: relative;
+            max-width: 90%;
 
-    z-index: 100;
+            border: none;
+            border-radius: 12px;
 
-    margin: 0 20px 25px;
+            background: rgba(20, 38, 70, 0.5);
 
-    font-size: clamp(30px,7vw,58px);
+            color: white;
 
-    line-height: 1.2;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
 
-    font-weight: 700;
+            cursor: pointer;
 
-    color: #373757;
+            text-align: center;
 
-    /*
-       NAVY TEXT
-       BLACK SHADOW
-       NON-BLUR
-       20% OPACITY
-    */
+            box-shadow:
+                0 8px 20px rgba(0, 0, 0, 0.25);
 
-    text-shadow:
-        2px 2px 0 rgba(0,0,0,0.20);
-}
+            text-shadow: none;
 
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease;
+        }
 
-/* =====================================================
-   B1 PHOTO
-===================================================== */
+        .birthday-letter-button:hover {
+            transform: scale(1.10);
 
-.birthday-photo {
+            background: rgba(20, 38, 70, 0.70);
+        }
 
-    position: relative;
 
-    z-index: 100;
+        /* =====================================================
+           CONFETTI
+        ===================================================== */
 
-    width: min(620px,90vw);
+        .confetti {
+            position: fixed;
 
-    max-height: 58vh;
+            left: 50%;
+            top: 50%;
 
-    height: auto;
+            width: var(--width);
+            height: var(--height);
 
-    object-fit: contain;
+            background: var(--color);
 
-    display: block;
+            border-radius: 2px;
 
-    border: none;
+            z-index: 20;
 
-    background: transparent;
+            pointer-events: none;
 
-    box-shadow: none;
+            animation:
+                confettiMovement
+                var(--duration)
+                cubic-bezier(0.15, 0.8, 0.2, 1)
+                infinite
+                alternate;
+        }
 
-    /*
-       HEARTBEAT
-    */
+        @keyframes confettiMovement {
 
-    animation:
-        heartbeat
-        2.2s
-        ease-in-out
-        infinite;
-}
+            0% {
+                transform:
+                    translate(-50%, -50%)
+                    translate(0, 0)
+                    rotate(0deg)
+                    scale(0.35);
+            }
 
+            45% {
+                transform:
+                    translate(-50%, -50%)
+                    translate(
+                        calc(var(--x) * 0.55),
+                        calc(var(--y) * 0.55)
+                    )
+                    rotate(calc(var(--rotation) * 0.45))
+                    scale(1.05);
+            }
 
-@keyframes heartbeat {
+            75% {
+                transform:
+                    translate(-50%, -50%)
+                    translate(
+                        calc(var(--x) * 0.85),
+                        calc(var(--y) * 0.85)
+                    )
+                    rotate(calc(var(--rotation) * 0.8))
+                    scale(1.45);
+            }
 
-    0% {
-        transform: scale(1);
-    }
+            100% {
+                transform:
+                    translate(-50%, -50%)
+                    translate(
+                        var(--x),
+                        var(--y)
+                    )
+                    rotate(var(--rotation))
+                    scale(1.75);
+            }
+        }
 
-    25% {
-        transform: scale(1.055);
-    }
 
-    40% {
-        transform: scale(1);
-    }
+        /* =====================================================
+           PAGE 1 — OG LETTER
+        ===================================================== */
 
-    60% {
-        transform: scale(1.065);
-    }
+        #page1 {
+            background: #f7f5f2;
 
-    100% {
-        transform: scale(1);
-    }
-}
+            flex-direction: column;
 
+            text-align: center;
+        }
 
-/* =====================================================
-   B1 BUTTON
-===================================================== */
+        .og-title {
+            color: #373757;
 
-.birthday-letter-button {
+            font-size: 30px;
 
-    position: relative;
+            font-weight: 700;
+        }
 
-    z-index: 120;
+        .og-text {
+            color: #555;
 
-    margin-top: 30px;
+            font-size: 15px;
+        }
 
-    padding: 17px 27px;
+        .og-letter-button {
+            margin-top: 20px;
+            padding: 16px 25px;
 
-    max-width: 90%;
+            border: none;
+            border-radius: 12px;
 
-    border: none;
+            background: rgba(54, 54, 54, 0.7);
 
-    border-radius: 12px;
+            color: white;
 
-    background: rgba(20,38,70,0.5);
+            font-family: 'Poppins', sans-serif;
 
-    color: white;
+            font-weight: 700;
 
-    font-family: 'Poppins',sans-serif;
+            cursor: pointer;
 
-    font-size: 14px;
+            box-shadow:
+                0 8px 20px rgba(0, 0, 0, 0.25);
 
-    font-weight: 700;
+            transition: 0.25s ease;
+        }
 
-    cursor: pointer;
+        .og-letter-button:hover {
+            background: rgba(30, 30, 30, 0.9);
 
-    text-align: center;
+            transform: scale(1.08);
+        }
 
-    /*
-       BOX SHADOW SAJA
-       TIDAK ADA TEXT SHADOW
-    */
 
-    box-shadow:
-        0 8px 20px rgba(0,0,0,0.25);
+        /* =====================================================
+           PAGE 3 — STUFFS
+        ===================================================== */
 
-    text-shadow: none;
+        #page3 {
+            background: #f7f5f2;
 
-    transition:
-        transform 0.25s ease,
-        background 0.25s ease,
-        font-weight 0.25s ease;
-}
+            flex-direction: column;
 
-.birthday-letter-button:hover {
+            padding: 80px 20px 40px;
 
-    transform: scale(1.10);
+            overflow-y: auto;
 
-    background: rgba(20,38,70,0.70);
+            text-align: center;
+        }
 
-    font-weight: 700;
-}
+        .stuffs-title {
+            margin-bottom: 30px;
 
+            color: #373757;
 
-/* =====================================================
-   CONFETTI
-===================================================== */
+            font-size: 30px;
 
-.confetti {
+            font-weight: 700;
+        }
 
-    position: fixed;
+        .stuffs-container {
+            width: min(500px, 90vw);
 
-    left: 50%;
-    top: 50%;
+            display: grid;
 
-    width: var(--width);
-    height: var(--height);
+            grid-template-columns: 1fr 1fr;
 
-    background: var(--color);
+            gap: 15px;
+        }
 
-    border-radius: 2px;
+        .stuff-button {
+            min-height: 70px;
 
-    z-index: 20;
+            border: none;
+            border-radius: 12px;
 
-    pointer-events: none;
+            background: rgba(54, 54, 54, 0.75);
 
-    /*
-       TIDAK ADA FADE
-       TIDAK ADA OPACITY ANIMATION
-    */
+            color: white;
 
-    animation:
-        confettiMovement
-        var(--duration)
-        cubic-bezier(0.15,0.8,0.2,1)
-        infinite
-        alternate;
-}
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
 
+            cursor: pointer;
 
-/*
-   CONFETTI BURST
-   DARI TENGAH → MENYEBAR
-   → MEMBESAR
-   → MELAMBAT
-*/
+            box-shadow:
+                0 7px 15px rgba(0, 0, 0, 0.2);
 
-@keyframes confettiMovement {
+            transition: 0.25s ease;
+        }
 
-    0% {
+        .stuff-button:hover {
+            background: #252525;
 
-        transform:
-            translate(-50%,-50%)
-            translate(0,0)
-            rotate(0deg)
-            scale(0.35);
-    }
+            transform: scale(1.07);
+        }
 
-    45% {
+        .random-button {
+            background: rgba(120, 100, 80, 0.75);
+        }
 
-        transform:
-            translate(-50%,-50%)
-            translate(
-                calc(var(--x) * 0.55),
-                calc(var(--y) * 0.55)
-            )
-            rotate(calc(var(--rotation) * 0.45))
-            scale(1.05);
-    }
+        .random-button:hover {
+            background: #80694F;
+        }
 
-    75% {
 
-        transform:
-            translate(-50%,-50%)
-            translate(
-                calc(var(--x) * 0.85),
-                calc(var(--y) * 0.85)
-            )
-            rotate(calc(var(--rotation) * 0.8))
-            scale(1.45);
-    }
+        /* =====================================================
+           L1 — RANDOM DAY LETTER MENU
+        ===================================================== */
 
-    100% {
+        #pageL1 {
+            background: #f7f5f2;
 
-        transform:
-            translate(-50%,-50%)
-            translate(
-                var(--x),
-                var(--y)
-            )
-            rotate(var(--rotation))
-            scale(1.75);
-    }
-}
+            flex-direction: column;
 
+            text-align: center;
 
-/* =====================================================
-   PAGE 1
-===================================================== */
+            gap: 15px;
 
-#page1 {
+            padding: 80px 20px;
+        }
 
-    background: #f7f5f2;
+        .l1-title {
+            margin-bottom: 15px;
 
-    flex-direction: column;
+            color: #373757;
 
-    text-align: center;
-}
+            font-size: 32px;
+        }
 
-.og-title {
+        .l1-button {
+            width: min(400px, 90vw);
 
-    font-size: 30px;
+            padding: 18px;
 
-    color: #373757;
+            border: none;
+            border-radius: 12px;
 
-    font-weight: 700;
-}
+            background: rgba(54, 54, 54, 0.75);
 
-.og-text {
+            color: white;
 
-    color: #555;
+            font-family: 'Poppins', sans-serif;
 
-    font-size: 15px;
-}
+            font-weight: 700;
 
-.og-letter-button {
+            cursor: pointer;
 
-    margin-top: 20px;
+            box-shadow:
+                0 7px 15px rgba(0, 0, 0, 0.2);
 
-    padding: 16px 25px;
+            transition: 0.25s ease;
+        }
 
-    border: none;
+        .l1-button:hover {
+            background: #252525;
 
-    border-radius: 12px;
+            transform: scale(1.06);
+        }
 
-    background: rgba(54,54,54,0.7);
 
-    color: white;
+        /* =====================================================
+           LT1 — WRITE LETTER
+        ===================================================== */
 
-    font-family: 'Poppins',sans-serif;
+        #pageLT1 {
+            background: #eee5d8;
 
-    font-weight: 700;
+            flex-direction: column;
 
-    cursor: pointer;
+            padding: 80px 20px 40px;
 
-    box-shadow:
-        0 8px 20px rgba(0,0,0,0.25);
+            overflow-y: auto;
+        }
 
-    transition: 0.25s ease;
-}
+        .letter-paper {
+            width: min(650px, 92vw);
 
-.og-letter-button:hover {
+            min-height: 620px;
 
-    transform: scale(1.08);
+            padding: 35px;
 
-    background: rgba(30,30,30,0.9);
-}
+            background: #f5e8cf;
 
+            border: 1px solid #d2b98b;
 
-/* =====================================================
-   PAGE 3
-===================================================== */
+            border-radius: 3px;
 
-#page3 {
+            color: #4a3928;
 
-    background: #f7f5f2;
+            box-shadow:
+                0 12px 30px rgba(0, 0, 0, 0.22);
+        }
 
-    flex-direction: column;
+        .letter-title {
+            margin-bottom: 30px;
 
-    padding: 80px 20px 40px;
+            text-align: center;
 
-    overflow-y: auto;
+            font-family: Georgia, serif;
 
-    text-align: center;
-}
+            font-size: 27px;
+        }
 
-.stuffs-title {
+        .letter-field {
+            margin-bottom: 18px;
+        }
 
-    font-size: 30px;
+        .letter-field label {
+            display: block;
 
-    color: #373757;
+            margin-bottom: 6px;
 
-    font-weight: 700;
+            font-weight: 700;
+        }
 
-    margin-bottom: 30px;
-}
+        .letter-input,
+        .letter-textarea {
+            width: 100%;
 
-.stuffs-container {
+            padding: 8px 4px;
 
-    width: min(500px,90vw);
+            border: none;
+            border-bottom: 1px solid #a98c62;
 
-    display: grid;
+            background: transparent;
 
-    grid-template-columns: 1fr 1fr;
+            color: #4a3928;
 
-    gap: 15px;
-}
+            font-family: Georgia, serif;
+            font-size: 16px;
 
-.stuff-button {
+            outline: none;
+        }
 
-    min-height: 70px;
+        .letter-textarea {
+            min-height: 260px;
 
-    border: none;
+            padding: 12px;
 
-    border-radius: 12px;
+            border: 1px solid #bba47d;
 
-    background: rgba(54,54,54,0.75);
+            background: rgba(255, 255, 255, 0.18);
 
-    color: white;
+            resize: vertical;
+        }
 
-    font-family: 'Poppins',sans-serif;
+        .send-letter-button {
+            display: block;
 
-    font-size: 14px;
+            margin: 25px auto 0;
 
-    font-weight: 700;
+            padding: 13px 40px;
 
-    cursor: pointer;
+            border: none;
+            border-radius: 10px;
 
-    box-shadow:
-        0 7px 15px rgba(0,0,0,0.2);
+            background: #594534;
 
-    transition: 0.25s ease;
-}
+            color: #f8efd9;
 
-.stuff-button:hover {
+            font-family: 'Poppins', sans-serif;
 
-    background: #252525;
+            font-weight: 700;
 
-    transform: scale(1.07);
-}
+            cursor: pointer;
 
-.random-button {
+            transition: 0.25s ease;
+        }
 
-    background: rgba(120,100,80,0.75);
-}
+        .send-letter-button:hover {
+            background: #3d2e23;
 
-.random-button:hover {
+            transform: scale(1.08);
+        }
 
-    background: #80694F;
-}
 
+        /* =====================================================
+           LB1 — LETTER LIST
+        ===================================================== */
 
-/* =====================================================
-   L1
-===================================================== */
+        #pageLB1 {
+            background: #eee5d8;
 
-#pageL1 {
+            flex-direction: column;
 
-    background: #f7f5f2;
+            padding: 80px 20px 50px;
 
-    flex-direction: column;
+            overflow-y: auto;
 
-    text-align: center;
+            text-align: center;
+        }
 
-    gap: 15px;
+        .lb-title {
+            margin: 0 0 30px;
 
-    padding: 80px 20px;
-}
+            color: #594534;
 
-.l1-title {
+            font-family: 'Poppins', sans-serif;
 
-    font-size: 32px;
+            font-size: clamp(26px, 6vw, 36px);
 
-    color: #373757;
+            font-weight: 700;
 
-    margin-bottom: 15px;
-}
+            text-shadow:
+                2px 2px 0 rgba(0, 0, 0, 0.15);
+        }
 
-.l1-button {
+        .letters-container {
+            width: min(650px, 92vw);
 
-    width: min(400px,90vw);
+            display: flex;
 
-    padding: 18px;
+            flex-direction: column;
 
-    border: none;
+            gap: 18px;
 
-    border-radius: 12px;
+            padding-bottom: 30px;
+        }
 
-    background: rgba(54,54,54,0.75);
+        .saved-letter-button {
+            width: 100%;
 
-    color: white;
+            min-height: 95px;
 
-    font-family: 'Poppins',sans-serif;
+            padding: 20px 25px;
 
-    font-weight: 700;
+            border: none;
+            border-radius: 6px;
 
-    cursor: pointer;
+            background: #8b6548;
 
-    box-shadow:
-        0 7px 15px rgba(0,0,0,0.2);
+            color: #f5e8cf;
 
-    transition: 0.25s ease;
-}
+            font-family: Georgia, serif;
 
-.l1-button:hover {
+            cursor: pointer;
 
-    background: #252525;
+            box-shadow:
+                0 8px 16px rgba(0, 0, 0, 0.25);
 
-    transform: scale(1.06);
-}
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease,
+                box-shadow 0.25s ease;
+        }
 
+        .saved-letter-button:hover {
+            background: #6f4e37;
 
-/* =====================================================
-   LT1
-===================================================== */
+            transform: scale(1.035);
 
-#pageLT1 {
+            box-shadow:
+                0 12px 22px rgba(0, 0, 0, 0.30);
+        }
 
-    background: #eee5d8;
+        .saved-letter-date {
+            display: block;
 
-    flex-direction: column;
+            color: #f5e8cf;
 
-    padding: 80px 20px 40px;
+            font-size: 19px;
 
-    overflow-y: auto;
-}
+            font-weight: 700;
 
-.letter-paper {
+            text-shadow:
+                1px 1px 0 rgba(0, 0, 0, 0.25);
+        }
 
-    width: min(650px,92vw);
+        .saved-letter-name {
+            display: block;
 
-    min-height: 620px;
+            margin-top: 7px;
 
-    padding: 35px;
+            color: #f5e8cf;
 
-    background: #f5e8cf;
+            font-size: 14px;
 
-    border: 1px solid #d2b98b;
+            font-weight: 400;
 
-    box-shadow:
-        0 12px 30px rgba(0,0,0,0.22);
+            text-shadow:
+                1px 1px 0 rgba(0, 0, 0, 0.25);
+        }
 
-    border-radius: 3px;
 
-    color: #4a3928;
-}
+        /* =====================================================
+           LETTER MODAL
+        ===================================================== */
 
-.letter-title {
+        .letter-modal {
+            position: fixed;
 
-    text-align: center;
+            inset: 0;
 
-    font-family: Georgia,serif;
+            z-index: 10000;
 
-    font-size: 27px;
+            display: none;
 
-    margin-bottom: 30px;
-}
+            justify-content: center;
+            align-items: center;
 
-.letter-field {
+            padding: 20px;
 
-    margin-bottom: 18px;
-}
+            background: rgba(45, 35, 25, 0.65);
 
-.letter-field label {
+            backdrop-filter: blur(3px);
+        }
 
-    display: block;
+        .letter-modal.active {
+            display: flex;
+        }
 
-    font-weight: 700;
+        .modal-paper {
+            width: min(620px, 92vw);
 
-    margin-bottom: 6px;
-}
+            max-height: 85vh;
 
-.letter-input,
-.letter-textarea {
+            overflow-y: auto;
 
-    width: 100%;
+            padding: 45px 40px;
 
-    border: none;
+            position: relative;
 
-    border-bottom: 1px solid #a98c62;
+            background:
+                linear-gradient(
+                    rgba(245, 232, 207, 0.96),
+                    rgba(238, 219, 184, 0.96)
+                );
 
-    background: transparent;
+            color: #4a3928;
 
-    padding: 8px 4px;
+            border: 1px solid #c9ab7b;
+            border-radius: 3px;
 
-    font-family: Georgia,serif;
+            font-family: Georgia, serif;
 
-    font-size: 16px;
+            box-shadow:
+                0 18px 45px rgba(0, 0, 0, 0.35);
 
-    color: #4a3928;
+            animation:
+                letterAppear
+                0.45s
+                ease-out;
+        }
 
-    outline: none;
-}
+        @keyframes letterAppear {
+            0% {
+                opacity: 0;
 
-.letter-textarea {
+                transform:
+                    scale(0.85)
+                    rotate(-2deg);
+            }
 
-    min-height: 260px;
+            100% {
+                opacity: 1;
 
-    resize: vertical;
+                transform:
+                    scale(1)
+                    rotate(0deg);
+            }
+        }
 
-    border: 1px solid #bba47d;
+        .close-modal {
+            position: absolute;
 
-    padding: 12px;
+            top: 12px;
+            right: 17px;
 
-    background: rgba(255,255,255,0.18);
-}
+            width: 35px;
+            height: 35px;
 
-.send-letter-button {
+            border: none;
 
-    display: block;
+            background: transparent;
 
-    margin: 25px auto 0;
+            color: #4a3928;
 
-    padding: 13px 40px;
+            font-family: Arial, sans-serif;
 
-    border: none;
+            font-size: 28px;
 
-    border-radius: 10px;
+            line-height: 35px;
 
-    background: #594534;
+            cursor: pointer;
 
-    color: #f8efd9;
+            transition: transform 0.2s ease;
+        }
 
-    font-family: 'Poppins',sans-serif;
+        .close-modal:hover {
+            transform: scale(1.2);
+        }
 
-    font-weight: 700;
+        .modal-date {
+            margin-bottom: 30px;
+            padding-bottom: 15px;
 
-    cursor: pointer;
+            border-bottom: 1px solid #c9ab7b;
 
-    transition: 0.25s ease;
-}
+            color: #80694f;
 
-.send-letter-button:hover {
+            text-align: center;
 
-    transform: scale(1.08);
+            font-family: Georgia, serif;
 
-    background: #3d2e23;
-}
+            font-size: 16px;
 
+            font-weight: 700;
+        }
 
-/* =====================================================
-   LB1
-===================================================== */
+        .modal-message {
+            min-height: 180px;
 
-#pageLB1 {
+            color: #4a3928;
 
-    background: #eee5d8;
+            text-align: left;
 
-    flex-direction: column;
+            white-space: pre-wrap;
 
-    padding: 80px 20px 50px;
+            line-height: 1.9;
 
-    overflow-y: auto;
+            font-family: Georgia, serif;
 
-    text-align: center;
-}
+            font-size: 17px;
+        }
 
+        .modal-author {
+            margin-top: 35px;
+            padding-top: 15px;
 
-/* JUDUL */
+            color: #594534;
 
-.lb-title {
+            text-align: right;
 
-    font-family: 'Poppins', sans-serif;
+            font-family: Georgia, serif;
 
-    font-size: clamp(26px, 6vw, 36px);
+            font-size: 16px;
 
-    font-weight: 700;
+            font-style: italic;
+        }
 
-    color: #594534;
 
-    margin: 0 0 30px;
+        /* =====================================================
+           MODAL SCROLLBAR
+        ===================================================== */
 
-    text-shadow:
-        2px 2px 0 rgba(0,0,0,0.15);
-}
+        .modal-paper::-webkit-scrollbar {
+            width: 7px;
+        }
 
+        .modal-paper::-webkit-scrollbar-track {
+            background: rgba(120, 100, 80, 0.12);
+        }
 
-/* CONTAINER SURAT */
+        .modal-paper::-webkit-scrollbar-thumb {
+            background: #a98c62;
 
-.letters-container {
+            border-radius: 10px;
+        }
 
-    width: min(650px, 92vw);
 
-    display: flex;
+        /* =====================================================
+           MOBILE
+        ===================================================== */
 
-    flex-direction: column;
+        @media (max-width: 600px) {
 
-    gap: 18px;
+            .birthday-title {
+                margin-bottom: 18px;
 
-    padding-bottom: 30px;
-}
+                font-size: 30px;
+            }
 
+            .birthday-photo {
+                width: 90vw;
 
-/* KOTAK SURAT */
+                max-height: 50vh;
+            }
 
-.saved-letter-button {
+            .birthday-letter-button {
+                padding: 14px 17px;
 
-    width: 100%;
+                font-size: 12px;
+            }
 
-    min-height: 95px;
+            .stuffs-container {
+                grid-template-columns: 1fr;
+            }
 
-    padding: 20px 25px;
+            .letter-paper {
+                min-height: 580px;
 
-    border: none;
+                padding: 25px;
+            }
+        }
 
-    border-radius: 6px;
-
-    background: #8b6548;
-
-    color: #f5e8cf;
-
-    font-family: Georgia, serif;
-
-    font-size: 20px;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 8px 16px rgba(0,0,0,0.25);
-
-    transition:
-        transform 0.25s ease,
-        background 0.25s ease,
-        box-shadow 0.25s ease;
-}
-
-
-/* SAAT CURSOR MASUK */
-
-.saved-letter-button:hover {
-
-    background: #6f4e37;
-
-    transform: scale(1.035);
-
-    box-shadow:
-        0 12px 22px rgba(0,0,0,0.30);
-}
-
-
-/* TANGGAL */
-
-.saved-letter-date {
-
-    display: block;
-
-    font-size: 19px;
-
-    font-weight: 700;
-
-    color: #f5e8cf;
-
-    text-shadow:
-        1px 1px 0 rgba(0,0,0,0.25);
-}
-
-
-/* NAMA PENULIS */
-
-.saved-letter-name {
-
-    display: block;
-
-    margin-top: 7px;
-
-    font-size: 14px;
-
-    font-weight: 400;
-
-    color: #f5e8cf;
-
-    text-shadow:
-        1px 1px 0 rgba(0,0,0,0.25);
-}
-
-
-/* =====================================================
-   OPEN LETTER MODAL
-===================================================== */
-
-.letter-modal {
-
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 10000;
-
-    display: none;
-
-    justify-content: center;
-
-    align-items: center;
-
-    padding: 20px;
-
-    background: rgba(45, 35, 25, 0.65);
-
-    backdrop-filter: blur(3px);
-}
-
-.letter-modal.active {
-
-    display: flex;
-}
-
-
-/* KERTAS SURAT */
-
-.modal-paper {
-
-    width: min(620px, 92vw);
-
-    max-height: 85vh;
-
-    overflow-y: auto;
-
-    padding: 45px 40px;
-
-    background:
-        linear-gradient(
-            rgba(245,232,207,0.96),
-            rgba(238,219,184,0.96)
-        );
-
-    color: #4a3928;
-
-    border: 1px solid #c9ab7b;
-
-    border-radius: 3px;
-
-    box-shadow:
-        0 18px 45px rgba(0,0,0,0.35);
-
-    font-family: Georgia, serif;
-
-    position: relative;
-
-    animation:
-        letterAppear
-        0.45s
-        ease-out;
-}
-
-
-/* ANIMASI SURAT */
-
-@keyframes letterAppear {
-
-    0% {
-
-        opacity: 0;
-
-        transform:
-            scale(0.85)
-            rotate(-2deg);
-    }
-
-    100% {
-
-        opacity: 1;
-
-        transform:
-            scale(1)
-            rotate(0deg);
-    }
-}
-
-
-/* TOMBOL CLOSE */
-
-.close-modal {
-
-    position: absolute;
-
-    top: 12px;
-
-    right: 17px;
-
-    width: 35px;
-
-    height: 35px;
-
-    border: none;
-
-    background: transparent;
-
-    color: #4a3928;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 28px;
-
-    line-height: 35px;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.2s ease;
-}
-
-.close-modal:hover {
-
-    transform: scale(1.2);
-
-}
-
-
-/* TANGGAL + JAM */
-
-.modal-date {
-
-    text-align: center;
-
-    font-family: Georgia, serif;
-
-    font-size: 16px;
-
-    font-weight: 700;
-
-    color: #80694f;
-
-    margin-bottom: 30px;
-
-    padding-bottom: 15px;
-
-    border-bottom: 1px solid #c9ab7b;
-}
-
-
-/* ISI SURAT */
-
-.modal-message {
-
-    white-space: pre-wrap;
-
-    line-height: 1.9;
-
-    font-family: Georgia, serif;
-
-    font-size: 17px;
-
-    color: #4a3928;
-
-    text-align: left;
-
-    min-height: 180px;
-}
-
-
-/* NAMA PENULIS */
-
-.modal-author {
-
-    margin-top: 35px;
-
-    padding-top: 15px;
-
-    text-align: right;
-
-    font-family: Georgia, serif;
-
-    font-size: 16px;
-
-    font-style: italic;
-
-    color: #594534;
-}
-
-
-/* SCROLLBAR SURAT */
-
-.modal-paper::-webkit-scrollbar {
-
-    width: 7px;
-}
-
-.modal-paper::-webkit-scrollbar-track {
-
-    background: rgba(120,100,80,0.12);
-}
-
-.modal-paper::-webkit-scrollbar-thumb {
-
-    background: #a98c62;
-
-    border-radius: 10px;
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width:600px) {
-
-    .birthday-title {
-
-        font-size: 30px;
-
-        margin-bottom: 18px;
-    }
-
-    .birthday-photo {
-
-        width: 90vw;
-
-        max-height: 50vh;
-    }
-
-    .birthday-letter-button {
-
-        font-size: 12px;
-
-        padding: 14px 17px;
-
-    }
-
-    .stuffs-container {
-
-        grid-template-columns: 1fr;
-    }
-
-    .letter-paper {
-
-        padding: 25px;
-
-        min-height: 580px;
-    }
-}
-
-</style>
-
+    </style>
 </head>
 
 
 <body>
 
 
-<!-- =====================================================
-     HOME
-===================================================== -->
+    <!-- =====================================================
+         HOME
+    ===================================================== -->
 
-<section id="home" class="page active">
+    <section id="home" class="page active">
 
-    <div id="stars"></div>
+        <div id="stars"></div>
 
-    <div class="login-box">
+        <div class="login-box">
 
-        <h1>
-            Access Password
-        </h1>
+            <h1>
+                Access Password
+            </h1>
 
-        <p class="clue">
-            clue: tanggal lahir pemilik website
-        </p>
-
-        <input
-            id="password"
-            class="password-input"
-            type="password"
-            placeholder="enter password"
-        >
-
-        <button
-            class="unlock-button"
-            onclick="checkPassword()"
-        >
-            Unlock
-        </button>
-
-        <p id="message"></p>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     B1
-===================================================== -->
-
-<section id="pageB1" class="page">
-
-    <button
-        class="back-button"
-        onclick="goHome()"
-    >
-        BACK
-    </button>
-
-
-    <h1 class="birthday-title">
-        SELAMAT ULANG TAHUN JAFAR!!!
-    </h1>
-
-
-    <img
-        src="BIRTHDAY.PNG"
-        alt="Birthday"
-        class="birthday-photo"
-    >
-
-
-    <button
-        class="birthday-letter-button"
-        onclick="openBirthdayLetter()"
-    >
-        CLICK HERE TO READ YOUR BIRTHDAY LETTER FROM ALYA AUDINAR
-    </button>
-
-</section>
-
-
-<!-- =====================================================
-     PAGE 1
-===================================================== -->
-
-<section id="page1" class="page">
-
-    <button
-        class="back-button"
-        onclick="goHome()"
-    >
-        BACK
-    </button>
-
-    <h1 class="og-title">
-        OG LETTER
-    </h1>
-
-    <p class="og-text">
-        your original letter is waiting here
-    </p>
-
-    <button
-        class="og-letter-button"
-        onclick="showPage('page3')"
-    >
-        CLICK HERE TO READ THE OG LETTER FROM ALYA AUDINAR
-    </button>
-
-</section>
-
-
-<!-- =====================================================
-     PAGE 3
-===================================================== -->
-
-<section id="page3" class="page">
-
-    <button
-        class="back-button"
-        onclick="showPage('page1')"
-    >
-        BACK
-    </button>
-
-    <h1 class="stuffs-title">
-        WHICH STUFFS DO U WANT TO READ?
-    </h1>
-
-    <div class="stuffs-container">
-
-        <button
-            class="stuff-button"
-            onclick="openPDF('JACKET_LINK')"
-        >
-            JACKET
-        </button>
-
-        <button
-            class="stuff-button"
-            onclick="openPDF('BOOKS_LINK')"
-        >
-            BOOKS
-        </button>
-
-        <button
-            class="stuff-button"
-            onclick="openPDF('FRAME_FOTO_LINK')"
-        >
-            FRAME FOTO
-        </button>
-
-        <button
-            class="stuff-button"
-            onclick="openPDF('KEYCHAIN_LINK')"
-        >
-            KEYCHAIN
-        </button>
-
-        <button
-            class="stuff-button"
-            onclick="openPDF('OUR_PHOTOS_LINK')"
-        >
-            OUR PHOTOS
-        </button>
-
-        <button
-            class="stuff-button random-button"
-            onclick="showPage('pageL1')"
-        >
-            RANDOM DAY LETTER
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     L1
-===================================================== -->
-
-<section id="pageL1" class="page">
-
-    <button
-        class="back-button"
-        onclick="showPage('page3')"
-    >
-        BACK
-    </button>
-
-    <h1 class="l1-title">
-        PILIH SALAH SATU
-    </h1>
-
-    <button
-        class="l1-button"
-        onclick="showPage('pageLT1')"
-    >
-        INGIN MENULIS RANDOM DAY LETTER
-    </button>
-
-    <button
-        class="l1-button"
-        onclick="showPage('pageLB1'); loadLetters();"
-    >
-        INGIN MEMBACA RANDOM DAY LETTER
-    </button>
-
-</section>
-
-
-<!-- =====================================================
-     LT1
-===================================================== -->
-
-<section id="pageLT1" class="page">
-
-    <button
-        class="back-button"
-        onclick="showPage('pageL1')"
-    >
-        BACK
-    </button>
-
-    <div class="letter-paper">
-
-        <h1 class="letter-title">
-            RANDOM DAY LETTER
-        </h1>
-
-        <div class="letter-field">
-
-            <label>
-                TANGGAL / BULAN / TAHUN
-            </label>
-
-            <input
-                id="letterDate"
-                class="letter-input"
-                type="date"
-            >
-
-        </div>
-
-
-        <div class="letter-field">
-
-            <label>
-                JAM
-            </label>
-
-            <input
-                id="letterTime"
-                class="letter-input"
-                type="time"
-            >
-
-        </div>
-
-
-        <div class="letter-field">
-
-            <label>
-                ISI PESAN
-            </label>
-
-            <textarea
-                id="letterMessage"
-                class="letter-textarea"
-                placeholder="tulis suratmu di sini..."
-            ></textarea>
-
-        </div>
-
-
-        <div class="letter-field">
-
-            <label>
-                NAMA PENULIS
-            </label>
-
-            <input
-                id="letterAuthor"
-                class="letter-input"
-                type="text"
-                placeholder="nama kamu"
-            >
-
-        </div>
-
-
-        <button
-            class="send-letter-button"
-            onclick="sendLetter()"
-        >
-            KIRIM
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     LB1
-===================================================== -->
-
-<section id="pageLB1" class="page">
-
-    <button
-        class="back-button"
-        onclick="showPage('pageL1')"
-    >
-        BACK
-    </button>
-
-    <h1 class="lb-title">
-        RANDOM DAY LETTERS
-    </h1>
-
-    <div
-        id="lettersContainer"
-        class="letters-container"
-    ></div>
-
-</section>
-
-
-<!-- =====================================================
-     LETTER MODAL
-===================================================== -->
-
-<div
-    id="letterModal"
-    class="letter-modal"
->
-
-    <div class="modal-paper">
-
-        <button
-            class="close-modal"
-            onclick="closeLetter()"
-        >
-            ×
-        </button>
-
-        <div
-            id="modalDate"
-            class="modal-date"
-        ></div>
-
-        <div
-            id="modalMessage"
-            class="modal-message"
-        ></div>
-
-        <div
-            id="modalAuthor"
-            class="modal-author"
-        ></div>
-
-    </div>
-
-</div>
-
-
-<script>
-
-
-/* =====================================================
-   PAGE NAVIGATION
-===================================================== */
-
-function showPage(pageId) {
-
-    /*
-       Kalau meninggalkan B1,
-       hapus confetti.
-    */
-
-    if (pageId !== "pageB1") {
-
-        document
-            .querySelectorAll(".confetti")
-            .forEach(c => c.remove());
-
-    }
-
-
-    document
-        .querySelectorAll(".page")
-        .forEach(page => {
-
-            page.classList.remove("active");
-
-        });
-
-
-    document
-        .getElementById(pageId)
-        .classList.add("active");
-
-
-    /*
-       Kalau masuk B1,
-       buat confetti baru.
-    */
-
-    if (pageId === "pageB1") {
-
-        createConfetti();
-
-    }
-
-}
-
-
-/* =====================================================
-   HOME
-===================================================== */
-
-function goHome() {
-
-    showPage("home");
-
-    document
-        .getElementById("password")
-        .value = "";
-
-    document
-        .getElementById("message")
-        .innerText = "";
-
-}
-
-
-/* =====================================================
-   PASSWORD
-===================================================== */
-
-function checkPassword() {
-
-    const password =
-        document.getElementById("password").value;
-
-    const message =
-        document.getElementById("message");
-
-
-    /*
-       PASSWORD B1
-       20061215
-    */
-
-    if (password === "20061215") {
-
-        showPage("pageB1");
-
-        return;
-    }
-
-
-    /*
-       PASSWORD PAGE 1
-       24122006
-    */
-
-    if (password === "24122006") {
-
-        showPage("page1");
-
-        return;
-    }
-
-
-    message.innerText =
-        "coba lagi ...";
-
-}
-
-
-/* =====================================================
-   ENTER PASSWORD
-===================================================== */
-
-document
-    .getElementById("password")
-    .addEventListener("focus", function() {
-
-        this.placeholder = "";
-
-    });
-
-
-document
-    .getElementById("password")
-    .addEventListener("blur", function() {
-
-        if (!this.value) {
-
-            this.placeholder =
-                "enter password";
-
-        }
-
-    });
-
-
-document
-    .getElementById("password")
-    .addEventListener("keydown", function(event) {
-
-        if (event.key === "Enter") {
-
-            event.preventDefault();
-
-            checkPassword();
-
-        }
-
-    });
-
-
-/* =====================================================
-   CREATE STARS
-===================================================== */
-
-function createStars() {
-
-    const container =
-        document.getElementById("stars");
-
-    const colors = [
-
-        "#F6E7A1",
-        "#F7C6C7",
-        "#C6DEF1",
-        "#C9E4C5",
-        "#E2C6F1",
-        "#F9D5A7"
-
-    ];
-
-
-    for (let i = 0; i < 30; i++) {
-
-        const star =
-            document.createElement("div");
-
-        star.classList.add("star");
-
-
-        const size =
-            18 + Math.random() * 25;
-
-
-        star.style.setProperty(
-            "--size",
-            size + "px"
-        );
-
-
-        star.style.setProperty(
-            "--left",
-            Math.random() * 100 + "vw"
-        );
-
-
-        star.style.setProperty(
-            "--top",
-            Math.random() * 100 + "vh"
-        );
-
-
-        star.style.setProperty(
-            "--color",
-            colors[
-                Math.floor(
-                    Math.random() * colors.length
-                )
-            ]
-        );
-
-
-        star.style.setProperty(
-            "--x1",
-            (-18 + Math.random() * 36) + "px"
-        );
-
-
-        star.style.setProperty(
-            "--x2",
-            (-35 + Math.random() * 70) + "px"
-        );
-
-
-        star.style.setProperty(
-            "--x3",
-            (-18 + Math.random() * 36) + "px"
-        );
-
-
-        star.style.setProperty(
-            "--y1",
-            (-12 + Math.random() * 24) + "px"
-        );
-
-
-        star.style.setProperty(
-            "--y2",
-            (-20 + Math.random() * 40) + "px"
-        );
-
-
-        star.style.setProperty(
-            "--y3",
-            (-12 + Math.random() * 24) + "px"
-        );
-
-
-        star.style.setProperty(
-            "--duration",
-            (10 + Math.random() * 7) + "s"
-        );
-
-
-        container.appendChild(star);
-
-    }
-
-}
-
-
-/* =====================================================
-   CONFETTI
-===================================================== */
-
-function createConfetti() {
-
-    /*
-       Bersihkan confetti lama
-    */
-
-    document
-        .querySelectorAll(".confetti")
-        .forEach(c => c.remove());
-
-
-    const colors = [
-
-        "#F6E7A1",
-        "#F7C6C7",
-        "#C6DEF1",
-        "#C9E4C5",
-        "#E2C6F1",
-        "#F9D5A7"
-
-    ];
-
-
-    /*
-       180 CONFETTI
-       lebih banyak + lebih menyebar
-    */
-
-    for (let i = 0; i < 180; i++) {
-
-        const confetti =
-            document.createElement("div");
-
-        confetti.classList.add("confetti");
-
-
-        /*
-           Warna pastel random
-        */
-
-        confetti.style.setProperty(
-            "--color",
-            colors[
-                Math.floor(
-                    Math.random() * colors.length
-                )
-            ]
-        );
-
-
-        /*
-           Ukuran confetti
-        */
-
-        confetti.style.setProperty(
-            "--width",
-            (5 + Math.random() * 9) + "px"
-        );
-
-
-        confetti.style.setProperty(
-            "--height",
-            (8 + Math.random() * 16) + "px"
-        );
-
-
-        /*
-           Arah random 360 derajat
-        */
-
-        const angle =
-            Math.random() * Math.PI * 2;
-
-
-        /*
-           Jarak dibuat sangat lebar
-           supaya memenuhi layar
-        */
-
-        const distance =
-            280 + Math.random() * 650;
-
-
-        const x =
-            Math.cos(angle) * distance;
-
-
-        const y =
-            Math.sin(angle) * distance;
-
-
-        confetti.style.setProperty(
-            "--x",
-            x + "px"
-        );
-
-
-        confetti.style.setProperty(
-            "--y",
-            y + "px"
-        );
-
-
-        /*
-           Rotasi random
-        */
-
-        confetti.style.setProperty(
-            "--rotation",
-            (-720 + Math.random() * 1440) + "deg"
-        );
-
-
-        /*
-           Kecepatan random
-           dibuat cukup lambat
-           agar gerakan terlihat
-        */
-
-        confetti.style.setProperty(
-            "--duration",
-            (4 + Math.random() * 4) + "s"
-        );
-
-
-        /*
-           Masukkan ke B1
-        */
-
-        document
-            .getElementById("pageB1")
-            .appendChild(confetti);
-
-    }
-
-}
-
-
-/* =====================================================
-   BIRTHDAY PDF
-===================================================== */
-
-function openBirthdayLetter() {
-
-    /*
-       NANTI GANTI DENGAN LINK PDF
-    */
-
-    window.location.href =
-        "https://drive.google.com";
-
-}
-
-
-/* =====================================================
-   PDF BUTTONS
-===================================================== */
-
-function openPDF(link) {
-
-    if (
-        link === "JACKET_LINK" ||
-        link === "BOOKS_LINK" ||
-        link === "FRAME_FOTO_LINK" ||
-        link === "KEYCHAIN_LINK" ||
-        link === "OUR_PHOTOS_LINK"
-    ) {
-
-        alert(
-            "Link PDF belum dimasukkan."
-        );
-
-        return;
-    }
-
-
-    window.location.href = link;
-
-}
-
-
-/* =====================================================
-   RANDOM DAY LETTER
-===================================================== */
-
-function sendLetter() {
-
-    const date =
-        document.getElementById("letterDate").value;
-
-    const time =
-        document.getElementById("letterTime").value;
-
-    const message =
-        document
-            .getElementById("letterMessage")
-            .value
-            .trim();
-
-    const author =
-        document
-            .getElementById("letterAuthor")
-            .value
-            .trim();
-
-
-    if (!date || !time || !message || !author) {
-
-        alert(
-            "Tolong isi semua bagian surat terlebih dahulu."
-        );
-
-        return;
-    }
-
-
-    const letters =
-        JSON.parse(
-            localStorage.getItem("randomDayLetters")
-            || "[]"
-        );
-
-
-    letters.push({
-
-        id: Date.now(),
-
-        date: date,
-
-        time: time,
-
-        message: message,
-
-        author: author
-
-    });
-
-
-    localStorage.setItem(
-        "randomDayLetters",
-        JSON.stringify(letters)
-    );
-
-
-    document.getElementById("letterDate").value = "";
-
-    document.getElementById("letterTime").value = "";
-
-    document.getElementById("letterMessage").value = "";
-
-    document.getElementById("letterAuthor").value = "";
-
-
-    alert(
-        "Surat berhasil dikirim ♡"
-    );
-
-
-    showPage("pageLB1");
-
-    loadLetters();
-
-}
-
-
-/* =====================================================
-   LOAD LETTERS
-===================================================== */
-
-function loadLetters() {
-
-    const container =
-        document.getElementById("lettersContainer");
-
-
-    container.innerHTML = "";
-
-
-    const letters =
-        JSON.parse(
-            localStorage.getItem("randomDayLetters")
-            || "[]"
-        );
-
-
-    if (letters.length === 0) {
-
-        container.innerHTML = `
-
-            <p style="
-                text-align:center;
-                color:#80694F;
-                font-family:Georgia,serif;
-            ">
-                belum ada random day letter.
+            <p class="clue">
+                clue: tanggal lahir pemilik website
             </p>
 
-        `;
+            <input
+                id="password"
+                class="password-input"
+                type="password"
+                placeholder="enter password"
+            >
 
-        return;
-    }
+            <button
+                class="unlock-button"
+                onclick="checkPassword()"
+            >
+                Unlock
+            </button>
 
+            <p id="message"></p>
 
-    letters
-        .slice()
-        .reverse()
-        .forEach(letter => {
+        </div>
 
-            const button =
-                document.createElement("button");
-
-
-            button.className =
-                "saved-letter-button";
-
-
-            const formattedDate =
-                formatDate(letter.date);
+    </section>
 
 
-           button.innerHTML = `
+    <!-- =====================================================
+         B1 — BIRTHDAY
+    ===================================================== -->
 
-    <span class="saved-letter-date">
-        ${formattedDate}
-    </span>
+    <section id="pageB1" class="page">
 
-    <span class="saved-letter-name">
-        ${escapeHTML(letter.author)}
-    </span>
+        <button
+            class="back-button"
+            onclick="goHome()"
+        >
+            BACK
+        </button>
 
-`;
+        <h1 class="birthday-title">
+            SELAMAT ULANG TAHUN JAFAR!!!
+        </h1>
 
+        <img
+            src="BIRTHDAY.PNG"
+            alt="Birthday"
+            class="birthday-photo"
+        >
 
-            button.onclick = function() {
+        <button
+            class="birthday-letter-button"
+            onclick="openBirthdayLetter()"
+        >
+            CLICK HERE TO READ YOUR BIRTHDAY LETTER FROM ALYA AUDINAR
+        </button>
 
-                openLetter(letter);
-
-            };
-
-
-            container.appendChild(button);
-
-        });
-
-}
-
-
-/* =====================================================
-   FORMAT DATE
-===================================================== */
-
-function formatDate(dateString) {
-
-    const parts =
-        dateString.split("-");
+    </section>
 
 
-    if (parts.length !== 3) {
+    <!-- =====================================================
+         PAGE 1 — OG LETTER
+    ===================================================== -->
 
-        return dateString;
+    <section id="page1" class="page">
 
-    }
+        <button
+            class="back-button"
+            onclick="goHome()"
+        >
+            BACK
+        </button>
 
+        <h1 class="og-title">
+            OG LETTER
+        </h1>
 
-    return (
-        parts[2] +
-        "/" +
-        parts[1] +
-        "/" +
-        parts[0]
-    );
+        <p class="og-text">
+            your original letter is waiting here
+        </p>
 
-}
+        <button
+            class="og-letter-button"
+            onclick="showPage('page3')"
+        >
+            CLICK HERE TO READ THE OG LETTER FROM ALYA AUDINAR
+        </button>
 
-
-/* =====================================================
-   OPEN LETTER
-===================================================== */
-
-function openLetter(letter) {
-
-    document
-        .getElementById("modalDate")
-        .innerText =
-            formatDate(letter.date) +
-            " • " +
-            letter.time;
-
-
-    document
-        .getElementById("modalMessage")
-        .innerText =
-            letter.message;
+    </section>
 
 
-    document
-        .getElementById("modalAuthor")
-        .innerText =
-            "— " +
-            letter.author;
+    <!-- =====================================================
+         PAGE 3 — STUFFS
+    ===================================================== -->
+
+    <section id="page3" class="page">
+
+        <button
+            class="back-button"
+            onclick="showPage('page1')"
+        >
+            BACK
+        </button>
+
+        <h1 class="stuffs-title">
+            WHICH STUFFS DO U WANT TO READ?
+        </h1>
+
+        <div class="stuffs-container">
+
+            <button
+                class="stuff-button"
+                onclick="openPDF('JACKET_LINK')"
+            >
+                JACKET
+            </button>
+
+            <button
+                class="stuff-button"
+                onclick="openPDF('BOOKS_LINK')"
+            >
+                BOOKS
+            </button>
+
+            <button
+                class="stuff-button"
+                onclick="openPDF('FRAME_FOTO_LINK')"
+            >
+                FRAME FOTO
+            </button>
+
+            <button
+                class="stuff-button"
+                onclick="openPDF('KEYCHAIN_LINK')"
+            >
+                KEYCHAIN
+            </button>
+
+            <button
+                class="stuff-button"
+                onclick="openPDF('OUR_PHOTOS_LINK')"
+            >
+                OUR PHOTOS
+            </button>
+
+            <button
+                class="stuff-button random-button"
+                onclick="showPage('pageL1')"
+            >
+                RANDOM DAY LETTER
+            </button>
+
+        </div>
+
+    </section>
 
 
-    document
-        .getElementById("letterModal")
-        .classList
-        .add("active");
+    <!-- =====================================================
+         L1 — RANDOM DAY LETTER MENU
+    ===================================================== -->
 
-}
+    <section id="pageL1" class="page">
 
+        <button
+            class="back-button"
+            onclick="showPage('page3')"
+        >
+            BACK
+        </button>
 
-/* =====================================================
-   CLOSE LETTER
-===================================================== */
+        <h1 class="l1-title">
+            PILIH SALAH SATU
+        </h1>
 
-function closeLetter() {
+        <button
+            class="l1-button"
+            onclick="showPage('pageLT1')"
+        >
+            INGIN MENULIS RANDOM DAY LETTER
+        </button>
 
-    document
-        .getElementById("letterModal")
-        .classList
-        .remove("active");
+        <button
+            class="l1-button"
+            onclick="showPage('pageLB1'); loadLetters();"
+        >
+            INGIN MEMBACA RANDOM DAY LETTER
+        </button>
 
-}
-
-
-/* =====================================================
-   BASIC HTML ESCAPE
-===================================================== */
-
-function escapeHTML(text) {
-
-    const div =
-        document.createElement("div");
-
-
-    div.innerText =
-        text;
+    </section>
 
 
-    return div.innerHTML;
+    <!-- =====================================================
+         LT1 — WRITE RANDOM DAY LETTER
+    ===================================================== -->
 
-}
+    <section id="pageLT1" class="page">
+
+        <button
+            class="back-button"
+            onclick="showPage('pageL1')"
+        >
+            BACK
+        </button>
+
+        <div class="letter-paper">
+
+            <h1 class="letter-title">
+                RANDOM DAY LETTER
+            </h1>
+
+            <div class="letter-field">
+
+                <label>
+                    TANGGAL / BULAN / TAHUN
+                </label>
+
+                <input
+                    id="letterDate"
+                    class="letter-input"
+                    type="date"
+                >
+
+            </div>
+
+            <div class="letter-field">
+
+                <label>
+                    JAM
+                </label>
+
+                <input
+                    id="letterTime"
+                    class="letter-input"
+                    type="time"
+                >
+
+            </div>
+
+            <div class="letter-field">
+
+                <label>
+                    ISI PESAN
+                </label>
+
+                <textarea
+                    id="letterMessage"
+                    class="letter-textarea"
+                    placeholder="tulis suratmu di sini..."
+                ></textarea>
+
+            </div>
+
+            <div class="letter-field">
+
+                <label>
+                    NAMA PENULIS
+                </label>
+
+                <input
+                    id="letterAuthor"
+                    class="letter-input"
+                    type="text"
+                    placeholder="nama kamu"
+                >
+
+            </div>
+
+            <button
+                class="send-letter-button"
+                onclick="sendLetter()"
+            >
+                KIRIM
+            </button>
+
+        </div>
+
+    </section>
 
 
-/* =====================================================
-   INITIALIZE
-===================================================== */
+    <!-- =====================================================
+         LB1 — LETTER LIST
+    ===================================================== -->
 
-createStars();
+    <section id="pageLB1" class="page">
 
-</script>
+        <button
+            class="back-button"
+            onclick="showPage('pageL1')"
+        >
+            BACK
+        </button>
+
+        <h1 class="lb-title">
+            RANDOM DAY LETTERS
+        </h1>
+
+        <div
+            id="lettersContainer"
+            class="letters-container"
+        ></div>
+
+    </section>
+
+
+    <!-- =====================================================
+         LETTER MODAL
+    ===================================================== -->
+
+    <div
+        id="letterModal"
+        class="letter-modal"
+    >
+
+        <div class="modal-paper">
+
+            <button
+                class="close-modal"
+                onclick="closeLetter()"
+            >
+                ×
+            </button>
+
+            <div
+                id="modalDate"
+                class="modal-date"
+            ></div>
+
+            <div
+                id="modalMessage"
+                class="modal-message"
+            ></div>
+
+            <div
+                id="modalAuthor"
+                class="modal-author"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
+
+    <script>
+
+
+        /* =====================================================
+           PAGE NAVIGATION
+        ===================================================== */
+
+        function showPage(pageId) {
+
+            // Hapus confetti jika meninggalkan B1
+            if (pageId !== "pageB1") {
+
+                document
+                    .querySelectorAll(".confetti")
+                    .forEach(confetti => confetti.remove());
+
+            }
+
+
+            // Sembunyikan semua page
+            document
+                .querySelectorAll(".page")
+                .forEach(page => {
+
+                    page.classList.remove("active");
+
+                });
+
+
+            // Tampilkan page tujuan
+            document
+                .getElementById(pageId)
+                .classList.add("active");
+
+
+            // Buat confetti ketika masuk B1
+            if (pageId === "pageB1") {
+
+                createConfetti();
+
+            }
+
+        }
+
+
+        /* =====================================================
+           HOME
+        ===================================================== */
+
+        function goHome() {
+
+            showPage("home");
+
+            document
+                .getElementById("password")
+                .value = "";
+
+            document
+                .getElementById("message")
+                .innerText = "";
+
+        }
+
+
+        /* =====================================================
+           PASSWORD
+        ===================================================== */
+
+        function checkPassword() {
+
+            const password =
+                document.getElementById("password").value;
+
+            const message =
+                document.getElementById("message");
+
+
+            // Password Birthday Page
+            if (password === "20061215") {
+
+                showPage("pageB1");
+
+                return;
+
+            }
+
+
+            // Password OG Letter
+            if (password === "24122006") {
+
+                showPage("page1");
+
+                return;
+
+            }
+
+
+            // Password salah
+            message.innerText =
+                "coba lagi ...";
+
+        }
+
+
+        /* =====================================================
+           PASSWORD INPUT
+        ===================================================== */
+
+        const passwordInput =
+            document.getElementById("password");
+
+
+        passwordInput.addEventListener(
+            "focus",
+            function () {
+
+                this.placeholder = "";
+
+            }
+        );
+
+
+        passwordInput.addEventListener(
+            "blur",
+            function () {
+
+                if (!this.value) {
+
+                    this.placeholder =
+                        "enter password";
+
+                }
+
+            }
+        );
+
+
+        passwordInput.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (event.key === "Enter") {
+
+                    event.preventDefault();
+
+                    checkPassword();
+
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           CREATE STARS
+        ===================================================== */
+
+        function createStars() {
+
+            const container =
+                document.getElementById("stars");
+
+
+            const colors = [
+                "#F6E7A1",
+                "#F7C6C7",
+                "#C6DEF1",
+                "#C9E4C5",
+                "#E2C6F1",
+                "#F9D5A7"
+            ];
+
+
+            for (let i = 0; i < 30; i++) {
+
+                const star =
+                    document.createElement("div");
+
+
+                star.classList.add("star");
+
+
+                // Ukuran
+                const size =
+                    18 + Math.random() * 25;
+
+                star.style.setProperty(
+                    "--size",
+                    size + "px"
+                );
+
+
+                // Posisi
+                star.style.setProperty(
+                    "--left",
+                    Math.random() * 100 + "vw"
+                );
+
+                star.style.setProperty(
+                    "--top",
+                    Math.random() * 100 + "vh"
+                );
+
+
+                // Warna
+                star.style.setProperty(
+                    "--color",
+                    colors[
+                        Math.floor(
+                            Math.random() * colors.length
+                        )
+                    ]
+                );
+
+
+                // Gerakan X
+                star.style.setProperty(
+                    "--x1",
+                    (-18 + Math.random() * 36) + "px"
+                );
+
+                star.style.setProperty(
+                    "--x2",
+                    (-35 + Math.random() * 70) + "px"
+                );
+
+                star.style.setProperty(
+                    "--x3",
+                    (-18 + Math.random() * 36) + "px"
+                );
+
+
+                // Gerakan Y
+                star.style.setProperty(
+                    "--y1",
+                    (-12 + Math.random() * 24) + "px"
+                );
+
+                star.style.setProperty(
+                    "--y2",
+                    (-20 + Math.random() * 40) + "px"
+                );
+
+                star.style.setProperty(
+                    "--y3",
+                    (-12 + Math.random() * 24) + "px"
+                );
+
+
+                // Durasi
+                star.style.setProperty(
+                    "--duration",
+                    (10 + Math.random() * 7) + "s"
+                );
+
+
+                container.appendChild(star);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           CREATE CONFETTI
+        ===================================================== */
+
+        function createConfetti() {
+
+            // Bersihkan confetti lama
+            document
+                .querySelectorAll(".confetti")
+                .forEach(confetti => confetti.remove());
+
+
+            const colors = [
+                "#F6E7A1",
+                "#F7C6C7",
+                "#C6DEF1",
+                "#C9E4C5",
+                "#E2C6F1",
+                "#F9D5A7"
+            ];
+
+
+            // 180 confetti
+            for (let i = 0; i < 180; i++) {
+
+                const confetti =
+                    document.createElement("div");
+
+
+                confetti.classList.add("confetti");
+
+
+                // Warna
+                confetti.style.setProperty(
+                    "--color",
+                    colors[
+                        Math.floor(
+                            Math.random() * colors.length
+                        )
+                    ]
+                );
+
+
+                // Ukuran
+                confetti.style.setProperty(
+                    "--width",
+                    (5 + Math.random() * 9) + "px"
+                );
+
+                confetti.style.setProperty(
+                    "--height",
+                    (8 + Math.random() * 16) + "px"
+                );
+
+
+                // Arah random
+                const angle =
+                    Math.random() * Math.PI * 2;
+
+
+                // Jarak sebaran
+                const distance =
+                    280 + Math.random() * 650;
+
+
+                const x =
+                    Math.cos(angle) * distance;
+
+
+                const y =
+                    Math.sin(angle) * distance;
+
+
+                confetti.style.setProperty(
+                    "--x",
+                    x + "px"
+                );
+
+                confetti.style.setProperty(
+                    "--y",
+                    y + "px"
+                );
+
+
+                // Rotasi
+                confetti.style.setProperty(
+                    "--rotation",
+                    (-720 + Math.random() * 1440) + "deg"
+                );
+
+
+                // Kecepatan
+                confetti.style.setProperty(
+                    "--duration",
+                    (4 + Math.random() * 4) + "s"
+                );
+
+
+                // Masukkan ke B1
+                document
+                    .getElementById("pageB1")
+                    .appendChild(confetti);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           BIRTHDAY LETTER
+        ===================================================== */
+
+        function openBirthdayLetter() {
+
+            // Ganti URL ini dengan link PDF birthday letter
+            window.location.href =
+                "https://drive.google.com";
+
+        }
+
+
+        /* =====================================================
+           PDF BUTTONS
+        ===================================================== */
+
+        function openPDF(link) {
+
+            const emptyLinks = [
+                "JACKET_LINK",
+                "BOOKS_LINK",
+                "FRAME_FOTO_LINK",
+                "KEYCHAIN_LINK",
+                "OUR_PHOTOS_LINK"
+            ];
+
+
+            if (emptyLinks.includes(link)) {
+
+                alert(
+                    "Link PDF belum dimasukkan."
+                );
+
+                return;
+
+            }
+
+
+            window.location.href = link;
+
+        }
+
+
+        /* =====================================================
+           SEND RANDOM DAY LETTER
+        ===================================================== */
+
+        function sendLetter() {
+
+            const date =
+                document
+                    .getElementById("letterDate")
+                    .value;
+
+
+            const time =
+                document
+                    .getElementById("letterTime")
+                    .value;
+
+
+            const message =
+                document
+                    .getElementById("letterMessage")
+                    .value
+                    .trim();
+
+
+            const author =
+                document
+                    .getElementById("letterAuthor")
+                    .value
+                    .trim();
+
+
+            // Validasi
+            if (!date || !time || !message || !author) {
+
+                alert(
+                    "Tolong isi semua bagian surat terlebih dahulu."
+                );
+
+                return;
+
+            }
+
+
+            // Ambil surat lama
+            const letters =
+                JSON.parse(
+                    localStorage.getItem(
+                        "randomDayLetters"
+                    ) || "[]"
+                );
+
+
+            // Tambahkan surat baru
+            letters.push({
+
+                id: Date.now(),
+
+                date: date,
+
+                time: time,
+
+                message: message,
+
+                author: author
+
+            });
+
+
+            // Simpan
+            localStorage.setItem(
+                "randomDayLetters",
+                JSON.stringify(letters)
+            );
+
+
+            // Reset form
+            document
+                .getElementById("letterDate")
+                .value = "";
+
+            document
+                .getElementById("letterTime")
+                .value = "";
+
+            document
+                .getElementById("letterMessage")
+                .value = "";
+
+            document
+                .getElementById("letterAuthor")
+                .value = "";
+
+
+            alert(
+                "Surat berhasil dikirim ♡"
+            );
+
+
+            // Tampilkan daftar surat
+            showPage("pageLB1");
+
+            loadLetters();
+
+        }
+
+
+        /* =====================================================
+           LOAD LETTERS
+        ===================================================== */
+
+        function loadLetters() {
+
+            const container =
+                document.getElementById(
+                    "lettersContainer"
+                );
+
+
+            container.innerHTML = "";
+
+
+            const letters =
+                JSON.parse(
+                    localStorage.getItem(
+                        "randomDayLetters"
+                    ) || "[]"
+                );
+
+
+            // Belum ada surat
+            if (letters.length === 0) {
+
+                container.innerHTML = `
+
+                    <p style="
+                        text-align: center;
+                        color: #80694F;
+                        font-family: Georgia, serif;
+                    ">
+                        belum ada random day letter.
+                    </p>
+
+                `;
+
+                return;
+
+            }
+
+
+            // Surat terbaru berada di atas
+            letters
+                .slice()
+                .reverse()
+                .forEach(letter => {
+
+                    const button =
+                        document.createElement(
+                            "button"
+                        );
+
+
+                    button.className =
+                        "saved-letter-button";
+
+
+                    const formattedDate =
+                        formatDate(letter.date);
+
+
+                    button.innerHTML = `
+
+                        <span class="saved-letter-date">
+                            ${formattedDate}
+                        </span>
+
+                        <span class="saved-letter-name">
+                            ${escapeHTML(letter.author)}
+                        </span>
+
+                    `;
+
+
+                    button.onclick =
+                        function () {
+
+                            openLetter(letter);
+
+                        };
+
+
+                    container.appendChild(button);
+
+                });
+
+        }
+
+
+        /* =====================================================
+           FORMAT DATE
+        ===================================================== */
+
+        function formatDate(dateString) {
+
+            const parts =
+                dateString.split("-");
+
+
+            if (parts.length !== 3) {
+
+                return dateString;
+
+            }
+
+
+            return (
+                parts[2] +
+                "/" +
+                parts[1] +
+                "/" +
+                parts[0]
+            );
+
+        }
+
+
+        /* =====================================================
+           OPEN LETTER
+        ===================================================== */
+
+        function openLetter(letter) {
+
+            document
+                .getElementById("modalDate")
+                .innerText =
+                    formatDate(letter.date) +
+                    " • " +
+                    letter.time;
+
+
+            document
+                .getElementById("modalMessage")
+                .innerText =
+                    letter.message;
+
+
+            document
+                .getElementById("modalAuthor")
+                .innerText =
+                    "— " +
+                    letter.author;
+
+
+            document
+                .getElementById("letterModal")
+                .classList
+                .add("active");
+
+        }
+
+
+        /* =====================================================
+           CLOSE LETTER
+        ===================================================== */
+
+        function closeLetter() {
+
+            document
+                .getElementById("letterModal")
+                .classList
+                .remove("active");
+
+        }
+
+
+        /* =====================================================
+           HTML ESCAPE
+        ===================================================== */
+
+        function escapeHTML(text) {
+
+            const div =
+                document.createElement("div");
+
+
+            div.innerText =
+                text;
+
+
+            return div.innerHTML;
+
+        }
+
+
+        /* =====================================================
+           INITIALIZE
+        ===================================================== */
+
+        createStars();
+
+    </script>
 
 </body>
 
 </html>
+```
