@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -9,7 +10,11 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+rel="stylesheet"
+>
 
 <style>
 
@@ -23,14 +28,20 @@
 
 html,
 body {
+
     margin: 0;
+
     width: 100%;
+
     min-height: 100%;
+
     font-family: 'Poppins', sans-serif;
 }
 
 body {
+
     background: #f7f5f2;
+
     overflow: hidden;
 }
 
@@ -40,7 +51,9 @@ body {
 ===================================================== */
 
 .page {
+
     width: 100%;
+
     min-height: 100vh;
 
     display: none;
@@ -48,12 +61,14 @@ body {
     position: relative;
 
     justify-content: center;
+
     align-items: center;
 
     overflow: hidden;
 }
 
 .page.active {
+
     display: flex;
 }
 
@@ -67,6 +82,7 @@ body {
     position: fixed;
 
     top: 20px;
+
     left: 20px;
 
     z-index: 9999;
@@ -74,21 +90,22 @@ body {
     padding: 9px 18px;
 
     border: none;
+
     border-radius: 10px;
 
-    background: rgba(54, 69, 79, 0.7);
+    background: rgba(54,69,79,0.7);
 
     color: white;
 
     font-family: 'Poppins', sans-serif;
+
     font-size: 13px;
+
     font-weight: 700;
 
     cursor: pointer;
 
-    transition:
-        transform 0.25s ease,
-        background 0.25s ease;
+    transition: 0.25s ease;
 }
 
 .back-button:hover {
@@ -104,12 +121,14 @@ body {
 ===================================================== */
 
 #home {
+
     background: #f7f5f2;
 }
 
 .login-box {
 
     width: 90%;
+
     max-width: 400px;
 
     text-align: center;
@@ -184,9 +203,7 @@ body {
 
     cursor: pointer;
 
-    transition:
-        background 0.25s ease,
-        transform 0.25s ease;
+    transition: 0.25s ease;
 }
 
 .unlock-button:hover {
@@ -215,9 +232,11 @@ body {
     position: fixed;
 
     width: var(--size);
+
     height: var(--size);
 
     left: var(--left);
+
     top: var(--top);
 
     background: var(--color);
@@ -240,7 +259,8 @@ body {
     pointer-events: none;
 
     animation:
-        starMovement var(--duration)
+        starMovement
+        var(--duration)
         ease-in-out
         infinite
         alternate;
@@ -249,20 +269,23 @@ body {
 @keyframes starMovement {
 
     0% {
+
         transform:
-            translate(var(--x1), var(--y1))
+            translate(var(--x1),var(--y1))
             rotate(0deg);
     }
 
     50% {
+
         transform:
-            translate(var(--x2), var(--y2))
+            translate(var(--x2),var(--y2))
             rotate(8deg);
     }
 
     100% {
+
         transform:
-            translate(var(--x3), var(--y3))
+            translate(var(--x3),var(--y3))
             rotate(-8deg);
     }
 }
@@ -281,9 +304,6 @@ body {
     text-align: center;
 }
 
-
-/* TITLE */
-
 .birthday-title {
 
     position: relative;
@@ -292,7 +312,7 @@ body {
 
     margin: 0 20px 20px;
 
-    font-size: clamp(28px, 7vw, 52px);
+    font-size: clamp(28px,7vw,52px);
 
     line-height: 1.2;
 
@@ -300,18 +320,9 @@ body {
 
     color: #373757;
 
-    /*
-       BLACK SHADOW
-       NON-BLUR
-       APPROX 20% OPACITY
-    */
-
     text-shadow:
-        2px 2px 0 rgba(0, 0, 0, 0.2);
+        2px 2px 0 rgba(0,0,0,0.2);
 }
-
-
-/* PHOTO */
 
 .birthday-photo {
 
@@ -319,7 +330,7 @@ body {
 
     z-index: 50;
 
-    width: min(520px, 82vw);
+    width: min(520px,82vw);
 
     max-height: 55vh;
 
@@ -341,7 +352,6 @@ body {
         ease-in-out
         infinite;
 }
-
 
 @keyframes heartbeat {
 
@@ -366,9 +376,6 @@ body {
     }
 }
 
-
-/* BIRTHDAY BUTTON */
-
 .birthday-letter-button {
 
     position: relative;
@@ -385,7 +392,7 @@ body {
 
     border-radius: 12px;
 
-    background: rgba(20, 38, 70, 0.5);
+    background: rgba(20,38,70,0.5);
 
     color: white;
 
@@ -404,16 +411,14 @@ body {
 
     text-shadow: none;
 
-    transition:
-        transform 0.25s ease,
-        background 0.25s ease;
+    transition: 0.25s ease;
 }
 
 .birthday-letter-button:hover {
 
     transform: scale(1.08);
 
-    background: rgba(20, 38, 70, 0.75);
+    background: rgba(20,38,70,0.75);
 }
 
 
@@ -426,9 +431,11 @@ body {
     position: fixed;
 
     left: 50%;
+
     top: 50%;
 
     width: var(--width);
+
     height: var(--height);
 
     background: var(--color);
@@ -442,7 +449,7 @@ body {
     animation:
         confettiMovement
         var(--duration)
-        cubic-bezier(0.15, 0.8, 0.2, 1)
+        cubic-bezier(0.15,0.8,0.2,1)
         infinite
         alternate;
 }
@@ -452,34 +459,31 @@ body {
     0% {
 
         transform:
-            translate(-50%, -50%)
-            translate(0, 0)
+            translate(-50%,-50%)
+            translate(0,0)
             rotate(0deg)
             scale(0.5);
-
     }
 
     60% {
 
         transform:
-            translate(-50%, -50%)
-            translate(var(--x), var(--y))
+            translate(-50%,-50%)
+            translate(var(--x),var(--y))
             rotate(var(--rotation))
             scale(1.5);
-
     }
 
     100% {
 
         transform:
-            translate(-50%, -50%)
+            translate(-50%,-50%)
             translate(
                 calc(var(--x) * 1.12),
                 calc(var(--y) * 1.12)
             )
             rotate(var(--rotation))
             scale(1.8);
-
     }
 }
 
@@ -513,9 +517,6 @@ body {
     font-size: 15px;
 }
 
-
-/* OG BUTTON */
-
 .og-letter-button {
 
     margin-top: 20px;
@@ -526,11 +527,11 @@ body {
 
     border-radius: 12px;
 
-    background: rgba(54, 54, 54, 0.7);
+    background: rgba(54,54,54,0.7);
 
     color: white;
 
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins',sans-serif;
 
     font-weight: 700;
 
@@ -539,9 +540,7 @@ body {
     box-shadow:
         0 8px 20px rgba(0,0,0,0.25);
 
-    transition:
-        transform 0.25s ease,
-        background 0.25s ease;
+    transition: 0.25s ease;
 }
 
 .og-letter-button:hover {
@@ -580,12 +579,9 @@ body {
     margin-bottom: 30px;
 }
 
-
-/* BUTTON CONTAINER */
-
 .stuffs-container {
 
-    width: min(500px, 90vw);
+    width: min(500px,90vw);
 
     display: grid;
 
@@ -593,9 +589,6 @@ body {
 
     gap: 15px;
 }
-
-
-/* GENERAL STUFF BUTTON */
 
 .stuff-button {
 
@@ -605,11 +598,11 @@ body {
 
     border-radius: 12px;
 
-    background: rgba(54, 54, 54, 0.75);
+    background: rgba(54,54,54,0.75);
 
     color: white;
 
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins',sans-serif;
 
     font-size: 14px;
 
@@ -620,10 +613,7 @@ body {
     box-shadow:
         0 7px 15px rgba(0,0,0,0.2);
 
-    transition:
-        transform 0.25s ease,
-        background 0.25s ease,
-        font-weight 0.25s ease;
+    transition: 0.25s ease;
 }
 
 .stuff-button:hover {
@@ -631,22 +621,386 @@ body {
     background: #252525;
 
     transform: scale(1.07);
-
-    font-weight: 700;
 }
-
-
-/* RANDOM DAY LETTER */
 
 .random-button {
 
-    background: rgba(120, 100, 80, 0.75);
+    background: rgba(120,100,80,0.75);
 }
 
 .random-button:hover {
 
     background: #80694F;
+}
 
+
+/* =====================================================
+   L1
+===================================================== */
+
+#pageL1 {
+
+    background: #f7f5f2;
+
+    flex-direction: column;
+
+    text-align: center;
+
+    gap: 15px;
+
+    padding: 80px 20px;
+}
+
+.l1-title {
+
+    font-size: 32px;
+
+    color: #373757;
+
+    margin-bottom: 15px;
+}
+
+.l1-button {
+
+    width: min(400px,90vw);
+
+    padding: 18px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: rgba(54,54,54,0.75);
+
+    color: white;
+
+    font-family: 'Poppins',sans-serif;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 15px rgba(0,0,0,0.2);
+
+    transition: 0.25s ease;
+}
+
+.l1-button:hover {
+
+    background: #252525;
+
+    transform: scale(1.06);
+}
+
+
+/* =====================================================
+   LT1
+===================================================== */
+
+#pageLT1 {
+
+    background: #eee5d8;
+
+    flex-direction: column;
+
+    padding: 80px 20px 40px;
+
+    overflow-y: auto;
+}
+
+.letter-paper {
+
+    width: min(650px,92vw);
+
+    min-height: 620px;
+
+    padding: 35px;
+
+    background:
+        #f5e8cf;
+
+    border: 1px solid #d2b98b;
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.22);
+
+    border-radius: 3px;
+
+    color: #4a3928;
+}
+
+.letter-title {
+
+    text-align: center;
+
+    font-family: Georgia,serif;
+
+    font-size: 27px;
+
+    margin-bottom: 30px;
+}
+
+.letter-field {
+
+    margin-bottom: 18px;
+}
+
+.letter-field label {
+
+    display: block;
+
+    font-weight: 700;
+
+    margin-bottom: 6px;
+}
+
+.letter-input,
+.letter-textarea {
+
+    width: 100%;
+
+    border: none;
+
+    border-bottom: 1px solid #a98c62;
+
+    background: transparent;
+
+    padding: 8px 4px;
+
+    font-family: Georgia,serif;
+
+    font-size: 16px;
+
+    color: #4a3928;
+
+    outline: none;
+}
+
+.letter-textarea {
+
+    min-height: 260px;
+
+    resize: vertical;
+
+    border: 1px solid #bba47d;
+
+    padding: 12px;
+
+    background: rgba(255,255,255,0.18);
+}
+
+.send-letter-button {
+
+    display: block;
+
+    margin: 25px auto 0;
+
+    padding: 13px 40px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #594534;
+
+    color: #f8efd9;
+
+    font-family: 'Poppins',sans-serif;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+.send-letter-button:hover {
+
+    transform: scale(1.08);
+
+    background: #3d2e23;
+}
+
+
+/* =====================================================
+   LB1
+===================================================== */
+
+#pageLB1 {
+
+    background: #eee5d8;
+
+    flex-direction: column;
+
+    padding: 80px 20px 40px;
+
+    overflow-y: auto;
+}
+
+.lb-title {
+
+    font-family: Georgia,serif;
+
+    color: #4a3928;
+
+    font-size: 30px;
+
+    margin-bottom: 25px;
+}
+
+.letters-container {
+
+    width: min(650px,92vw);
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+.saved-letter-button {
+
+    width: 100%;
+
+    padding: 20px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    background: #8b6548;
+
+    color: #f5e8cf;
+
+    font-family: Georgia,serif;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 8px 16px rgba(0,0,0,0.25);
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+.saved-letter-button:hover {
+
+    background: #6f4e37;
+
+    transform: scale(1.03);
+}
+
+.saved-letter-name {
+
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 14px;
+
+    font-weight: 400;
+}
+
+
+/* =====================================================
+   OPEN LETTER MODAL
+===================================================== */
+
+.letter-modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 10000;
+
+    display: none;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+
+    background: rgba(0,0,0,0.55);
+}
+
+.letter-modal.active {
+
+    display: flex;
+}
+
+.modal-paper {
+
+    width: min(600px,92vw);
+
+    max-height: 85vh;
+
+    overflow-y: auto;
+
+    padding: 35px;
+
+    background: #f5e8cf;
+
+    color: #4a3928;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.3);
+
+    font-family: Georgia,serif;
+
+    position: relative;
+}
+
+.close-modal {
+
+    position: absolute;
+
+    top: 12px;
+
+    right: 15px;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 24px;
+
+    cursor: pointer;
+
+    color: #4a3928;
+}
+
+.modal-date {
+
+    text-align: center;
+
+    font-weight: 700;
+
+    margin-bottom: 25px;
+}
+
+.modal-message {
+
+    white-space: pre-wrap;
+
+    line-height: 1.8;
+
+    font-size: 17px;
+}
+
+.modal-author {
+
+    margin-top: 35px;
+
+    text-align: right;
+
+    font-style: italic;
 }
 
 
@@ -654,12 +1008,11 @@ body {
    MOBILE
 ===================================================== */
 
-@media (max-width: 600px) {
+@media (max-width:600px) {
 
     .birthday-title {
 
         font-size: 30px;
-
     }
 
     .birthday-photo {
@@ -667,7 +1020,6 @@ body {
         width: 85vw;
 
         max-height: 48vh;
-
     }
 
     .birthday-letter-button {
@@ -675,18 +1027,23 @@ body {
         font-size: 12px;
 
         padding: 14px 17px;
-
     }
 
     .stuffs-container {
 
         grid-template-columns: 1fr;
-
     }
 
+    .letter-paper {
+
+        padding: 25px;
+
+        min-height: 580px;
+    }
 }
 
 </style>
+
 </head>
 
 
@@ -708,7 +1065,7 @@ body {
         </h1>
 
         <p class="clue">
-            clue: tanggal lahir pemilik website (misal: 12152006)
+            clue: tanggal lahir pemilik website
         </p>
 
         <input
@@ -730,7 +1087,6 @@ body {
     </div>
 
 </section>
-
 
 
 <!-- =====================================================
@@ -766,7 +1122,6 @@ body {
 </section>
 
 
-
 <!-- =====================================================
      PAGE 1
 ===================================================== -->
@@ -796,7 +1151,6 @@ body {
     </button>
 
 </section>
-
 
 
 <!-- =====================================================
@@ -865,9 +1219,8 @@ body {
 </section>
 
 
-
 <!-- =====================================================
-     L1 — TEMPORARY PLACEHOLDER
+     L1
 ===================================================== -->
 
 <section id="pageL1" class="page">
@@ -879,26 +1232,180 @@ body {
         BACK
     </button>
 
-    <h1>
+    <h1 class="l1-title">
         PILIH SALAH SATU
     </h1>
 
     <button
-        class="stuff-button"
-        onclick="alert('LT1 akan kita buat di tahap berikutnya')"
+        class="l1-button"
+        onclick="showPage('pageLT1')"
     >
         INGIN MENULIS RANDOM DAY LETTER
     </button>
 
     <button
-        class="stuff-button"
-        onclick="alert('LB1 akan kita buat di tahap berikutnya')"
+        class="l1-button"
+        onclick="showPage('pageLB1'); loadLetters();"
     >
         INGIN MEMBACA RANDOM DAY LETTER
     </button>
 
 </section>
 
+
+<!-- =====================================================
+     LT1
+===================================================== -->
+
+<section id="pageLT1" class="page">
+
+    <button
+        class="back-button"
+        onclick="showPage('pageL1')"
+    >
+        BACK
+    </button>
+
+    <div class="letter-paper">
+
+        <h1 class="letter-title">
+            RANDOM DAY LETTER
+        </h1>
+
+        <div class="letter-field">
+
+            <label>
+                TANGGAL / BULAN / TAHUN
+            </label>
+
+            <input
+                id="letterDate"
+                class="letter-input"
+                type="date"
+            >
+
+        </div>
+
+
+        <div class="letter-field">
+
+            <label>
+                JAM
+            </label>
+
+            <input
+                id="letterTime"
+                class="letter-input"
+                type="time"
+            >
+
+        </div>
+
+
+        <div class="letter-field">
+
+            <label>
+                ISI PESAN
+            </label>
+
+            <textarea
+                id="letterMessage"
+                class="letter-textarea"
+                placeholder="tulis suratmu di sini..."
+            ></textarea>
+
+        </div>
+
+
+        <div class="letter-field">
+
+            <label>
+                NAMA PENULIS
+            </label>
+
+            <input
+                id="letterAuthor"
+                class="letter-input"
+                type="text"
+                placeholder="nama kamu"
+            >
+
+        </div>
+
+
+        <button
+            class="send-letter-button"
+            onclick="sendLetter()"
+        >
+            KIRIM
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LB1
+===================================================== -->
+
+<section id="pageLB1" class="page">
+
+    <button
+        class="back-button"
+        onclick="showPage('pageL1')"
+    >
+        BACK
+    </button>
+
+    <h1 class="lb-title">
+        RANDOM DAY LETTERS
+    </h1>
+
+    <div
+        id="lettersContainer"
+        class="letters-container"
+    ></div>
+
+</section>
+
+
+<!-- =====================================================
+     LETTER MODAL
+===================================================== -->
+
+<div
+    id="letterModal"
+    class="letter-modal"
+>
+
+    <div class="modal-paper">
+
+        <button
+            class="close-modal"
+            onclick="closeLetter()"
+        >
+            ×
+        </button>
+
+        <div
+            id="modalDate"
+            class="modal-date"
+        ></div>
+
+        <div
+            id="modalMessage"
+            class="modal-message"
+        ></div>
+
+        <div
+            id="modalAuthor"
+            class="modal-author"
+        ></div>
+
+    </div>
+
+</div>
 
 
 <script>
@@ -957,8 +1464,6 @@ function checkPassword() {
         document.getElementById("message");
 
 
-    /* 20061215 → B1 */
-
     if (password === "20061215") {
 
         showPage("pageB1");
@@ -966,22 +1471,16 @@ function checkPassword() {
         createConfetti();
 
         return;
-
     }
 
-
-    /* 24122006 → PAGE 1 */
 
     if (password === "24122006") {
 
         showPage("page1");
 
         return;
-
     }
 
-
-    /* WRONG */
 
     message.innerText =
         "coba lagi ...";
@@ -1004,9 +1503,24 @@ document
 
 document
     .getElementById("password")
+    .addEventListener("blur", function() {
+
+        if (!this.value) {
+
+            this.placeholder =
+                "enter password";
+        }
+
+    });
+
+
+document
+    .getElementById("password")
     .addEventListener("keydown", function(event) {
 
         if (event.key === "Enter") {
+
+            event.preventDefault();
 
             checkPassword();
 
@@ -1075,11 +1589,6 @@ function createStars() {
         );
 
 
-        /*
-           Gerakan kecil di sekitar
-           posisi awal.
-        */
-
         star.style.setProperty(
             "--x1",
             (-18 + Math.random() * 36) + "px"
@@ -1114,7 +1623,7 @@ function createStars() {
 
         star.style.setProperty(
             "--duration",
-            (8 + Math.random() * 7) + "s"
+            (10 + Math.random() * 7) + "s"
         );
 
 
@@ -1148,7 +1657,7 @@ function createConfetti() {
     ];
 
 
-    for (let i = 0; i < 130; i++) {
+    for (let i = 0; i < 150; i++) {
 
         const confetti =
             document.createElement("div");
@@ -1183,7 +1692,7 @@ function createConfetti() {
 
 
         const distance =
-            220 + Math.random() * 380;
+            250 + Math.random() * 450;
 
 
         const x =
@@ -1214,7 +1723,7 @@ function createConfetti() {
 
         confetti.style.setProperty(
             "--duration",
-            (2.5 + Math.random() * 3) + "s"
+            (3 + Math.random() * 3) + "s"
         );
 
 
@@ -1233,10 +1742,6 @@ function createConfetti() {
 
 function openBirthdayLetter() {
 
-    /*
-       NANTI GANTI DENGAN LINK PDF
-    */
-
     window.location.href =
         "https://drive.google.com";
 
@@ -1248,16 +1753,6 @@ function openBirthdayLetter() {
 ===================================================== */
 
 function openPDF(link) {
-
-    /*
-       NANTI GANTI PLACEHOLDER:
-
-       JACKET_LINK
-       BOOKS_LINK
-       FRAME_FOTO_LINK
-       KEYCHAIN_LINK
-       OUR_PHOTOS_LINK
-    */
 
     if (
         link === "JACKET_LINK" ||
@@ -1272,11 +1767,252 @@ function openPDF(link) {
         );
 
         return;
-
     }
 
 
     window.location.href = link;
+
+}
+
+
+/* =====================================================
+   RANDOM DAY LETTER
+===================================================== */
+
+function sendLetter() {
+
+    const date =
+        document.getElementById("letterDate").value;
+
+    const time =
+        document.getElementById("letterTime").value;
+
+    const message =
+        document.getElementById("letterMessage").value.trim();
+
+    const author =
+        document.getElementById("letterAuthor").value.trim();
+
+
+    if (!date || !time || !message || !author) {
+
+        alert(
+            "Tolong isi semua bagian surat terlebih dahulu."
+        );
+
+        return;
+    }
+
+
+    const letters =
+        JSON.parse(
+            localStorage.getItem("randomDayLetters")
+            || "[]"
+        );
+
+
+    letters.push({
+
+        id: Date.now(),
+
+        date: date,
+
+        time: time,
+
+        message: message,
+
+        author: author
+
+    });
+
+
+    localStorage.setItem(
+        "randomDayLetters",
+        JSON.stringify(letters)
+    );
+
+
+    document.getElementById("letterDate").value = "";
+
+    document.getElementById("letterTime").value = "";
+
+    document.getElementById("letterMessage").value = "";
+
+    document.getElementById("letterAuthor").value = "";
+
+
+    alert(
+        "Surat berhasil dikirim ♡"
+    );
+
+
+    showPage("pageLB1");
+
+    loadLetters();
+
+}
+
+
+/* =====================================================
+   LOAD LETTERS
+===================================================== */
+
+function loadLetters() {
+
+    const container =
+        document.getElementById("lettersContainer");
+
+
+    container.innerHTML = "";
+
+
+    const letters =
+        JSON.parse(
+            localStorage.getItem("randomDayLetters")
+            || "[]"
+        );
+
+
+    if (letters.length === 0) {
+
+        container.innerHTML = `
+
+            <p style="
+                text-align:center;
+                color:#80694F;
+                font-family:Georgia,serif;
+            ">
+                belum ada random day letter.
+            </p>
+
+        `;
+
+        return;
+    }
+
+
+    letters
+        .slice()
+        .reverse()
+        .forEach(letter => {
+
+            const button =
+                document.createElement("button");
+
+            button.className =
+                "saved-letter-button";
+
+
+            const formattedDate =
+                formatDate(letter.date);
+
+
+            button.innerHTML = `
+
+                ${formattedDate}
+
+                <span class="saved-letter-name">
+                    ${escapeHTML(letter.author)}
+                </span>
+
+            `;
+
+
+            button.onclick = function() {
+
+                openLetter(letter);
+
+            };
+
+
+            container.appendChild(button);
+
+        });
+
+}
+
+
+/* =====================================================
+   FORMAT DATE
+===================================================== */
+
+function formatDate(dateString) {
+
+    const parts =
+        dateString.split("-");
+
+
+    if (parts.length !== 3) {
+
+        return dateString;
+
+    }
+
+
+    return (
+        parts[2] +
+        "/" +
+        parts[1] +
+        "/" +
+        parts[0]
+    );
+
+}
+
+
+/* =====================================================
+   OPEN LETTER
+===================================================== */
+
+function openLetter(letter) {
+
+    document.getElementById("modalDate").innerText =
+        formatDate(letter.date) +
+        " • " +
+        letter.time;
+
+
+    document.getElementById("modalMessage").innerText =
+        letter.message;
+
+
+    document.getElementById("modalAuthor").innerText =
+        "— " +
+        letter.author;
+
+
+    document
+        .getElementById("letterModal")
+        .classList.add("active");
+
+}
+
+
+/* =====================================================
+   CLOSE LETTER
+===================================================== */
+
+function closeLetter() {
+
+    document
+        .getElementById("letterModal")
+        .classList.remove("active");
+
+}
+
+
+/* =====================================================
+   BASIC HTML ESCAPE
+===================================================== */
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.innerText = text;
+
+    return div.innerHTML;
 
 }
 
@@ -1290,4 +2026,5 @@ createStars();
 </script>
 
 </body>
+
 </html>
