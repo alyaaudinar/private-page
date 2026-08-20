@@ -3,380 +3,381 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<title>Private Page</title>
+    <title>Access</title>
 
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
 
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
+    <!-- =========================
+         GOOGLE FONT - POPPINS
+    ========================== -->
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
-rel="stylesheet">
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
 
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
 
-<style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+          rel="stylesheet">
 
-/* =========================
-   GLOBAL
-========================= */
 
-* {
-    box-sizing: border-box;
-}
+    <!-- =========================
+         CSS
+    ========================== -->
 
-body {
+    <style>
 
-    margin: 0;
+        * {
+            box-sizing: border-box;
+        }
 
-    min-height: 100vh;
 
-    font-family: 'Poppins', sans-serif;
+        /* =========================
+           BODY
+        ========================== */
 
-    background: #f7f5f2;
+        body {
 
-    color: #333;
+            margin: 0;
 
-    overflow-x: hidden;
-}
+            min-height: 100vh;
 
+            display: flex;
 
-/* =========================
-   PAGE SYSTEM
-========================= */
+            justify-content: center;
 
-.page {
+            align-items: center;
 
-    display: none;
+            background: #f7f5f2;
 
-    min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
 
-    width: 100%;
+            color: #333;
 
-    justify-content: center;
+            overflow: hidden;
 
-    align-items: center;
+        }
 
-    flex-direction: column;
 
-    text-align: center;
+        /* =========================
+           MAIN CONTAINER
+        ========================== */
 
-    padding: 30px;
-}
+        .box {
 
-.page.active {
+            width: 90%;
 
-    display: flex;
-}
+            max-width: 400px;
 
+            text-align: center;
 
-/* =========================
-   BACK BUTTON
-========================= */
+            position: relative;
 
-.back-button {
+            z-index: 5;
 
-    position: fixed;
+        }
 
-    top: 20px;
 
-    left: 20px;
+        /* =========================
+           TITLE
+        ========================== */
 
-    width: auto;
+        h1 {
 
-    padding: 8px 18px;
+            margin: 0 0 18px 0;
 
-    margin: 0;
+            font-family: 'Poppins', sans-serif;
 
-    background: #36454F;
+            font-size: 24px;
 
-    color: white;
+            font-weight: 700;
 
-    border: none;
+            line-height: 1.5;
 
-    border-radius: 8px;
+        }
 
-    font-family: 'Poppins', sans-serif;
 
-    font-weight: 700;
+        /* =========================
+           CLUE
+        ========================== */
 
-    cursor: pointer;
+        .clue {
 
-    z-index: 9999;
-}
+            margin: 0 0 25px 0;
 
+            font-family: 'Poppins', sans-serif;
 
-/* =========================
-   GENERAL BUTTON
-========================= */
+            font-size: 14px;
 
-.main-button {
+            font-weight: 400;
 
-    width: min(90%, 400px);
+            color: #888;
 
-    padding: 14px 20px;
+        }
 
-    margin: 8px;
 
-    border: none;
+        /* =========================
+           PASSWORD INPUT
+        ========================== */
 
-    border-radius: 10px;
+        input {
 
-    background: #555;
+            width: 100%;
 
-    color: white;
+            padding: 12px 15px;
 
-    font-family: 'Poppins', sans-serif;
+            border: 1px solid #ccc;
 
-    font-weight: 700;
+            border-radius: 8px;
 
-    font-size: 15px;
+            background: white;
 
-    cursor: pointer;
+            text-align: center;
 
-    transition: 0.25s ease;
-}
+            font-family: 'Poppins', sans-serif;
 
-.main-button:hover {
+            font-size: 15px;
 
-    background: #333;
+            font-weight: 400;
 
-    transform: scale(1.05);
-}
+            outline: none;
 
+        }
 
-/* =========================
-   INPUT
-========================= */
 
-input,
-textarea {
+        input:focus {
 
-    font-family: 'Poppins', sans-serif;
+            border-color: #999;
 
-}
+        }
 
 
-/* =========================
-   PAGE 1
-========================= */
+        /* =========================
+           UNLOCK BUTTON
+        ========================== */
 
-#page1 {
+        button {
 
-    background: #f7f5f2;
-}
+            width: 100%;
 
+            margin-top: 12px;
 
-/* =========================
-   PAGE 3
-========================= */
+            padding: 12px;
 
-#page3 {
+            border: none;
 
-    background: #f7f5f2;
-}
+            border-radius: 8px;
 
-#page3 h1 {
+            background: #A6A6A6;
 
-    font-weight: 700;
+            color: white;
 
-    margin-bottom: 25px;
-}
+            cursor: pointer;
 
+            font-family: 'Poppins', sans-serif;
 
-/* =========================
-   RANDOM DAY LETTER
-========================= */
+            font-size: 15px;
 
-#L1 {
+            font-weight: 700;
 
-    background: #f7f5f2;
-}
+            transition:
+                background 0.2s ease,
+                transform 0.2s ease;
 
+        }
 
-/* =========================
-   WRITE LETTER
-========================= */
 
-#LT1 {
+        button:hover {
 
-    background: #e8dfd3;
-}
+            background: #7A7A7A;
 
-.letter-paper {
+            transform: scale(1.05);
 
-    width: min(90%, 600px);
+        }
 
-    background: #f8efd9;
 
-    padding: 30px;
+        /* =========================
+           WRONG PASSWORD MESSAGE
+        ========================== */
 
-    border-radius: 5px;
+        #message {
 
-    box-shadow:
-        0 10px 25px rgba(0,0,0,0.2);
+            margin-top: 20px;
 
-    text-align: left;
-}
+            font-family: 'Poppins', sans-serif;
 
-.letter-paper input,
-.letter-paper textarea {
+            font-size: 15px;
 
-    width: 100%;
+            font-weight: 400;
 
-    margin: 8px 0 15px;
+            color: #555;
 
-    padding: 10px;
+            min-height: 23px;
 
-    border: 1px solid #c7b99f;
+        }
 
-    background: #fffaf0;
 
-    border-radius: 5px;
-}
+        /* =========================
+           STARS
+        ========================== */
 
-.letter-paper textarea {
+        .star {
 
-    min-height: 200px;
+            position: fixed;
 
-    resize: vertical;
-}
+            z-index: 1;
 
+            pointer-events: none;
 
-/* =========================
-   READ LETTER
-========================= */
+            user-select: none;
 
-#LB1 {
+            opacity: 0.75;
 
-    background: #e8dfd3;
-}
+            animation-name: starMove;
 
-.letter-list {
+            animation-timing-function: ease-in-out;
 
-    width: min(90%, 600px);
+            animation-iteration-count: infinite;
 
-    display: flex;
+        }
 
-    flex-direction: column;
 
-    align-items: center;
-}
+        /* =========================
+           STAR MOVEMENT
 
-.letter-card {
+           bergerak di sekitar
+           posisi awalnya,
+           bukan kiri ke kanan
+        ========================== */
 
-    width: 100%;
+        @keyframes starMove {
 
-    padding: 20px;
+            0% {
 
-    margin: 8px;
+                transform:
+                    translate(0, 0)
+                    rotate(0deg);
 
-    background: #8b6b4a;
+            }
 
-    color: #fff3d6;
+            20% {
 
-    border-radius: 8px;
+                transform:
+                    translate(12px, -8px)
+                    rotate(8deg);
 
-    box-shadow:
-        0 6px 15px rgba(0,0,0,0.25);
+            }
 
-    cursor: pointer;
+            40% {
 
-    font-weight: 700;
+                transform:
+                    translate(-10px, 9px)
+                    rotate(-7deg);
 
-    transition: 0.25s;
-}
+            }
 
-.letter-card:hover {
+            60% {
 
-    transform: scale(1.03);
+                transform:
+                    translate(8px, 13px)
+                    rotate(5deg);
 
-    background: #705338;
-}
+            }
 
+            80% {
 
-/* =========================
-   BIRTHDAY PAGE
-========================= */
+                transform:
+                    translate(-12px, -5px)
+                    rotate(-8deg);
 
-#B1 {
+            }
 
-    background: #f7f5f2;
+            100% {
 
-}
+                transform:
+                    translate(0, 0)
+                    rotate(0deg);
 
-.birthday-title {
+            }
 
-    font-size: clamp(28px, 6vw, 55px);
+        }
 
-    font-weight: 700;
 
-    color: #e8c9a9;
+        /* =========================
+           HIDDEN PAGES
 
-    text-shadow:
-        3px 3px 0 #36454F;
+           Untuk tahap berikutnya
+        ========================== */
 
-}
+        .page {
 
+            display: none;
 
-/* =========================
-   PHOTO
-========================= */
+            width: 100%;
 
-.birthday-photo {
+            min-height: 100vh;
 
-    width: min(80vw, 400px);
+            position: fixed;
 
-    max-height: 400px;
+            inset: 0;
 
-    object-fit: cover;
+            justify-content: center;
 
-    margin: 20px;
+            align-items: center;
 
-    border-radius: 12px;
+            text-align: center;
 
-    box-shadow:
-        8px 8px 0 #36454F;
-}
+            padding: 30px;
 
+        }
 
-/* =========================
-   LETTER LINK BOX
-========================= */
 
-.letter-link {
+        /* =========================
+           BACK BUTTON
 
-    padding: 18px 25px;
+           Akan digunakan untuk
+           page berikutnya
+        ========================== */
 
-    background: rgba(0, 0, 0, 0.7);
+        .back-button {
 
-    color: white;
+            position: fixed;
 
-    font-weight: 700;
+            top: 20px;
 
-    border-radius: 10px;
+            left: 20px;
 
-    cursor: pointer;
+            width: auto;
 
-    transition: 0.25s;
+            margin: 0;
 
-    max-width: 90%;
-}
+            padding: 8px 16px;
 
-.letter-link:hover {
+            background: #555;
 
-    transform: scale(1.08);
+            color: white;
 
-    background: rgba(0, 0, 0, 0.85);
-}
+            border-radius: 8px;
 
-</style>
+            font-size: 13px;
+
+            z-index: 100;
+
+        }
+
+
+        .back-button:hover {
+
+            background: #333;
+
+        }
+
+    </style>
 
 </head>
 
@@ -384,552 +385,399 @@ textarea {
 <body>
 
 
-<!-- ==================================================
-     PAGE UTAMA
-================================================== -->
+    <!-- =========================
+         STARS
+    ========================== -->
 
-<section id="home" class="page active">
+    <script>
 
-    <h1>Access Password</h1>
+        const starColors = [
 
-    <p>clue: tanggal lahir</p>
+            "#F6E7A1",
 
-    <input
-        id="password"
-        type="password"
-        placeholder="enter password"
-    >
+            "#F7C6C7",
 
-    <button
-        class="main-button"
-        onclick="checkMainPassword()"
-    >
-        Unlock
-    </button>
+            "#C6DEF1",
 
-    <p id="message"></p>
+            "#C9E4C5",
 
-</section>
+            "#E2C6F1"
+
+        ];
 
 
-<!-- ==================================================
-     PAGE 1
-================================================== -->
+        function createStars() {
 
-<section id="page1" class="page">
-
-    <button
-        class="back-button"
-        onclick="goBack()"
-    >
-        Back
-    </button>
-
-    <h1>PAGE 1</h1>
-
-    <p>
-        OG LETTER
-    </p>
-
-    <button
-        class="main-button"
-        onclick="showPage('page3')"
-    >
-        click here to read the OG LETTER from Alya Audinar
-    </button>
-
-</section>
+            const starCount = 5;
 
 
-<!-- ==================================================
-     PAGE 3
-================================================== -->
+            for (let i = 0; i < starCount; i++) {
 
-<section id="page3" class="page">
-
-    <button
-        class="back-button"
-        onclick="goBack()"
-    >
-        Back
-    </button>
-
-    <h1>
-        which stuffs do u want to read?
-    </h1>
-
-    <button class="main-button">
-        JACKET
-    </button>
-
-    <button class="main-button">
-        BOOKS
-    </button>
-
-    <button class="main-button">
-        FRAME FOTO
-    </button>
-
-    <button class="main-button">
-        KEYCHAIN
-    </button>
-
-    <button class="main-button">
-        OUR PHOTOS
-    </button>
-
-    <button
-        class="main-button"
-        onclick="showPage('L1')"
-    >
-        RANDOM DAY LETTER
-    </button>
-
-</section>
+                const star =
+                    document.createElement("div");
 
 
-<!-- ==================================================
-     B1
-================================================== -->
+                star.classList.add("star");
 
-<section id="B1" class="page">
 
-    <button
-        class="back-button"
-        onclick="goBack()"
-    >
-        Back
-    </button>
+                star.innerHTML = "★";
 
-    <h1 class="birthday-title">
-        SELAMAT ULANG TAHUN JAFAR
-    </h1>
 
-    <img
-        src="BIRTHDAY.PNG"
-        class="birthday-photo"
-        alt="Birthday"
-    >
+                /* RANDOM COLOR */
 
-    <div
-        class="letter-link"
-        onclick="openBirthdayLetter()"
-    >
-        click here to read YOUR BIRTHDAY LETTER
-        from Alya Audinar
+                star.style.color =
+                    starColors[
+                        Math.floor(
+                            Math.random()
+                            * starColors.length
+                        )
+                    ];
+
+
+                /* RANDOM SIZE */
+
+                star.style.fontSize =
+                    (15 + Math.random() * 25)
+                    + "px";
+
+
+                /* RANDOM POSITION */
+
+                star.style.left =
+                    (8 + Math.random() * 84)
+                    + "%";
+
+
+                star.style.top =
+                    (8 + Math.random() * 84)
+                    + "%";
+
+
+                /* RANDOM MOVEMENT SPEED */
+
+                star.style.animationDuration =
+                    (2.5 + Math.random() * 3)
+                    + "s";
+
+
+                /* RANDOM START */
+
+                star.style.animationDelay =
+                    (Math.random() * 2)
+                    + "s";
+
+
+                document.body.appendChild(star);
+
+            }
+
+        }
+
+
+        createStars();
+
+    </script>
+
+
+
+    <!-- =========================
+         MAIN PAGE
+    ========================== -->
+
+    <div class="box" id="mainPage">
+
+
+        <div id="login">
+
+
+            <h1>
+                Access Password
+            </h1>
+
+
+            <p class="clue">
+                clue: tanggal lahir
+            </p>
+
+
+            <input
+                type="password"
+                id="password"
+                placeholder="enter password"
+                onfocus="this.placeholder=''"
+                onblur="if(this.value==='') this.placeholder='enter password'"
+                onkeydown="if(event.key==='Enter') checkPassword()"
+            >
+
+
+            <button
+                onclick="checkPassword()"
+            >
+                Unlock
+            </button>
+
+
+            <p id="message"></p>
+
+
+        </div>
+
+
     </div>
 
-</section>
 
 
-<!-- ==================================================
-     L1
-================================================== -->
+    <!-- =========================
+         PAGE 1
+         OG LETTER
+         
+         NANTI KITA ISI
+    ========================== -->
 
-<section id="L1" class="page">
-
-    <button
-        class="back-button"
-        onclick="goBack()"
+    <div
+        class="page"
+        id="page1"
     >
-        Back
-    </button>
-
-    <h1>
-        pilih salah satu
-    </h1>
-
-    <button
-        class="main-button"
-        onclick="showPage('LB1')"
-    >
-        ingin membaca random day letter
-    </button>
-
-    <button
-        class="main-button"
-        onclick="showPage('LT1')"
-    >
-        ingin menulis random day letter
-    </button>
-
-</section>
-
-
-<!-- ==================================================
-     LT1
-================================================== -->
-
-<section id="LT1" class="page">
-
-    <button
-        class="back-button"
-        onclick="goBack()"
-    >
-        Back
-    </button>
-
-    <div class="letter-paper">
-
-        <h1>
-            Write Your Random Day Letter
-        </h1>
-
-        <label>
-            Tanggal / Bulan / Tahun
-        </label>
-
-        <input
-            id="letterDate"
-            type="date"
-        >
-
-
-        <label>
-            Jam
-        </label>
-
-        <input
-            id="letterTime"
-            type="time"
-        >
-
-
-        <label>
-            Isi pesan
-        </label>
-
-        <textarea
-            id="letterMessage"
-            placeholder="tulis suratmu di sini..."
-        ></textarea>
-
-
-        <label>
-            Nama penulis
-        </label>
-
-        <input
-            id="letterAuthor"
-            type="text"
-            placeholder="nama kamu"
-        >
-
 
         <button
-            class="main-button"
-            onclick="sendLetter()"
+            class="back-button"
+            onclick="goBack()"
         >
-            KIRIM
+            Back
         </button>
 
+
+        <div>
+
+            <h1>
+                OG LETTER
+            </h1>
+
+            <p>
+                Page 1
+            </p>
+
+        </div>
+
     </div>
 
-</section>
 
 
-<!-- ==================================================
-     LB1
-================================================== -->
+    <!-- =========================
+         B1
+         BIRTHDAY PAGE
 
-<section id="LB1" class="page">
-
-    <button
-        class="back-button"
-        onclick="goBack()"
-    >
-        Back
-    </button>
-
-    <h1>
-        Random Day Letters
-    </h1>
+         NANTI KITA ISI
+    ========================== -->
 
     <div
-        id="letterList"
-        class="letter-list"
+        class="page"
+        id="B1"
     >
 
-        <p>
-            Belum ada surat.
-        </p>
+        <button
+            class="back-button"
+            onclick="goBack()"
+        >
+            Back
+        </button>
+
+
+        <div>
+
+            <h1>
+                SELAMAT ULANG TAHUN JAFAR
+            </h1>
+
+            <p>
+                B1
+            </p>
+
+        </div>
 
     </div>
 
-</section>
 
 
-<script>
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
 
-/* ==================================================
-   PAGE NAVIGATION
-================================================== */
+    <script>
 
-let pageHistory = [];
 
+        /* =========================
+           PASSWORD CHECK
+        ========================== */
 
-function showPage(pageId) {
+        function checkPassword() {
 
-    const current =
-        document.querySelector(".page.active");
 
-    if (current) {
-
-        pageHistory.push(current.id);
-
-        current.classList.remove("active");
-
-    }
-
-    document
-        .getElementById(pageId)
-        .classList.add("active");
-}
-
-
-function goBack() {
-
-    if (pageHistory.length === 0) {
-
-        return;
-
-    }
-
-    const current =
-        document.querySelector(".page.active");
-
-    current.classList.remove("active");
-
-
-    const previous =
-        pageHistory.pop();
-
-    document
-        .getElementById(previous)
-        .classList.add("active");
-
-}
-
-
-/* ==================================================
-   MAIN PASSWORD
-================================================== */
-
-function checkMainPassword() {
-
-    const password =
-        document.getElementById("password").value;
-
-    const message =
-        document.getElementById("message");
-
-
-    /*
-       PASSWORD 1
-       → PAGE 1
-    */
-
-    if (password === "24122006") {
-
-        showPage("page1");
-
-        return;
-
-    }
-
-
-    /*
-       PASSWORD 2
-       → B1
-    */
-
-    if (password === "20061215") {
-
-        showPage("B1");
-
-        return;
-
-    }
-
-
-    /*
-       WRONG PASSWORD
-    */
-
-    message.innerText =
-        "astaga? kok salah?";
-
-}
-
-
-/* ==================================================
-   BIRTHDAY LETTER
-================================================== */
-
-function openBirthdayLetter() {
-
-    window.location.href =
-        "MASUKKAN_LINK_GOOGLE_DRIVE_BIRTHDAY_DI_SINI";
-
-}
-
-
-/* ==================================================
-   RANDOM DAY LETTER
-================================================== */
-
-function sendLetter() {
-
-    const date =
-        document.getElementById("letterDate").value;
-
-    const time =
-        document.getElementById("letterTime").value;
-
-    const message =
-        document.getElementById("letterMessage").value;
-
-    const author =
-        document.getElementById("letterAuthor").value;
-
-
-    if (
-        !date ||
-        !time ||
-        !message ||
-        !author
-    ) {
-
-        alert("lengkapi suratnya dulu ya");
-
-        return;
-
-    }
-
-
-    /*
-       UNTUK SEKARANG:
-       data hanya disimpan di browser.
-
-       NANTI KITA GANTI DENGAN DATABASE
-       AGAR BISA DILIHAT ORANG LAIN.
-    */
-
-    const letters =
-        JSON.parse(
-            localStorage.getItem("letters") || "[]"
-        );
-
-
-    letters.push({
-
-        date: date,
-
-        time: time,
-
-        message: message,
-
-        author: author
-
-    });
-
-
-    localStorage.setItem(
-        "letters",
-        JSON.stringify(letters)
-    );
-
-
-    document
-        .getElementById("letterDate")
-        .value = "";
-
-    document
-        .getElementById("letterTime")
-        .value = "";
-
-    document
-        .getElementById("letterMessage")
-        .value = "";
-
-    document
-        .getElementById("letterAuthor")
-        .value = "";
-
-
-    loadLetters();
-
-    showPage("LB1");
-
-}
-
-
-/* ==================================================
-   LOAD LETTERS
-================================================== */
-
-function loadLetters() {
-
-    const container =
-        document.getElementById("letterList");
-
-
-    const letters =
-        JSON.parse(
-            localStorage.getItem("letters") || "[]"
-        );
-
-
-    container.innerHTML = "";
-
-
-    if (letters.length === 0) {
-
-        container.innerHTML =
-            "<p>Belum ada surat.</p>";
-
-        return;
-
-    }
-
-
-    letters.forEach(function(letter, index) {
-
-        const card =
-            document.createElement("div");
-
-        card.className =
-            "letter-card";
-
-
-        card.innerHTML =
-            `
-            ${letter.date}
-            <br>
-            ${letter.author}
-            `;
-
-
-        card.onclick =
-            function() {
-
-                alert(
-                    letter.message
+            const passwordInput =
+                document.getElementById(
+                    "password"
                 );
 
-            };
+
+            const password =
+                passwordInput.value.trim();
 
 
-        container.appendChild(card);
+            const message =
+                document.getElementById(
+                    "message"
+                );
 
-    });
 
-}
+            /*
+             * PASSWORD 1
+             * 24122006
+             *
+             * → PAGE 1
+             */
+
+            if (
+                password === "24122006"
+            ) {
+
+                showPage("page1");
+
+                return;
+
+            }
 
 
-loadLetters();
+            /*
+             * PASSWORD 2
+             * 20061215
+             *
+             * → B1
+             */
 
-</script>
+            if (
+                password === "20061215"
+            ) {
+
+                showPage("B1");
+
+                return;
+
+            }
+
+
+            /*
+             * PASSWORD SALAH
+             */
+
+            message.innerText =
+                "astaga? kok salah?";
+
+
+            passwordInput.value = "";
+
+        }
+
+
+
+        /* =========================
+           SHOW PAGE
+        ========================== */
+
+        function showPage(pageId) {
+
+
+            /*
+             * HIDE MAIN PAGE
+             */
+
+            document.getElementById(
+                "mainPage"
+            ).style.display = "none";
+
+
+            /*
+             * HIDE ALL PAGES
+             */
+
+            const pages =
+                document.querySelectorAll(
+                    ".page"
+                );
+
+
+            pages.forEach(function(page) {
+
+                page.style.display = "none";
+
+            });
+
+
+            /*
+             * SHOW SELECTED PAGE
+             */
+
+            const selectedPage =
+                document.getElementById(
+                    pageId
+                );
+
+
+            selectedPage.style.display =
+                "flex";
+
+        }
+
+
+
+        /* =========================
+           BACK
+        ========================== */
+
+        function goBack() {
+
+
+            /*
+             * HIDE ALL PAGES
+             */
+
+            const pages =
+                document.querySelectorAll(
+                    ".page"
+                );
+
+
+            pages.forEach(function(page) {
+
+                page.style.display = "none";
+
+            });
+
+
+            /*
+             * SHOW MAIN PAGE
+             */
+
+            document.getElementById(
+                "mainPage"
+            ).style.display = "block";
+
+
+            /*
+             * RESET PASSWORD
+             */
+
+            document.getElementById(
+                "password"
+            ).value = "";
+
+
+            document.getElementById(
+                "message"
+            ).innerText = "";
+
+        }
+
+    </script>
 
 
 </body>
