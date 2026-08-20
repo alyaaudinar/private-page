@@ -1,987 +1,959 @@
-<!-- =====================================================
-     PAGE B1
-===================================================== -->
+<!DOCTYPE html>
+<html lang="en">
 
-<div id="pageB1" class="page">
+<head>
 
-    <!-- BACK BUTTON -->
-    <button class="back-button" onclick="goBackB1()">
-        BACK
-    </button>
+    <meta charset="UTF-8">
 
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <!-- =================================================
-         BIRTHDAY TITLE
-    ================================================= -->
-
-    <h1 class="birthday-title" id="birthdayTitle">
-        SELAMAT ULANG TAHUN JAFAR!!!
-    </h1>
+    <title>Happy Birthday Jafar</title>
 
 
-    <!-- =================================================
-         PHOTO + CONFETTI
-    ================================================= -->
+    <!-- GOOGLE FONT: POPPINS -->
 
-    <div class="birthday-stage" id="birthdayStage">
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
 
-        <img
-            src="BIRTHDAY.PNG"
-            alt="Birthday"
-            class="birthday-photo"
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+
+        /* =====================================================
+           BODY
+        ===================================================== */
+
+        body {
+
+            margin: 0;
+
+            min-height: 100vh;
+
+            background: #f7f5f2;
+
+            font-family: 'Poppins', sans-serif;
+
+            overflow: hidden;
+
+        }
+
+
+
+        /* =====================================================
+           BIRTHDAY PAGE
+        ===================================================== */
+
+        .birthday-page {
+
+            position: relative;
+
+            width: 100vw;
+
+            height: 100vh;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            overflow: hidden;
+
+        }
+
+
+
+        /* =====================================================
+           BACK BUTTON
+        ===================================================== */
+
+        .back-button {
+
+            position: fixed;
+
+            top: 20px;
+
+            left: 20px;
+
+            z-index: 1000;
+
+            width: auto;
+
+            margin: 0;
+
+            padding: 8px 16px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: rgba(54, 69, 79, 0.70);
+
+            color: white;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease;
+
+        }
+
+
+        .back-button:hover {
+
+            background: rgba(54, 69, 79, 0.90);
+
+            transform: scale(1.08);
+
+        }
+
+
+
+        /* =====================================================
+           BIRTHDAY TITLE
+        ===================================================== */
+
+        .birthday-title {
+
+            position: relative;
+
+            z-index: 20;
+
+            margin: 0 20px 20px 20px;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: clamp(26px, 5vw, 48px);
+
+            font-weight: 700;
+
+            line-height: 1.2;
+
+            text-align: center;
+
+            color: #001F3F;
+
+            /*
+                BLACK SHADOW
+                NO BLUR
+                20% OPACITY
+            */
+
+            text-shadow:
+                3px 3px 0 rgba(0, 0, 0, 0.20);
+
+            opacity: 0;
+
+            transform: scale(0.3);
+
+            animation:
+                birthdayTitlePop
+                1.5s
+                0.1s
+                cubic-bezier(0.34, 1.56, 0.64, 1)
+                forwards;
+
+        }
+
+
+        @keyframes birthdayTitlePop {
+
+            0% {
+
+                opacity: 0;
+
+                transform:
+                    scale(0.3)
+                    rotate(-5deg);
+
+            }
+
+            60% {
+
+                opacity: 1;
+
+                transform:
+                    scale(1.12)
+                    rotate(2deg);
+
+            }
+
+            80% {
+
+                transform:
+                    scale(0.94)
+                    rotate(-1deg);
+
+            }
+
+            100% {
+
+                opacity: 1;
+
+                transform:
+                    scale(1)
+                    rotate(0deg);
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           PHOTO CONTAINER
+        ===================================================== */
+
+        .birthday-photo-container {
+
+            position: relative;
+
+            z-index: 10;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            width: min(80vw, 500px);
+
+            height: min(55vh, 500px);
+
+        }
+
+
+
+        /* =====================================================
+           BIRTHDAY PHOTO
+
+           NO WHITE BACKGROUND
+           NO BORDER
+           NO SHADOW
+        ===================================================== */
+
+        .birthday-photo {
+
+            position: relative;
+
+            z-index: 10;
+
+            display: block;
+
+            max-width: 100%;
+
+            max-height: 100%;
+
+            width: auto;
+
+            height: auto;
+
+            object-fit: contain;
+
+            background: transparent;
+
+            border: none;
+
+            box-shadow: none;
+
+            /*
+                HEARTBEAT
+            */
+
+            animation:
+                photoHeartbeat
+                2.2s
+                ease-in-out
+                infinite;
+
+        }
+
+
+        @keyframes photoHeartbeat {
+
+            0% {
+
+                transform: scale(1);
+
+            }
+
+            15% {
+
+                transform: scale(1.05);
+
+            }
+
+            30% {
+
+                transform: scale(0.98);
+
+            }
+
+            45% {
+
+                transform: scale(1.07);
+
+            }
+
+            60% {
+
+                transform: scale(1);
+
+            }
+
+            100% {
+
+                transform: scale(1);
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           BIRTHDAY LETTER BUTTON
+        ===================================================== */
+
+        .birthday-letter-button {
+
+            position: relative;
+
+            z-index: 50;
+
+            width: auto;
+
+            max-width: 85%;
+
+            margin-top: 15px;
+
+            padding: 15px 25px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            /*
+                NAVY
+                50% OPACITY
+            */
+
+            background:
+                rgba(0, 31, 63, 0.50);
+
+            color: white;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            line-height: 1.5;
+
+            text-align: center;
+
+            cursor: pointer;
+
+            /*
+                BUTTON SHADOW
+            */
+
+            box-shadow:
+                4px 4px 0 rgba(0, 0, 0, 0.20);
+
+            /*
+                NO TEXT SHADOW
+            */
+
+            text-shadow: none;
+
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease;
+
+        }
+
+
+
+        /* =====================================================
+           BUTTON HOVER
+
+           CURSOR MASUK:
+           - MEMBESAR
+           - TERLIHAT LEBIH TEBAL
+        ===================================================== */
+
+        .birthday-letter-button:hover {
+
+            background:
+                rgba(0, 31, 63, 0.75);
+
+            transform:
+                scale(1.10);
+
+            font-weight: 700;
+
+            box-shadow:
+                5px 5px 0 rgba(0, 0, 0, 0.25);
+
+            text-shadow: none;
+
+        }
+
+
+
+        /* =====================================================
+           CONFETTI
+        ===================================================== */
+
+        .confetti {
+
+            position: absolute;
+
+            top: 50%;
+
+            left: 50%;
+
+            width: 10px;
+
+            height: 16px;
+
+            border-radius: 2px;
+
+            z-index: 5;
+
+            pointer-events: none;
+
+            transform:
+                translate(-50%, -50%)
+                scale(0.2);
+
+            /*
+                CONFETTI TERUS BERGERAK
+                SELAMA PAGE B1 TERBUKA
+            */
+
+            animation:
+                confettiBurst
+                var(--duration)
+                var(--delay)
+                cubic-bezier(0.12, 0.8, 0.2, 1)
+                infinite alternate;
+
+        }
+
+
+
+        /* =====================================================
+           CONFETTI BURST
+
+           DARI TENGAH
+           MENYEBAR
+           MEMBESAR
+           MELAMBAT
+           TIDAK FADE
+        ===================================================== */
+
+        @keyframes confettiBurst {
+
+            0% {
+
+                transform:
+                    translate(-50%, -50%)
+                    translate(0, 0)
+                    scale(0.2)
+                    rotate(0deg);
+
+            }
+
+            25% {
+
+                transform:
+                    translate(-50%, -50%)
+                    translate(
+                        calc(var(--tx) * 0.45),
+                        calc(var(--ty) * 0.45)
+                    )
+                    scale(1.3)
+                    rotate(var(--rot1));
+
+            }
+
+            55% {
+
+                transform:
+                    translate(-50%, -50%)
+                    translate(
+                        calc(var(--tx) * 0.75),
+                        calc(var(--ty) * 0.75)
+                    )
+                    scale(1.8)
+                    rotate(var(--rot2));
+
+            }
+
+            100% {
+
+                transform:
+                    translate(-50%, -50%)
+                    translate(var(--tx), var(--ty))
+                    scale(var(--scale))
+                    rotate(var(--rot3));
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 600px) {
+
+            .birthday-title {
+
+                font-size: 28px;
+
+            }
+
+
+            .birthday-photo-container {
+
+                width: 85vw;
+
+                height: 48vh;
+
+            }
+
+
+            .birthday-letter-button {
+
+                font-size: 13px;
+
+                padding: 13px 18px;
+
+            }
+
+        }
+
+
+    </style>
+
+</head>
+
+
+
+<body>
+
+
+    <div class="birthday-page">
+
+
+        <!-- =================================================
+             BACK
+        ================================================= -->
+
+        <button
+            class="back-button"
+            onclick="history.back()"
         >
+
+            BACK
+
+        </button>
+
+
+
+        <!-- =================================================
+             TITLE
+        ================================================= -->
+
+        <h1 class="birthday-title">
+
+            SELAMAT ULANG TAHUN JAFAR!!!
+
+        </h1>
+
+
+
+        <!-- =================================================
+             PHOTO
+        ================================================= -->
+
+        <div
+            class="birthday-photo-container"
+            id="photoContainer"
+        >
+
+            <img
+                src="BIRTHDAY.PNG"
+                alt="Birthday photo"
+                class="birthday-photo"
+            >
+
+        </div>
+
+
+
+        <!-- =================================================
+             LETTER BUTTON
+        ================================================= -->
+
+        <button
+            class="birthday-letter-button"
+            onclick="openBirthdayLetter()"
+        >
+
+            CLICK HERE TO READ YOUR BIRTHDAY LETTER
+            FROM ALYA AUDINAR
+
+        </button>
+
 
     </div>
 
 
-    <!-- =================================================
-         LETTER BUTTON
-    ================================================= -->
 
-    <button
-        class="birthday-letter-button"
-        onclick="openBirthdayLetter()"
-    >
-        click here to read YOUR BIRTHDAY LETTER<br>
-        from Alya Audinar
-    </button>
+    <script>
 
-</div>
 
+        /* =====================================================
+           PASTEL COLORS
+        ===================================================== */
 
+        const pastelColors = [
 
-<style>
+            "#F6E7A1",
 
-/* =====================================================
-   B1 PAGE
-===================================================== */
+            "#F7C6C7",
 
-#pageB1 {
+            "#C6DEF1",
 
-    position: relative;
+            "#C9E4C5",
 
-    width: 100%;
-    min-height: 100vh;
+            "#E2C6F1",
 
-    display: flex;
+            "#F9D5A7",
 
-    flex-direction: column;
+            "#FFD6A5",
 
-    justify-content: center;
+            "#BDE0FE"
 
-    align-items: center;
+        ];
 
-    text-align: center;
 
-    overflow: hidden;
 
-    background: #f7f5f2;
+        /* =====================================================
+           CREATE CONFETTI
+        ===================================================== */
 
-    font-family: 'Poppins', sans-serif;
+        function createConfetti() {
 
-}
 
+            const page =
+                document.querySelector(".birthday-page");
 
-/* =====================================================
-   BACK BUTTON
-===================================================== */
 
-#pageB1 .back-button {
+            /*
+                BANYAK CONFETTI
+            */
 
-    position: fixed;
+            const count = 100;
 
-    top: 20px;
-    left: 20px;
 
-    width: auto;
+            for (
+                let i = 0;
+                i < count;
+                i++
+            ) {
 
-    margin: 0;
 
-    padding: 8px 18px;
+                const confetti =
+                    document.createElement("div");
 
-    border: none;
 
-    border-radius: 8px;
+                confetti.classList.add(
+                    "confetti"
+                );
 
-    background: rgba(54, 69, 79, 0.65);
 
-    color: white;
 
-    font-family: 'Poppins', sans-serif;
+                /* ==============================
+                   COLOR
+                ============================== */
 
-    font-size: 13px;
+                const color =
+                    pastelColors[
+                        Math.floor(
+                            Math.random()
+                            *
+                            pastelColors.length
+                        )
+                    ];
 
-    font-weight: 700;
 
-    cursor: pointer;
+                confetti.style.background =
+                    color;
 
-    z-index: 1000;
 
-    transition:
-        transform 0.25s ease,
-        background 0.25s ease;
 
-}
+                /* ==============================
+                   RANDOM ANGLE
+                ============================== */
 
-
-#pageB1 .back-button:hover {
-
-    background: rgba(54, 69, 79, 0.9);
-
-    transform: scale(1.08);
-
-}
-
-
-/* =====================================================
-   TITLE
-===================================================== */
-
-.birthday-title {
-
-    position: relative;
-
-    z-index: 20;
-
-    margin: 0 20px 25px 20px;
-
-    font-family: 'Poppins', sans-serif;
-
-    font-size: clamp(25px, 5vw, 48px);
-
-    font-weight: 700;
-
-    line-height: 1.2;
-
-    text-align: center;
-
-    color: #001F3F;
-
-    text-shadow:
-        2px 2px 0 #F6E7A1,
-        4px 4px 0 rgba(0, 0, 0, 0.18);
-
-}
-
-
-/* =====================================================
-   LETTER POPUP ANIMATION
-===================================================== */
-
-.birthday-title {
-
-    opacity: 0;
-
-    transform: scale(0.3);
-
-    animation:
-        titlePop
-        1.5s
-        0.2s
-        cubic-bezier(0.34, 1.56, 0.64, 1)
-        forwards;
-
-}
-
-
-@keyframes titlePop {
-
-    0% {
-
-        opacity: 0;
-
-        transform:
-            scale(0.3)
-            rotate(-5deg);
-
-    }
-
-    60% {
-
-        opacity: 1;
-
-        transform:
-            scale(1.12)
-            rotate(2deg);
-
-    }
-
-    80% {
-
-        transform:
-            scale(0.94)
-            rotate(-1deg);
-
-    }
-
-    100% {
-
-        opacity: 1;
-
-        transform:
-            scale(1)
-            rotate(0deg);
-
-    }
-
-}
-
-
-/* =====================================================
-   PHOTO STAGE
-===================================================== */
-
-.birthday-stage {
-
-    position: relative;
-
-    width: min(650px, 90vw);
-
-    height: min(500px, 55vh);
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    overflow: visible;
-
-}
-
-
-/* =====================================================
-   BIRTHDAY PHOTO
-===================================================== */
-
-.birthday-photo {
-
-    position: relative;
-
-    z-index: 20;
-
-    width: min(330px, 65vw);
-
-    max-height: 420px;
-
-    object-fit: contain;
-
-    opacity: 0;
-
-    transform:
-        scale(0.3)
-        rotate(-7deg);
-
-    animation:
-
-        photoAppear
-        1.5s
-        0.8s
-        cubic-bezier(0.34, 1.56, 0.64, 1)
-        forwards,
-
-        heartbeat
-        2.8s
-        2.3s
-        ease-in-out
-        infinite;
-
-    /* IMPORTANT:
-       NO SHADOW */
-
-    filter: none;
-
-}
-
-
-/* =====================================================
-   PHOTO APPEAR
-===================================================== */
-
-@keyframes photoAppear {
-
-    0% {
-
-        opacity: 0;
-
-        transform:
-            scale(0.3)
-            rotate(-7deg);
-
-    }
-
-    55% {
-
-        opacity: 1;
-
-        transform:
-            scale(1.15)
-            rotate(5deg);
-
-    }
-
-    75% {
-
-        transform:
-            scale(0.92)
-            rotate(-3deg);
-
-    }
-
-    90% {
-
-        transform:
-            scale(1.05)
-            rotate(2deg);
-
-    }
-
-    100% {
-
-        opacity: 1;
-
-        transform:
-            scale(1)
-            rotate(0deg);
-
-    }
-
-}
-
-
-/* =====================================================
-   HEARTBEAT
-===================================================== */
-
-@keyframes heartbeat {
-
-    0% {
-
-        transform:
-            scale(1);
-
-    }
-
-    10% {
-
-        transform:
-            scale(1.06);
-
-    }
-
-    20% {
-
-        transform:
-            scale(1);
-
-    }
-
-    30% {
-
-        transform:
-            scale(1.08);
-
-    }
-
-    45% {
-
-        transform:
-            scale(1);
-
-    }
-
-    100% {
-
-        transform:
-            scale(1);
-
-    }
-
-}
-
-
-/* =====================================================
-   CONFETTI
-===================================================== */
-
-.birthday-confetti {
-
-    position: absolute;
-
-    top: 50%;
-    left: 50%;
-
-    width: 12px;
-    height: 20px;
-
-    border-radius: 2px;
-
-    z-index: 5;
-
-    pointer-events: none;
-
-    opacity: 1;
-
-    transform:
-        translate(-50%, -50%)
-        translate(0, 0)
-        scale(0.2);
-
-    animation:
-
-        confettiBurst
-        var(--burst-duration)
-        var(--delay)
-        cubic-bezier(0.12, 0.8, 0.2, 1)
-        forwards,
-
-        confettiFloat
-        var(--float-duration)
-        calc(
-            var(--burst-duration) +
-            var(--delay)
-        )
-        ease-in-out
-        infinite alternate;
-
-}
-
-
-/* =====================================================
-   CONFETTI BURST
-===================================================== */
-
-@keyframes confettiBurst {
-
-    0% {
-
-        opacity: 1;
-
-        transform:
-            translate(-50%, -50%)
-            translate(0, 0)
-            scale(0.2)
-            rotate(0deg);
-
-    }
-
-    25% {
-
-        transform:
-            translate(-50%, -50%)
-            translate(
-                calc(var(--tx) * 0.35),
-                calc(var(--ty) * 0.35)
-            )
-            scale(0.9)
-            rotate(
-                calc(var(--rotation) * 0.25)
-            );
-
-    }
-
-    55% {
-
-        transform:
-            translate(-50%, -50%)
-            translate(
-                calc(var(--tx) * 0.75),
-                calc(var(--ty) * 0.75)
-            )
-            scale(1.5)
-            rotate(
-                calc(var(--rotation) * 0.65)
-            );
-
-    }
-
-    100% {
-
-        opacity: 1;
-
-        transform:
-            translate(-50%, -50%)
-            translate(
-                var(--tx),
-                var(--ty)
-            )
-            scale(
-                var(--final-scale)
-            )
-            rotate(
-                var(--rotation)
-            );
-
-    }
-
-}
-
-
-/* =====================================================
-   CONFETTI CONTINUOUS MOVEMENT
-===================================================== */
-
-@keyframes confettiFloat {
-
-    0% {
-
-        margin-left: 0px;
-
-        margin-top: 0px;
-
-    }
-
-    25% {
-
-        margin-left:
-            var(--move-x1);
-
-        margin-top:
-            var(--move-y1);
-
-    }
-
-    50% {
-
-        margin-left:
-            var(--move-x2);
-
-        margin-top:
-            var(--move-y2);
-
-    }
-
-    75% {
-
-        margin-left:
-            var(--move-x3);
-
-        margin-top:
-            var(--move-y3);
-
-    }
-
-    100% {
-
-        margin-left:
-            var(--move-x4);
-
-        margin-top:
-            var(--move-y4);
-
-    }
-
-}
-
-
-/* =====================================================
-   LETTER BUTTON
-===================================================== */
-
-.birthday-letter-button {
-
-    position: relative;
-
-    z-index: 30;
-
-    width: auto;
-
-    max-width: 90%;
-
-    margin: 25px 20px 0 20px;
-
-    padding: 15px 25px;
-
-    border: none;
-
-    border-radius: 10px;
-
-    /* 50% OPACITY */
-
-    background: rgba(0, 32, 63, 0.50);
-
-    color: white;
-
-    font-family: 'Poppins', sans-serif;
-
-    font-size: 15px;
-
-    font-weight: 700;
-
-    line-height: 1.5;
-
-    text-shadow:
-        2px 2px 0 rgba(0, 0, 0, 0.45);
-
-    cursor: pointer;
-
-    transition:
-        transform 0.25s ease,
-        background 0.25s ease;
-
-}
-
-
-/* =====================================================
-   BUTTON HOVER
-===================================================== */
-
-.birthday-letter-button:hover {
-
-    background:
-        rgba(0, 32, 63, 0.75);
-
-    transform:
-        scale(1.08);
-
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 600px) {
-
-    .birthday-title {
-
-        font-size: 27px;
-
-    }
-
-
-    .birthday-stage {
-
-        height: 45vh;
-
-    }
-
-
-    .birthday-photo {
-
-        width: 250px;
-
-    }
-
-
-    .birthday-letter-button {
-
-        font-size: 13px;
-
-        padding: 13px 18px;
-
-    }
-
-}
-
-</style>
-
-
-
-<script>
-
-/* =====================================================
-   CREATE BIRTHDAY CONFETTI
-===================================================== */
-
-function createBirthdayConfetti() {
-
-    const stage =
-        document.getElementById(
-            "birthdayStage"
-        );
-
-
-    /* MORE + WIDER CONFETTI */
-
-    const amount = 160;
-
-
-    const colors = [
-
-        "#F6E7A1",
-        "#F7C6C7",
-        "#C6DEF1",
-        "#C9E4C5",
-        "#E2C6F1",
-        "#F9D5A7",
-        "#FFF1B8",
-        "#D8C4E8"
-
-    ];
-
-
-    for (
-        let i = 0;
-        i < amount;
-        i++
-    ) {
-
-
-        const confetti =
-            document.createElement(
-                "div"
-            );
-
-
-        confetti.classList.add(
-            "birthday-confetti"
-        );
-
-
-        /* RANDOM COLOR */
-
-        confetti.style.background =
-            colors[
-                Math.floor(
+                const angle =
                     Math.random()
-                    * colors.length
-                )
-            ];
+                    *
+                    Math.PI
+                    *
+                    2;
 
 
-        /* =================================================
-           RANDOM 360 DEGREE DIRECTION
-        ================================================= */
 
-        const angle =
-            Math.random()
-            * Math.PI
-            * 2;
+                /* ==============================
+                   LARGE SPREAD
+                ============================== */
 
+                const distance =
+                    220
+                    +
+                    Math.random()
+                    *
+                    350;
 
-        /* =================================================
-           MUCH LARGER DISTANCE
-        ================================================= */
 
-        const distance =
-            250 +
-            Math.random() * 450;
 
+                const tx =
+                    Math.cos(angle)
+                    *
+                    distance;
 
-        const tx =
-            Math.cos(angle)
-            * distance;
 
+                const ty =
+                    Math.sin(angle)
+                    *
+                    distance;
 
-        const ty =
-            Math.sin(angle)
-            * distance;
 
 
-        confetti.style.setProperty(
-            "--tx",
-            tx + "px"
-        );
+                confetti.style.setProperty(
+                    "--tx",
+                    tx + "px"
+                );
 
 
-        confetti.style.setProperty(
-            "--ty",
-            ty + "px"
-        );
+                confetti.style.setProperty(
+                    "--ty",
+                    ty + "px"
+                );
 
 
-        /* =================================================
-           FINAL SCALE
-        ================================================= */
 
-        confetti.style.setProperty(
-            "--final-scale",
-            1.3 +
-            Math.random() * 2
-        );
+                /* ==============================
+                   SCALE
+                ============================== */
 
+                const scale =
+                    1.2
+                    +
+                    Math.random()
+                    *
+                    2.2;
 
-        /* =================================================
-           ROTATION
-        ================================================= */
 
-        confetti.style.setProperty(
-            "--rotation",
-            (
-                Math.random()
-                * 1200
-                - 600
-            ) + "deg"
-        );
+                confetti.style.setProperty(
+                    "--scale",
+                    scale
+                );
 
 
-        /* =================================================
-           CONFETTI SIZE
-        ================================================= */
 
-        confetti.style.width =
-            (
-                8 +
-                Math.random() * 10
-            ) + "px";
+                /* ==============================
+                   ROTATION
+                ============================== */
 
+                const rot1 =
+                    (
+                        Math.random()
+                        *
+                        360
+                    ) + "deg";
 
-        confetti.style.height =
-            (
-                12 +
-                Math.random() * 16
-            ) + "px";
 
+                const rot2 =
+                    (
+                        Math.random()
+                        *
+                        720
+                    ) + "deg";
 
-        /* =================================================
-           BURST SPEED
-        ================================================= */
 
-        const burstDuration =
-            2.5 +
-            Math.random() * 1.5;
+                const rot3 =
+                    (
+                        Math.random()
+                        *
+                        1080
+                    ) + "deg";
 
 
-        confetti.style.setProperty(
-            "--burst-duration",
-            burstDuration + "s"
-        );
+                confetti.style.setProperty(
+                    "--rot1",
+                    rot1
+                );
 
 
-        /* =================================================
-           DELAY
-        ================================================= */
+                confetti.style.setProperty(
+                    "--rot2",
+                    rot2
+                );
 
-        const delay =
-            Math.random() * 0.5;
 
+                confetti.style.setProperty(
+                    "--rot3",
+                    rot3
+                );
 
-        confetti.style.setProperty(
-            "--delay",
-            delay + "s"
-        );
 
 
-        /* =================================================
-           CONTINUOUS MOVEMENT
-        ================================================= */
+                /* ==============================
+                   SIZE
+                ============================== */
 
-        confetti.style.setProperty(
-            "--float-duration",
-            (
-                3 +
-                Math.random() * 4
-            ) + "s"
-        );
+                const width =
+                    7
+                    +
+                    Math.random()
+                    *
+                    9;
 
 
-        confetti.style.setProperty(
-            "--move-x1",
-            (
-                Math.random() * 30 - 15
-            ) + "px"
-        );
+                const height =
+                    10
+                    +
+                    Math.random()
+                    *
+                    14;
 
 
-        confetti.style.setProperty(
-            "--move-y1",
-            (
-                Math.random() * 30 - 15
-            ) + "px"
-        );
+                confetti.style.width =
+                    width + "px";
 
 
-        confetti.style.setProperty(
-            "--move-x2",
-            (
-                Math.random() * 50 - 25
-            ) + "px"
-        );
+                confetti.style.height =
+                    height + "px";
 
 
-        confetti.style.setProperty(
-            "--move-y2",
-            (
-                Math.random() * 50 - 25
-            ) + "px"
-        );
 
+                /* ==============================
+                   SPEED
+                ============================== */
 
-        confetti.style.setProperty(
-            "--move-x3",
-            (
-                Math.random() * 40 - 20
-            ) + "px"
-        );
+                const duration =
+                    3
+                    +
+                    Math.random()
+                    *
+                    4;
 
 
-        confetti.style.setProperty(
-            "--move-y3",
-            (
-                Math.random() * 40 - 20
-            ) + "px"
-        );
+                confetti.style.setProperty(
+                    "--duration",
+                    duration + "s"
+                );
 
 
-        confetti.style.setProperty(
-            "--move-x4",
-            (
-                Math.random() * 60 - 30
-            ) + "px"
-        );
 
+                /* ==============================
+                   DELAY
+                ============================== */
 
-        confetti.style.setProperty(
-            "--move-y4",
-            (
-                Math.random() * 60 - 30
-            ) + "px"
-        );
+                const delay =
+                    Math.random()
+                    *
+                    3;
 
 
-        /* ADD TO PAGE */
+                confetti.style.setProperty(
+                    "--delay",
+                    delay + "s"
+                );
 
-        stage.appendChild(
-            confetti
-        );
 
-    }
 
-}
+                /* ==============================
+                   ADD TO PAGE
+                ============================== */
 
+                page.appendChild(
+                    confetti
+                );
 
-/* =====================================================
-   OPEN BIRTHDAY LETTER
-===================================================== */
+            }
 
-function openBirthdayLetter() {
+        }
 
-    window.location.href =
-        "MASUKKAN_LINK_DRIVE_BIRTHDAY_DISINI";
 
-}
 
+        /* =====================================================
+           OPEN BIRTHDAY LETTER
+        ===================================================== */
 
-/* =====================================================
-   BACK BUTTON
-===================================================== */
+        function openBirthdayLetter() {
 
-function goBackB1() {
 
-    if (
-        typeof showPage ===
-        "function"
-    ) {
+            /*
+                GANTI BAGIAN INI DENGAN
+                LINK GOOGLE DRIVE PDF BIRTHDAY
+            */
 
-        showPage("login");
+            window.location.href =
+                "PASTE_LINK_DRIVE_BIRTHDAY_DI_SINI";
 
-    }
 
-}
+        }
 
 
-/* =====================================================
-   START
-===================================================== */
 
-setTimeout(
-    function() {
+        /* =====================================================
+           START CONFETTI
+        ===================================================== */
 
-        createBirthdayConfetti();
+        createConfetti();
 
-    },
-    500
-);
 
-</script>
+    </script>
+
+
+</body>
+
+</html>
