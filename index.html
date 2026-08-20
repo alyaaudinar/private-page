@@ -3,1019 +3,711 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
 
-    <title>Access</title>
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    <!-- GOOGLE FONT: POPPINS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+<title>Access</title>
 
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
 
-    <!-- ==================== CSS ==================== -->
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
 
-    <style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet">
 
-        /* BODY */
 
-        body {
-            margin: 0;
-            min-height: 100vh;
+<style>
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
+* {
+    box-sizing: border-box;
+}
 
-            background: #f7f5f2;
+body {
 
-            font-family: 'Poppins', sans-serif;
-            font-weight: 400;
+    margin: 0;
 
-            color: #333;
+    min-height: 100vh;
 
-            overflow: hidden;
-        }
+    background: #f7f5f2;
 
+    font-family: 'Poppins', sans-serif;
 
-        /* MAIN BOX */
+    color: #333;
 
-        .box {
-            width: 90%;
-            max-width: 400px;
+    overflow: hidden;
+}
 
-            text-align: center;
-        }
 
+/* =========================
+   PAGE SYSTEM
+========================= */
 
-        /* TITLE */
+.page {
 
-        h1 {
-            font-family: 'Poppins', sans-serif;
+    position: relative;
 
-            font-size: 24px;
+    width: 100%;
+    min-height: 100vh;
 
-            font-weight: 700;
+    display: none;
 
-            line-height: 1.5;
-        }
+    justify-content: center;
+    align-items: center;
 
+    text-align: center;
+}
 
-        /* CLUE */
+.page.active {
 
-        .clue {
-            font-family: 'Poppins', sans-serif;
+    display: flex;
+}
 
-            font-size: 14px;
 
-            font-weight: 400;
+/* =========================
+   MAIN CONTAINER
+========================= */
 
-            color: #888;
+.content {
 
-            margin-bottom: 25px;
-        }
+    width: 90%;
 
+    max-width: 500px;
 
-        /* PASSWORD INPUT */
+    margin: auto;
+}
 
-        input {
-            width: 100%;
 
-            padding: 12px;
+/* =========================
+   HEADINGS
+========================= */
 
-            border: 1px solid #ccc;
+h1 {
 
-            border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
 
-            box-sizing: border-box;
+    font-weight: 700;
 
-            text-align: center;
+    line-height: 1.4;
+}
 
-            font-size: 15px;
 
-            font-family: 'Poppins', sans-serif;
+/* =========================
+   BUTTON
+========================= */
 
-            font-weight: 400;
+.main-button {
 
-            outline: none;
-        }
+    border: none;
 
+    border-radius: 10px;
 
-        /* BUTTON */
+    padding: 14px 24px;
 
-        button {
-            width: 100%;
+    margin: 8px;
 
-            margin-top: 12px;
+    background: #A6A6A6;
 
-            padding: 12px;
+    color: white;
 
-            border: none;
+    font-family: 'Poppins', sans-serif;
 
-            border-radius: 8px;
+    font-size: 15px;
 
-            background: #A6A6A6;
+    font-weight: 700;
 
-            color: white;
+    cursor: pointer;
 
-            cursor: pointer;
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
 
-            font-family: 'Poppins', sans-serif;
+.main-button:hover {
 
-            font-size: 15px;
+    transform: scale(1.06);
 
-            font-weight: 700;
+    background: #777;
+}
 
-            transition: background 0.2s ease, transform 0.2s ease;
-        }
 
+/* =========================
+   BACK BUTTON
+========================= */
 
-        /* BUTTON HOVER: darker + bigger */
+.back-button {
 
-        button:hover {
+    position: fixed;
 
-            background: #7A7A7A;
+    top: 20px;
 
-            transform: scale(1.05);
+    left: 20px;
 
-        }
+    z-index: 9999;
 
+    border: none;
 
-        /* WRONG PASSWORD MESSAGE */
+    border-radius: 8px;
 
-        #message {
-            margin-top: 20px;
+    padding: 10px 18px;
 
-            font-size: 15px;
+    background: rgba(54,54,54,0.7);
 
-            font-family: 'Poppins', sans-serif;
+    color: white;
 
-            font-weight: 400;
-        }
+    font-family: 'Poppins', sans-serif;
 
+    font-weight: 700;
 
-        /* ==================== SUCCESS STAGE ==================== */
+    cursor: pointer;
 
-        #success {
-            position: relative;
+    transition: 0.25s;
+}
 
-            width: 100%;
-            height: 100vh;
+.back-button:hover {
 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+    transform: scale(1.08);
 
-        #success h1 {
-            position: relative;
-            z-index: 3;
+    background: rgba(30,30,30,0.9);
+}
 
-            margin-bottom: 25px;
 
-            color: #36454F;
+/* =========================
+   INPUT
+========================= */
 
-            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
-        }
+.password-input {
 
+    width: 100%;
 
-        /* WRONG PASSWORD HEADING */
+    padding: 13px;
 
-        #wrongStageWrapper h1 {
-            position: relative;
-            z-index: 3;
+    border: 1px solid #ccc;
 
-            margin-bottom: 25px;
+    border-radius: 8px;
 
-            font-size: 24px;
+    text-align: center;
 
-            color: #36454F;
+    font-family: 'Poppins', sans-serif;
 
-            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
-        }
+    font-size: 15px;
 
+    outline: none;
+}
 
-        /* TYPEWRITER CURSOR */
 
-        .typewriter-cursor {
+/* =========================
+   HIDE PLACEHOLDER
+========================= */
 
-            display: inline-block;
+.password-input:focus::placeholder {
 
-            width: 2px;
+    color: transparent;
+}
 
-            margin-left: 2px;
 
-            background: #36454F;
+/* =========================
+   MESSAGE
+========================= */
 
-            animation-name: cursorBlink;
-            animation-duration: 0.8s;
-            animation-timing-function: steps(1);
-            animation-iteration-count: infinite;
+#message {
 
-        }
+    margin-top: 18px;
 
-        @keyframes cursorBlink {
+    font-size: 14px;
+}
 
-            0%, 100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0;
-            }
-
-        }
-
-
-        /* PHOTO + CONFETTI STAGE WRAPPER */
-
-        .photo-stage {
-            position: relative;
-
-            width: 260px;
-            height: 260px;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-
-        /* PHOTO POP UP */
-
-        .photo-pop {
-            position: relative;
-            z-index: 2;
-
-            width: 220px;
-            height: 220px;
-
-            object-fit: cover;
-
-            border-radius: 16px;
-
-            opacity: 0;
-            transform: scale(0);
-
-            animation-name: photoPop;
-            animation-duration: 3s;
-            animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
-            animation-fill-mode: forwards;
-            animation-delay: 0.15s;
-        }
-
-        @keyframes photoPop {
-
-            0% {
-                opacity: 0;
-                transform: scale(0) rotate(-8deg);
-            }
-
-            50% {
-                opacity: 1;
-                transform: scale(1.15) rotate(4deg);
-            }
-
-            65% {
-                transform: scale(0.92) rotate(-5deg);
-            }
-
-            78% {
-                transform: scale(1.08) rotate(3deg);
-            }
-
-            88% {
-                transform: scale(0.97) rotate(-2deg);
-            }
-
-            100% {
-                opacity: 1;
-                transform: scale(1) rotate(0deg);
-            }
-
-        }
-
-
-        /* ==================== BURST CONFETTI (rectangles) ==================== */
-
-        .confetti-burst {
-            position: absolute;
-
-            top: 50%;
-            left: 50%;
-
-            width: 10px;
-            height: 16px;
-
-            border-radius: 2px;
-
-            opacity: 0;
-
-            z-index: 1;
-
-            animation-name: burst;
-            animation-timing-function: cubic-bezier(0.05, 0.85, 0.15, 1);
-            animation-fill-mode: forwards;
-        }
-
-
-        /* BURST ANIMATION: expand outward from center, grow, rotate,
-           and decelerate — no fade out, stays fully visible */
-
-        @keyframes burst {
-
-            0% {
-                opacity: 0;
-
-                transform:
-                    translate(-50%, -50%)
-                    translate(0, 0)
-                    scale(0.3)
-                    rotate(0deg);
-            }
-
-            15% {
-                opacity: 1;
-            }
-
-            100% {
-                opacity: 1;
-
-                transform:
-                    translate(-50%, -50%)
-                    translate(var(--tx), var(--ty))
-                    scale(var(--scale))
-                    rotate(var(--rot));
-            }
-
-        }
-
-
-        /* ==================== WRONG PASSWORD STAGE ==================== */
-
-        #wrongStageWrapper {
-            position: relative;
-
-            width: 100%;
-            height: 100vh;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-
-        /* PHOTO POP UP (WRONG PASSWORD) - grows in over 2s */
-
-        .photo-pop-wrong {
-            position: relative;
-            z-index: 2;
-
-            width: 220px;
-            height: 220px;
-
-            object-fit: cover;
-
-            border-radius: 16px;
-
-            opacity: 0;
-            transform: scale(0);
-
-            animation-name: photoPopWrong;
-            animation-duration: 3s;
-            animation-timing-function: cubic-bezier(0.34, 1.2, 0.4, 1);
-            animation-fill-mode: forwards;
-        }
-
-        @keyframes photoPopWrong {
-
-            0% {
-                opacity: 0;
-                transform: scale(0) rotate(-6deg);
-            }
-
-            35% {
-                opacity: 1;
-                transform: scale(1.15) rotate(5deg);
-            }
-
-            50% {
-                transform: scale(0.9) rotate(-6deg);
-            }
-
-            65% {
-                transform: scale(1.08) rotate(4deg);
-            }
-
-            80% {
-                transform: scale(0.96) rotate(-2deg);
-            }
-
-            100% {
-                opacity: 1;
-                transform: scale(1) rotate(0deg);
-            }
-
-        }
-
-
-        /* QUESTION MARK SCRAPBOOK STICKERS */
-
-        .question-mark {
-            position: absolute;
-
-            top: 50%;
-            left: 50%;
-
-            z-index: 1;
-
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-
-            color: #6e0f0f;
-
-            text-shadow:
-                2px 2px 0 rgba(0, 0, 0, 0.25),
-                0 0 10px rgba(110, 15, 15, 0.35);
-
-            opacity: 0;
-
-            animation-name: scrapScatter;
-            animation-timing-function: cubic-bezier(0.2, 0.9, 0.3, 1.2);
-            animation-fill-mode: forwards;
-
-            pointer-events: none;
-        }
-
-
-        /* SCRAPBOOK-STYLE SCATTER: pieces fly from behind the photo
-           outward and settle around it, slightly overshooting then
-           landing at a random rotation, like tossed paper stickers */
-
-        @keyframes scrapScatter {
-
-            0% {
-                opacity: 0;
-
-                transform:
-                    translate(-50%, -50%)
-                    translate(0, 0)
-                    scale(0.2)
-                    rotate(0deg);
-            }
-
-            20% {
-                opacity: 1;
-            }
-
-            70% {
-                transform:
-                    translate(-50%, -50%)
-                    translate(var(--tx), var(--ty))
-                    scale(var(--scale))
-                    rotate(var(--rot));
-            }
-
-            100% {
-                opacity: 1;
-
-                transform:
-                    translate(-50%, -50%)
-                    translate(var(--tx), var(--ty))
-                    scale(calc(var(--scale) * 0.92))
-                    rotate(var(--rot-settle));
-            }
-
-        }
-
-    </style>
+</style>
 
 </head>
 
 
-<!-- ==================== BODY ==================== -->
-
 <body>
 
 
-    <div class="box">
+<!-- ==================================================
+     PAGE UTAMA
+================================================== -->
 
+<section
+    id="main"
+    class="page active">
 
-        <!-- LOGIN PAGE -->
+    <div class="content">
 
-        <div id="login">
+        <h1>
+            Access Password
+        </h1>
 
+        <p>
+            clue: tanggal lahir
+        </p>
 
-            <h1>
-                Access Password
-            </h1>
+        <input
+            id="password"
+            class="password-input"
+            type="password"
+            placeholder="enter password"
+        >
 
+        <button
+            class="main-button"
+            onclick="checkPassword()">
 
-            <p class="clue">
-                clue: tanggal lahir
-            </p>
+            Unlock
 
+        </button>
 
-            <input
-                type="password"
-                id="password"
-                placeholder="enter password"
-                onfocus="this.placeholder=''"
-                onblur="this.placeholder='enter password'"
-            >
-
-
-            <button onclick="checkPassword()">
-                Unlock
-            </button>
-
-
-            <p id="message"></p>
-
-
-        </div>
-
-
-
-        <!-- SUCCESS PAGE -->
-
-        <div id="success" style="display: none;">
-
-            <h1><span id="successText"></span><span class="typewriter-cursor" id="successCursor"></span></h1>
-
-            <div class="photo-stage" id="photoStage">
-
-                <img
-                    src="KUMISENANG.PNG"
-                    alt="foto"
-                    class="photo-pop"
-                >
-
-            </div>
-
-        </div>
-
-
-
-        <!-- WRONG PASSWORD STAGE -->
-
-        <div id="wrongStageWrapper" style="display: none;">
-
-            <h1><span id="wrongText"></span><span class="typewriter-cursor" id="wrongCursor"></span></h1>
-
-            <div class="photo-stage" id="photoStageWrong">
-
-                <img
-                    src="KUMIMARAH.PNG"
-                    alt="foto"
-                    class="photo-pop-wrong"
-                    id="wrongPhoto"
-                >
-
-            </div>
-
-        </div>
-
+        <p id="message"></p>
 
     </div>
 
+</section>
 
 
-    <!-- ==================== JAVASCRIPT ==================== -->
+<!-- ==================================================
+     B1
+================================================== -->
 
-    <script>
+<section
+    id="b1"
+    class="page">
 
+    <button
+        class="back-button"
+        onclick="showPage('main')">
 
-        /* ====================
-           PASTEL COLOR PALETTE
-        ==================== */
+        BACK
 
-        const pastelColors = [
-            "#F6E7A1", // pastel yellow
-            "#F7C6C7", // pastel pink
-            "#C6DEF1", // pastel blue
-            "#C9E4C5", // pastel green
-            "#E2C6F1", // pastel purple
-            "#F9D5A7"  // pastel peach
-        ];
+    </button>
 
+    <div class="content">
 
+        <h1>
+            SELAMAT ULANG TAHUN JAFAR
+        </h1>
 
-        /* ====================
-           CREATE CONFETTI BURST
-           (rectangular pieces exploding
-            outward from behind the photo,
-            growing larger as they go)
-        ==================== */
+        <img
+            src="BIRTHDAY.PNG"
+            width="250"
+            alt="Birthday">
 
-        function createConfettiBurst() {
+        <br><br>
 
-            const stage =
-                document.getElementById("photoStage");
+        <button
+            class="main-button"
+            onclick="openBirthdayLetter()">
 
+            CLICK HERE TO READ
+            YOUR BIRTHDAY LETTER
+            FROM ALYA AUDINAR
 
-            const pieceCount = 60;
+        </button>
 
+    </div>
 
-            for (let i = 0; i < pieceCount; i++) {
+</section>
 
 
-                const piece =
-                    document.createElement("div");
+<!-- ==================================================
+     PAGE 1
+================================================== -->
 
+<section
+    id="page1"
+    class="page">
 
-                piece.classList.add("confetti-burst");
+    <button
+        class="back-button"
+        onclick="showPage('main')">
 
+        BACK
 
-                /* RANDOM PASTEL COLOR */
+    </button>
 
-                const color =
-                    pastelColors[
-                        Math.floor(Math.random() * pastelColors.length)
-                    ];
+    <div class="content">
 
-                piece.style.background = color;
+        <h1>
+            yey selamat jawabanmu benar!!!
+        </h1>
 
+        <img
+            src="KUMISENANG.PNG"
+            width="250"
+            alt="Kumi senang">
 
-                /* RANDOM DIRECTION (360 DEGREES AROUND CENTER) */
+        <br><br>
 
-                const angle =
-                    Math.random() * Math.PI * 2;
+        <button
+            class="main-button"
+            onclick="showPage('page3')">
 
-                /* RANDOM DISTANCE FROM CENTER */
+            CLICK HERE TO READ
+            THE OG LETTER
+            FROM ALYA AUDINAR
 
-                const distance =
-                    120 + Math.random() * 160;
+        </button>
 
-                const tx =
-                    Math.cos(angle) * distance;
+    </div>
 
-                const ty =
-                    Math.sin(angle) * distance;
+</section>
 
-                piece.style.setProperty("--tx", tx + "px");
-                piece.style.setProperty("--ty", ty + "px");
 
+<!-- ==================================================
+     PAGE 3
+================================================== -->
 
-                /* GROWS LARGER AS IT MOVES OUTWARD */
+<section
+    id="page3"
+    class="page">
 
-                const scale =
-                    1.5 + Math.random() * 1.5;
+    <button
+        class="back-button"
+        onclick="showPage('page1')">
 
-                piece.style.setProperty("--scale", scale);
+        BACK
 
+    </button>
 
-                /* RANDOM ROTATION WHILE BURSTING */
+    <div class="content">
 
-                const rotation =
-                    (Math.random() * 720 - 360) + "deg";
+        <h1>
+            which stuffs do u want to read?
+        </h1>
 
-                piece.style.setProperty("--rot", rotation);
+        <button
+            class="main-button"
+            onclick="openJacket()">
 
+            JACKET
 
-                /* RANDOM SIZE (RECTANGLE) */
+        </button>
 
-                const width =
-                    Math.random() * 6 + 8;
+        <button
+            class="main-button"
+            onclick="openBooks()">
 
-                const height =
-                    Math.random() * 10 + 12;
+            BOOKS
 
-                piece.style.width = width + "px";
-                piece.style.height = height + "px";
+        </button>
 
+        <button
+            class="main-button"
+            onclick="openFrame()">
 
-                /* RANDOM DURATION + SMALL DELAY */
+            FRAME FOTO
 
-                piece.style.animationDuration =
-                    (0.8 + Math.random() * 0.6) + "s";
+        </button>
 
-                piece.style.animationDelay =
-                    (Math.random() * 0.15) + "s";
+        <button
+            class="main-button"
+            onclick="openKeychain()">
 
+            KEYCHAIN
 
-                /* ADD BEHIND THE PHOTO */
+        </button>
 
-                stage.appendChild(piece);
+        <button
+            class="main-button"
+            onclick="openPhotos()">
 
+            OUR PHOTOS
 
-                /* REMOVE AFTER ANIMATION ENDS */
+        </button>
 
-                setTimeout(function() {
+        <button
+            class="main-button"
+            onclick="showPage('l1')">
 
-                    piece.remove();
+            RANDOM DAY LETTER
 
-                }, 1800);
+        </button>
 
+    </div>
 
-            }
+</section>
 
-        }
 
+<!-- ==================================================
+     L1
+================================================== -->
 
+<section
+    id="l1"
+    class="page">
 
-        /* ====================
-           CREATE QUESTION MARK SCATTER
-           (scrapbook-style stickers that fly
-            out from behind the wrong-password
-            photo and settle around it)
-        ==================== */
+    <button
+        class="back-button"
+        onclick="showPage('page3')">
 
-        function createQuestionScatter() {
+        BACK
 
-            const stage =
-                document.getElementById("photoStageWrong");
+    </button>
 
+    <div class="content">
 
-            const markCount = 14;
+        <h1>
+            pilih salah satu
+        </h1>
 
+        <button
+            class="main-button"
+            onclick="showPage('lt1')">
 
-            for (let i = 0; i < markCount; i++) {
+            INGIN MENULIS
+            RANDOM DAY LETTER
 
+        </button>
 
-                const mark =
-                    document.createElement("div");
+        <button
+            class="main-button"
+            onclick="showPage('lb1')">
 
+            INGIN MEMBACA
+            RANDOM DAY LETTER
 
-                mark.classList.add("question-mark");
+        </button>
 
-                mark.innerText = "?";
+    </div>
 
+</section>
 
-                /* RANDOM DIRECTION AROUND THE PHOTO */
 
-                const angle =
-                    (Math.PI * 2 / markCount) * i
-                    + (Math.random() * 0.4 - 0.2);
+<!-- ==================================================
+     LT1
+================================================== -->
 
-                /* RANDOM DISTANCE FROM CENTER (LANDS AROUND THE PHOTO) */
+<section
+    id="lt1"
+    class="page">
 
-                const distance =
-                    110 + Math.random() * 90;
+    <button
+        class="back-button"
+        onclick="showPage('l1')">
 
-                const tx =
-                    Math.cos(angle) * distance;
+        BACK
 
-                const ty =
-                    Math.sin(angle) * distance;
+    </button>
 
-                mark.style.setProperty("--tx", tx + "px");
-                mark.style.setProperty("--ty", ty + "px");
+    <div class="content">
 
+        <h1>
+            WRITE YOUR LETTER
+        </h1>
 
-                /* RANDOM SIZE (SCALE) */
+        <input
+            id="letterDate"
+            type="date">
 
-                const scale =
-                    0.9 + Math.random() * 1.1;
+        <br><br>
 
-                mark.style.setProperty("--scale", scale);
+        <input
+            id="letterTime"
+            type="time">
 
+        <br><br>
 
-                /* RANDOM TUMBLE WHILE FLYING + FINAL SETTLED TILT */
+        <textarea
+            id="letterMessage"
+            placeholder="write your message..."
+            rows="8"
+            style="width:100%; padding:12px;">
+        </textarea>
 
-                const rotation =
-                    (Math.random() * 540 - 270) + "deg";
+        <br><br>
 
-                const settleRotation =
-                    (Math.random() * 40 - 20) + "deg";
+        <input
+            id="letterName"
+            type="text"
+            placeholder="your name"
+            style="width:100%; padding:12px;">
 
-                mark.style.setProperty("--rot", rotation);
-                mark.style.setProperty("--rot-settle", settleRotation);
+        <br>
 
+        <button
+            class="main-button"
+            onclick="sendLetter()">
 
-                /* RANDOM FONT SIZE (STICKER SIZE) */
+            KIRIM
 
-                const fontSize =
-                    Math.random() * 16 + 26;
+        </button>
 
-                mark.style.fontSize =
-                    fontSize + "px";
+    </div>
 
+</section>
 
-                /* RANDOM DURATION + STAGGERED DELAY */
 
-                mark.style.animationDuration =
-                    (0.9 + Math.random() * 0.5) + "s";
+<!-- ==================================================
+     LB1
+================================================== -->
 
-                mark.style.animationDelay =
-                    (i * 0.03 + Math.random() * 0.1) + "s";
+<section
+    id="lb1"
+    class="page">
 
+    <button
+        class="back-button"
+        onclick="showPage('l1')">
 
-                /* ADD BEHIND THE PHOTO */
+        BACK
 
-                stage.appendChild(mark);
+    </button>
 
+    <div class="content">
 
-                /* REMOVE AFTER STAGE CLOSES */
+        <h1>
+            RANDOM DAY LETTERS
+        </h1>
 
-                setTimeout(function() {
+        <div id="lettersContainer">
 
-                    mark.remove();
+            <p>
+                Belum ada surat.
+            </p>
 
-                }, 3200);
+        </div>
 
+    </div>
 
-            }
+</section>
 
-        }
 
 
+<script>
 
-        /* ====================
-           TYPEWRITER EFFECT
-        ==================== */
 
-        function typewriterEffect(elementId, text, speed) {
+/* ==================================================
+   PAGE NAVIGATION
+================================================== */
 
-            const el =
-                document.getElementById(elementId);
+function showPage(pageId) {
 
+    document
+        .querySelectorAll(".page")
+        .forEach(page => {
 
-            /* RESET FOR REPEATED TRIES */
+            page.classList.remove("active");
 
-            el.innerText = "";
+        });
 
+    document
+        .getElementById(pageId)
+        .classList.add("active");
 
-            let i = 0;
+}
 
 
-            function typeNextChar() {
+/* ==================================================
+   PASSWORD
+================================================== */
 
-                if (i < text.length) {
+function checkPassword() {
 
-                    el.innerText += text.charAt(i);
+    const password =
+        document
+        .getElementById("password")
+        .value;
 
-                    i++;
+    const message =
+        document
+        .getElementById("message");
 
-                    setTimeout(typeNextChar, speed);
 
-                }
+    if (password === "20061215") {
 
-            }
+        message.innerText = "";
 
+        showPage("b1");
 
-            typeNextChar();
+    }
 
-        }
+    else if (password === "24122006") {
 
+        message.innerText = "";
 
+        showPage("page1");
 
-        /* ====================
-           CHECK PASSWORD
-        ==================== */
+    }
 
-        function checkPassword() {
+    else {
 
+        message.innerText =
+            "astaga? kok salah?";
 
-            const password =
-                document.getElementById("password").value;
+    }
 
+}
 
-            const message =
-                document.getElementById("message");
 
+/* ==================================================
+   GOOGLE DRIVE
+================================================== */
 
-            const login =
-                document.getElementById("login");
+function openBirthdayLetter() {
 
+    window.location.href =
+        "LINK_BIRTHDAY_DRIVE";
 
-            const success =
-                document.getElementById("success");
+}
 
 
-            /* PASSWORD */
+function openJacket() {
 
-            const correctPassword =
-                "24122006";
+    window.location.href =
+        "LINK_JACKET_DRIVE";
 
+}
 
-            /* ====================
-               CORRECT PASSWORD
-            ==================== */
 
-            if (password === correctPassword) {
+function openBooks() {
 
+    window.location.href =
+        "LINK_BOOKS_DRIVE";
 
-                /* HIDE LOGIN */
+}
 
-                login.style.display =
-                    "none";
 
+function openFrame() {
 
-                /* SHOW SUCCESS MESSAGE */
+    window.location.href =
+        "LINK_FRAME_DRIVE";
 
-                success.style.display =
-                    "flex";
+}
 
 
-                /* TYPEWRITER HEADING */
+function openKeychain() {
 
-                typewriterEffect(
-                    "successText",
-                    "yey selamat jawabanmu benar!!! (slmt membaca y)",
-                    45
-                );
+    window.location.href =
+        "LINK_KEYCHAIN_DRIVE";
 
+}
 
-                /* START PHOTO POP UP + CONFETTI BURST BEHIND IT */
 
-                createConfettiBurst();
+function openPhotos() {
 
+    window.location.href =
+        "LINK_OUR_PHOTOS_DRIVE";
 
-                /* OPEN PDF AFTER 3 SECONDS */
+}
 
-                setTimeout(function() {
 
+/* ==================================================
+   RANDOM LETTER
+================================================== */
 
-                    window.location.href =
-                    "https://drive.google.com/file/d/1DbNww1R67uc2PHkfKPu_JqTE2KScZ0MO/view?usp=drive_link";
+function sendLetter() {
 
+    alert(
+        "Bagian penyimpanan surat belum dipasang. Kita akan menghubungkannya ke Firebase di tahap berikutnya."
+    );
 
-                }, 3000);
+}
 
-
-            }
-
-
-            /* ====================
-               WRONG PASSWORD
-            ==================== */
-
-            else {
-
-
-                const wrongStageWrapper =
-                    document.getElementById("wrongStageWrapper");
-
-
-                /* HIDE LOGIN */
-
-                login.style.display =
-                    "none";
-
-
-                /* SHOW WRONG PASSWORD PHOTO STAGE */
-
-                wrongStageWrapper.style.display =
-                    "flex";
-
-
-                /* TYPEWRITER HEADING */
-
-                typewriterEffect(
-                    "wrongText",
-                    "loh kok salah?",
-                    45
-                );
-
-
-                /* START QUESTION MARK SCRAPBOOK SCATTER BEHIND PHOTO */
-
-                createQuestionScatter();
-
-
-                /* AFTER 3 SECONDS, GO BACK TO LOGIN */
-
-                setTimeout(function() {
-
-
-                    wrongStageWrapper.style.display =
-                        "none";
-
-
-                    login.style.display =
-                        "block";
-
-
-                    message.innerText =
-                        "coba lagi ...";
-
-
-                    /* RESET PHOTO ANIMATION FOR NEXT TRY */
-
-                    const wrongPhoto =
-                        document.getElementById("wrongPhoto");
-
-                    wrongPhoto.style.animation =
-                        "none";
-
-                    void wrongPhoto.offsetWidth;
-
-                    wrongPhoto.style.animation =
-                        "";
-
-
-                }, 3000);
-
-
-            }
-
-        }
-
-    </script>
+</script>
 
 
 </body>
