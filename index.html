@@ -2,23 +2,28 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Access</title>
 
-    <!-- Poppins -->
+    <!-- GOOGLE FONT: POPPINS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 
+
+    <!-- ==================== CSS ==================== -->
+
     <style>
 
-        /* ===== BODY ===== */
+        /* BODY */
 
         body {
             margin: 0;
             min-height: 100vh;
+
             display: flex;
             justify-content: center;
             align-items: center;
@@ -32,7 +37,7 @@
         }
 
 
-        /* ===== MAIN BOX ===== */
+        /* MAIN BOX */
 
         .box {
             width: 90%;
@@ -42,7 +47,7 @@
         }
 
 
-        /* ===== TITLE ===== */
+        /* TITLE */
 
         h1 {
             font-family: 'Poppins', sans-serif;
@@ -50,10 +55,12 @@
             font-size: 24px;
 
             font-weight: 700;
+
+            line-height: 1.5;
         }
 
 
-        /* ===== CLUE ===== */
+        /* CLUE */
 
         .clue {
             font-family: 'Poppins', sans-serif;
@@ -68,7 +75,7 @@
         }
 
 
-        /* ===== PASSWORD INPUT ===== */
+        /* PASSWORD INPUT */
 
         input {
             width: 100%;
@@ -93,7 +100,7 @@
         }
 
 
-        /* ===== BUTTON ===== */
+        /* BUTTON */
 
         button {
             width: 100%;
@@ -120,7 +127,7 @@
         }
 
 
-        /* ===== ERROR MESSAGE ===== */
+        /* WRONG PASSWORD MESSAGE */
 
         #message {
             margin-top: 20px;
@@ -133,7 +140,7 @@
         }
 
 
-        /* ===== CONFETTI ===== */
+        /* ==================== CONFETTI ==================== */
 
         .confetti {
             position: fixed;
@@ -150,22 +157,32 @@
 
             pointer-events: none;
 
-            animation: fall linear forwards;
+            animation-name: fall;
+
+            animation-timing-function: linear;
+
+            animation-fill-mode: forwards;
         }
 
 
-        /* ===== CONFETTI ANIMATION ===== */
+        /* CONFETTI FALLING ANIMATION */
 
         @keyframes fall {
 
-            to {
+            from {
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+            }
 
+            to {
                 transform:
                     translateY(110vh)
                     rotate(720deg);
 
                 opacity: 0;
             }
+
         }
 
     </style>
@@ -173,13 +190,18 @@
 </head>
 
 
+<!-- ==================== BODY ==================== -->
+
 <body>
+
 
     <div class="box">
 
-        <!-- LOGIN -->
+
+        <!-- LOGIN PAGE -->
 
         <div id="login">
+
 
             <h1>
                 Access Password
@@ -205,30 +227,42 @@
 
             <p id="message"></p>
 
+
         </div>
 
 
-        <!-- SUCCESS -->
+
+        <!-- SUCCESS PAGE -->
 
         <div id="success" style="display: none;">
+
 
             <h1>
                 yey keren kerennn! selamat membacaaaa (by dinar)
             </h1>
 
+
         </div>
+
 
     </div>
 
 
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+
     <script>
 
 
-        /* ===== CREATE CONFETTI ===== */
+        /* ====================
+           CREATE CONFETTI
+        ==================== */
 
         function createConfetti() {
 
+
             for (let i = 0; i < 80; i++) {
+
 
                 const confetti =
                     document.createElement("div");
@@ -237,13 +271,13 @@
                 confetti.classList.add("confetti");
 
 
-                /* RANDOM HORIZONTAL POSITION */
+                /* RANDOM POSITION */
 
                 confetti.style.left =
                     Math.random() * 100 + "vw";
 
 
-                /* 3 SECOND FALL */
+                /* 3 SECOND ANIMATION */
 
                 confetti.style.animationDuration =
                     "3s";
@@ -255,6 +289,18 @@
                     Math.random() * 0.2 + "s";
 
 
+                /* RANDOM SIZE */
+
+                const size =
+                    Math.random() * 5 + 6;
+
+                confetti.style.width =
+                    size + "px";
+
+                confetti.style.height =
+                    size + "px";
+
+
                 /* RANDOM ROTATION */
 
                 confetti.style.transform =
@@ -263,10 +309,12 @@
                     + "deg)";
 
 
+                /* ADD TO PAGE */
+
                 document.body.appendChild(confetti);
 
 
-                /* REMOVE AFTER ANIMATION */
+                /* REMOVE AFTER 3.2 SECONDS */
 
                 setTimeout(function() {
 
@@ -274,12 +322,16 @@
 
                 }, 3200);
 
+
             }
 
         }
 
 
-        /* ===== CHECK PASSWORD ===== */
+
+        /* ====================
+           CHECK PASSWORD
+        ==================== */
 
         function checkPassword() {
 
@@ -300,13 +352,15 @@
                 document.getElementById("success");
 
 
-            /* ===== PASSWORD ===== */
+            /* PASSWORD */
 
             const correctPassword =
                 "24122006";
 
 
-            /* ===== CORRECT PASSWORD ===== */
+            /* ====================
+               CORRECT PASSWORD
+            ==================== */
 
             if (password === correctPassword) {
 
@@ -317,7 +371,7 @@
                     "none";
 
 
-                /* SHOW SUCCESS */
+                /* SHOW SUCCESS MESSAGE */
 
                 success.style.display =
                     "block";
@@ -343,7 +397,9 @@
             }
 
 
-            /* ===== WRONG PASSWORD ===== */
+            /* ====================
+               WRONG PASSWORD
+            ==================== */
 
             else {
 
@@ -357,6 +413,7 @@
         }
 
     </script>
+
 
 </body>
 
