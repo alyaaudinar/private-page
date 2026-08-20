@@ -3,961 +3,1182 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<title>Access</title>
 
-    <title>Happy Birthday Jafar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- GOOGLE FONT: POPPINS -->
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
+<style>
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+/* =====================================================
+   GENERAL
+===================================================== */
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
-        rel="stylesheet"
-    >
+* {
+    box-sizing: border-box;
+}
 
+body {
 
-    <style>
+    margin: 0;
 
+    min-height: 100vh;
 
-        /* =====================================================
-           BODY
-        ===================================================== */
+    font-family: 'Poppins', sans-serif;
 
-        body {
+    background: #f7f5f2;
 
-            margin: 0;
+    color: #333;
 
-            min-height: 100vh;
+    overflow: hidden;
 
-            background: #f7f5f2;
+}
 
-            font-family: 'Poppins', sans-serif;
 
-            overflow: hidden;
+/* =====================================================
+   PAGE SYSTEM
+===================================================== */
 
-        }
+.page {
 
+    min-height: 100vh;
 
+    width: 100%;
 
-        /* =====================================================
-           BIRTHDAY PAGE
-        ===================================================== */
+    display: none;
 
-        .birthday-page {
+    position: relative;
 
-            position: relative;
+    justify-content: center;
 
-            width: 100vw;
+    align-items: center;
 
-            height: 100vh;
+}
 
-            display: flex;
+.page.active {
 
-            flex-direction: column;
+    display: flex;
 
-            justify-content: center;
+}
 
-            align-items: center;
 
-            text-align: center;
+/* =====================================================
+   BACK BUTTON
+===================================================== */
 
-            overflow: hidden;
+.back-button {
 
-        }
+    position: fixed;
 
+    top: 20px;
 
+    left: 20px;
 
-        /* =====================================================
-           BACK BUTTON
-        ===================================================== */
+    z-index: 9999;
 
-        .back-button {
+    width: auto;
 
-            position: fixed;
+    padding: 9px 18px;
 
-            top: 20px;
+    margin: 0;
 
-            left: 20px;
+    border: none;
 
-            z-index: 1000;
+    border-radius: 10px;
 
-            width: auto;
+    background: rgba(54, 69, 79, 0.7);
 
-            margin: 0;
+    color: white;
 
-            padding: 8px 16px;
+    font-family: 'Poppins', sans-serif;
 
-            border: none;
+    font-size: 14px;
 
-            border-radius: 8px;
+    font-weight: 700;
 
-            background: rgba(54, 69, 79, 0.70);
+    cursor: pointer;
 
-            color: white;
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
 
-            font-family: 'Poppins', sans-serif;
+}
 
-            font-size: 13px;
+.back-button:hover {
 
-            font-weight: 700;
+    background: #36454F;
 
-            cursor: pointer;
+    transform: scale(1.08);
 
-            transition:
-                transform 0.25s ease,
-                background 0.25s ease;
+}
 
-        }
 
+/* =====================================================
+   MAIN LOGIN PAGE
+===================================================== */
 
-        .back-button:hover {
+.login-box {
 
-            background: rgba(54, 69, 79, 0.90);
+    width: 90%;
 
-            transform: scale(1.08);
+    max-width: 400px;
 
-        }
+    text-align: center;
 
+    position: relative;
 
+    z-index: 10;
 
-        /* =====================================================
-           BIRTHDAY TITLE
+}
 
-           NAVY
-           BLACK SHADOW
-           NO YELLOW SHADOW
-        ===================================================== */
+.login-box h1 {
 
-        .birthday-title {
+    font-size: 24px;
 
-            position: relative;
+    font-weight: 700;
 
-            z-index: 20;
+    margin-bottom: 10px;
 
-            margin: 0 20px 25px 20px;
+}
 
-            font-family: 'Poppins', sans-serif;
+.clue {
 
-            font-size: clamp(28px, 5vw, 50px);
+    color: #888;
 
-            font-weight: 700;
+    font-size: 14px;
 
-            line-height: 1.2;
+    margin-bottom: 25px;
 
-            text-align: center;
+}
 
-            /*
-                NAVY
-            */
+.password-input {
 
-            color: #001F3F;
+    width: 100%;
 
-            /*
-                BLACK SHADOW ONLY
-                NO BLUR
-                20% OPACITY
-            */
+    padding: 12px;
 
-            text-shadow:
-                4px 4px 0 rgba(0, 0, 0, 0.20) !important;
+    border: 1px solid #ccc;
 
-            opacity: 0;
+    border-radius: 8px;
 
-            transform: scale(0.3);
+    text-align: center;
 
-            animation:
-                birthdayTitlePop
-                1.5s
-                0.1s
-                cubic-bezier(0.34, 1.56, 0.64, 1)
-                forwards;
+    font-family: 'Poppins', sans-serif;
 
-        }
+    font-size: 15px;
 
+    outline: none;
 
-        @keyframes birthdayTitlePop {
+}
 
-            0% {
+.unlock-button {
 
-                opacity: 0;
+    width: 100%;
 
-                transform:
-                    scale(0.3)
-                    rotate(-5deg);
+    margin-top: 12px;
 
-            }
+    padding: 12px;
 
-            60% {
+    border: none;
 
-                opacity: 1;
+    border-radius: 8px;
 
-                transform:
-                    scale(1.12)
-                    rotate(2deg);
+    background: #A6A6A6;
 
-            }
+    color: white;
 
-            80% {
+    font-family: 'Poppins', sans-serif;
 
-                transform:
-                    scale(0.94)
-                    rotate(-1deg);
+    font-size: 15px;
 
-            }
+    font-weight: 700;
 
-            100% {
+    cursor: pointer;
 
-                opacity: 1;
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
 
-                transform:
-                    scale(1)
-                    rotate(0deg);
+}
 
-            }
+.unlock-button:hover {
 
-        }
+    background: #777;
 
+    transform: scale(1.05);
 
+}
 
-        /* =====================================================
-           PHOTO CONTAINER
-        ===================================================== */
+#message {
 
-        .birthday-photo-container {
+    font-size: 14px;
 
-            position: relative;
+    margin-top: 15px;
 
-            z-index: 10;
+}
 
-            display: flex;
 
-            justify-content: center;
+/* =====================================================
+   STARS
+===================================================== */
 
-            align-items: center;
+.star {
 
-            /*
-                DIBESARKAN
-            */
+    position: fixed;
 
-            width: min(92vw, 650px);
+    width: var(--size);
 
-            height: min(62vh, 600px);
+    height: var(--size);
 
-        }
+    background: var(--color);
 
+    clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+    );
 
+    opacity: 0.7;
 
-        /* =====================================================
-           BIRTHDAY PHOTO
+    pointer-events: none;
 
-           NO WHITE BACKGROUND
-           NO BORDER
-           NO SHADOW
-        ===================================================== */
+    z-index: 1;
 
-        .birthday-photo {
+    animation:
+        starFloat var(--duration) ease-in-out infinite alternate;
 
-            position: relative;
+}
 
-            z-index: 10;
 
-            display: block;
+/*
+   Gerakan random kiri-kanan,
+   bukan dari ujung kiri ke kanan.
+*/
 
-            /*
-                LEBIH BESAR
-            */
+@keyframes starFloat {
 
-            width: min(85vw, 520px);
+    0% {
 
-            max-width: 100%;
+        transform:
+            translate(
+                var(--move1),
+                var(--moveY1)
+            )
+            rotate(0deg);
 
-            max-height: 100%;
+    }
 
-            height: auto;
+    50% {
 
-            object-fit: contain;
+        transform:
+            translate(
+                var(--move2),
+                var(--moveY2)
+            )
+            rotate(8deg);
 
-            background: transparent !important;
+    }
 
-            border: none !important;
+    100% {
 
-            box-shadow: none !important;
+        transform:
+            translate(
+                var(--move3),
+                var(--moveY3)
+            )
+            rotate(-8deg);
 
-            /*
-                HEARTBEAT
-            */
+    }
 
-            animation:
-                photoHeartbeat
-                2.2s
-                ease-in-out
-                infinite;
+}
 
-        }
 
+/* =====================================================
+   B1
+===================================================== */
 
-        @keyframes photoHeartbeat {
+#pageB1 {
 
-            0% {
+    background: #f7f5f2;
 
-                transform: scale(1);
+    overflow: hidden;
 
-            }
+    flex-direction: column;
 
-            15% {
+}
 
-                transform: scale(1.05);
 
-            }
+/* TITLE */
 
-            30% {
+.birthday-title {
 
-                transform: scale(0.98);
+    position: relative;
 
-            }
+    z-index: 20;
 
-            45% {
+    margin: 0 20px 15px;
 
-                transform: scale(1.07);
+    text-align: center;
 
-            }
+    font-size: clamp(28px, 7vw, 52px);
 
-            60% {
+    line-height: 1.2;
 
-                transform: scale(1);
+    color: navy;
 
-            }
+    font-weight: 700;
 
-            100% {
+    text-shadow:
+        2px 2px 0 rgba(0,0,0,0.2);
 
-                transform: scale(1);
+}
 
-            }
 
-        }
+/* =====================================================
+   BIRTHDAY PHOTO
+===================================================== */
 
+.birthday-photo {
 
+    position: relative;
 
-        /* =====================================================
-           BIRTHDAY LETTER BUTTON
-        ===================================================== */
+    z-index: 20;
 
-        .birthday-letter-button {
+    width: min(500px, 75vw);
 
-            position: relative;
+    height: auto;
 
-            z-index: 50;
+    max-height: 55vh;
 
-            width: auto;
+    object-fit: contain;
 
-            max-width: 90%;
+    display: block;
 
-            margin-top: 15px;
+    background: transparent;
 
-            padding: 15px 28px;
+    border: none;
 
-            border: none;
+    box-shadow: none;
 
-            border-radius: 10px;
+    animation: heartbeat 2.2s ease-in-out infinite;
 
-            /*
-                NAVY BOX
-                50% OPACITY
-            */
+}
 
-            background:
-                rgba(0, 31, 63, 0.50);
 
-            /*
-                WHITE TEXT
-            */
+/*
+   Foto membesar-kecil seperti heartbeat
+*/
 
-            color: #FFFFFF;
+@keyframes heartbeat {
 
-            font-family: 'Poppins', sans-serif;
+    0% {
 
-            font-size: 15px;
+        transform: scale(1);
 
-            font-weight: 700;
+    }
 
-            line-height: 1.5;
+    25% {
 
-            text-align: center;
+        transform: scale(1.035);
 
-            cursor: pointer;
+    }
 
-            /*
-                BUTTON SHADOW
-            */
+    40% {
 
-            box-shadow:
-                5px 5px 0 rgba(0, 0, 0, 0.25);
+        transform: scale(1);
 
-            /*
-                IMPORTANT:
-                TEXT SHADOW DIHAPUS TOTAL
-            */
+    }
 
-            text-shadow: none !important;
+    60% {
 
-            transition:
-                transform 0.25s ease,
-                background 0.25s ease,
-                box-shadow 0.25s ease;
+        transform: scale(1.045);
 
-        }
+    }
 
+    100% {
 
+        transform: scale(1);
 
-        /* =====================================================
-           BUTTON HOVER
+    }
 
-           MEMBESAR
-           LEBIH TEBAL
-           TEXT TETAP TANPA SHADOW
-        ===================================================== */
+}
 
-        .birthday-letter-button:hover {
 
-            background:
-                rgba(0, 31, 63, 0.75);
+/* =====================================================
+   BIRTHDAY LETTER BUTTON
+===================================================== */
 
-            transform:
-                scale(1.10);
+.birthday-letter-button {
 
-            font-weight: 700;
+    position: relative;
 
-            box-shadow:
-                6px 6px 0 rgba(0, 0, 0, 0.30);
+    z-index: 30;
 
-            /*
-                TETAP TANPA TEXT SHADOW
-            */
+    margin-top: 25px;
 
-            text-shadow: none !important;
+    padding: 16px 25px;
 
-        }
+    max-width: 90%;
 
+    border: none;
 
+    border-radius: 12px;
 
-        /* =====================================================
-           CONFETTI
-        ===================================================== */
+    background: rgba(20, 38, 70, 0.5);
 
-        .confetti {
+    color: white;
 
-            position: absolute;
+    font-family: 'Poppins', sans-serif;
 
-            top: 50%;
+    font-size: 15px;
 
-            left: 50%;
+    font-weight: 700;
 
-            width: 10px;
+    cursor: pointer;
 
-            height: 16px;
+    text-align: center;
 
-            border-radius: 2px;
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.25);
 
-            z-index: 5;
+    transition:
+        transform 0.25s ease,
+        font-weight 0.25s ease,
+        background 0.25s ease;
 
-            pointer-events: none;
+    text-shadow: none;
 
-            transform:
-                translate(-50%, -50%)
-                scale(0.2);
+}
 
-            /*
-                TERUS BERGERAK
-                SELAMA B1 TERBUKA
-            */
 
-            animation:
-                confettiBurst
-                var(--duration)
-                var(--delay)
-                cubic-bezier(0.12, 0.8, 0.2, 1)
-                infinite alternate;
+/* Hover */
 
-        }
+.birthday-letter-button:hover {
 
+    transform: scale(1.08);
 
+    font-weight: 700;
 
-        /* =====================================================
-           CONFETTI BURST
-        ===================================================== */
+    background: rgba(20, 38, 70, 0.75);
 
-        @keyframes confettiBurst {
+}
 
-            0% {
 
-                transform:
-                    translate(-50%, -50%)
-                    translate(0, 0)
-                    scale(0.2)
-                    rotate(0deg);
+/* =====================================================
+   CONFETTI
+===================================================== */
 
-            }
+.confetti {
 
-            25% {
+    position: fixed;
 
-                transform:
-                    translate(-50%, -50%)
-                    translate(
-                        calc(var(--tx) * 0.45),
-                        calc(var(--ty) * 0.45)
-                    )
-                    scale(1.3)
-                    rotate(var(--rot1));
+    left: 50%;
 
-            }
+    top: 50%;
 
-            55% {
+    width: var(--width);
 
-                transform:
-                    translate(-50%, -50%)
-                    translate(
-                        calc(var(--tx) * 0.75),
-                        calc(var(--ty) * 0.75)
-                    )
-                    scale(1.8)
-                    rotate(var(--rot2));
+    height: var(--height);
 
-            }
+    background: var(--color);
 
-            100% {
+    border-radius: 2px;
 
-                transform:
-                    translate(-50%, -50%)
-                    translate(var(--tx), var(--ty))
-                    scale(var(--scale))
-                    rotate(var(--rot3));
+    pointer-events: none;
 
-            }
+    z-index: 10;
 
-        }
+    animation:
+        confettiBurst var(--duration) cubic-bezier(0.15,0.8,0.2,1) infinite alternate;
 
+}
 
 
-        /* =====================================================
-           MOBILE
-        ===================================================== */
+/*
+   Burst keluar dari tengah,
+   lalu perlahan kembali sedikit.
+   Tidak fade.
+*/
 
-        @media (max-width: 600px) {
+@keyframes confettiBurst {
 
-            .birthday-title {
+    0% {
 
-                font-size: 30px;
+        opacity: 1;
 
-            }
+        transform:
+            translate(-50%, -50%)
+            translate(0,0)
+            rotate(0deg)
+            scale(0.5);
 
+    }
 
-            .birthday-photo-container {
+    60% {
 
-                width: 94vw;
+        opacity: 1;
 
-                height: 55vh;
+        transform:
+            translate(-50%, -50%)
+            translate(var(--x), var(--y))
+            rotate(var(--rotation))
+            scale(1.5);
 
-            }
+    }
 
+    100% {
 
-            .birthday-photo {
+        opacity: 1;
 
-                width: 88vw;
+        transform:
+            translate(-50%, -50%)
+            translate(
+                calc(var(--x) * 1.12),
+                calc(var(--y) * 1.12)
+            )
+            rotate(var(--rotation))
+            scale(1.8);
 
-            }
+    }
 
+}
 
-            .birthday-letter-button {
 
-                max-width: 88%;
+/* =====================================================
+   PAGE 1
+===================================================== */
 
-                font-size: 13px;
+#page1 {
 
-                padding: 13px 18px;
+    background: #f7f5f2;
 
-            }
+    flex-direction: column;
 
-        }
+    text-align: center;
 
+}
 
-    </style>
+.page1-title {
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+}
+
+.page1-text {
+
+    font-size: 16px;
+
+    color: #555;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .birthday-title {
+
+        font-size: 30px;
+
+    }
+
+    .birthday-photo {
+
+        width: 78vw;
+
+        max-height: 48vh;
+
+    }
+
+    .birthday-letter-button {
+
+        font-size: 13px;
+
+        padding: 14px 18px;
+
+    }
+
+}
+
+</style>
 
 </head>
-
 
 
 <body>
 
 
-    <div class="birthday-page">
+<!-- =====================================================
+     PAGE UTAMA
+===================================================== -->
+
+<section id="home" class="page active">
 
 
-        <!-- =================================================
-             BACK
-        ================================================= -->
+    <!-- BINTANG -->
 
-        <button
-            class="back-button"
-            onclick="history.back()"
-        >
-
-            BACK
-
-        </button>
+    <div id="stars"></div>
 
 
+    <div class="login-box">
 
-        <!-- =================================================
-             TITLE
-        ================================================= -->
-
-        <h1 class="birthday-title">
-
-            SELAMAT ULANG TAHUN JAFAR!!!
-
+        <h1>
+            Access Password
         </h1>
 
 
+        <p class="clue">
+            tanggal lahir pemilik website
+        </p>
 
-        <!-- =================================================
-             PHOTO
-        ================================================= -->
 
-        <div
-            class="birthday-photo-container"
-            id="photoContainer"
+        <input
+            id="password"
+            class="password-input"
+            type="password"
+            placeholder="enter password"
         >
 
-            <img
-                src="BIRTHDAY.PNG"
-                alt="Birthday photo"
-                class="birthday-photo"
-            >
-
-        </div>
-
-
-
-        <!-- =================================================
-             LETTER BUTTON
-        ================================================= -->
 
         <button
-            class="birthday-letter-button"
-            onclick="openBirthdayLetter()"
+            class="unlock-button"
+            onclick="checkPassword()"
         >
-
-            CLICK HERE TO READ YOUR BIRTHDAY LETTER
-            FROM ALYA AUDINAR
-
+            Unlock
         </button>
 
 
+        <p id="message"></p>
+
     </div>
 
+</section>
 
 
-    <script>
 
+<!-- =====================================================
+     B1
+===================================================== -->
 
-        /* =====================================================
-           PASTEL COLORS
-        ===================================================== */
+<section id="pageB1" class="page">
 
-        const pastelColors = [
 
-            "#F6E7A1",
+    <button
+        class="back-button"
+        onclick="goHome()"
+    >
+        BACK
+    </button>
 
-            "#F7C6C7",
 
-            "#C6DEF1",
+    <h1 class="birthday-title">
 
-            "#C9E4C5",
+        SELAMAT ULANG TAHUN JAFAR!!!
 
-            "#E2C6F1",
+    </h1>
 
-            "#F9D5A7",
 
-            "#FFD6A5",
+    <img
+        src="BIRTHDAY.PNG"
+        alt="Birthday"
+        class="birthday-photo"
+    >
 
-            "#BDE0FE"
 
-        ];
+    <button
+        class="birthday-letter-button"
+        onclick="openBirthdayLetter()"
+    >
 
+        CLICK HERE TO READ YOUR BIRTHDAY LETTER FROM ALYA AUDINAR
 
+    </button>
 
-        /* =====================================================
-           CREATE CONFETTI
-        ===================================================== */
 
-        function createConfetti() {
+</section>
 
 
-            const page =
-                document.querySelector(".birthday-page");
 
+<!-- =====================================================
+     PAGE 1
+===================================================== -->
 
-            /*
-                BANYAK CONFETTI
-            */
+<section id="page1" class="page">
 
-            const count = 120;
 
+    <button
+        class="back-button"
+        onclick="goHome()"
+    >
+        BACK
+    </button>
 
-            for (
-                let i = 0;
-                i < count;
-                i++
-            ) {
 
+    <h1 class="page1-title">
 
-                const confetti =
-                    document.createElement("div");
+        PAGE 1
 
+    </h1>
 
-                confetti.classList.add(
-                    "confetti"
-                );
 
+    <p class="page1-text">
 
+        OG LETTER PAGE
 
-                /* COLOR */
+    </p>
 
-                const color =
-                    pastelColors[
-                        Math.floor(
-                            Math.random()
-                            *
-                            pastelColors.length
-                        )
-                    ];
 
+</section>
 
-                confetti.style.background =
-                    color;
 
 
+<script>
 
-                /* RANDOM ANGLE */
 
-                const angle =
-                    Math.random()
-                    *
-                    Math.PI
-                    *
-                    2;
+/* =====================================================
+   PASSWORD
+===================================================== */
 
+function checkPassword() {
 
 
-                /* LARGER SPREAD */
+    const password =
+        document.getElementById("password").value;
 
-                const distance =
-                    250
-                    +
-                    Math.random()
-                    *
-                    450;
 
+    const message =
+        document.getElementById("message");
 
 
-                const tx =
-                    Math.cos(angle)
-                    *
-                    distance;
+    /*
+       PASSWORD B1
+    */
 
+    if (password === "20061215") {
 
-                const ty =
-                    Math.sin(angle)
-                    *
-                    distance;
-
-
-
-                confetti.style.setProperty(
-                    "--tx",
-                    tx + "px"
-                );
-
-
-                confetti.style.setProperty(
-                    "--ty",
-                    ty + "px"
-                );
-
-
-
-                /* SCALE */
-
-                const scale =
-                    1.2
-                    +
-                    Math.random()
-                    *
-                    2.3;
-
-
-                confetti.style.setProperty(
-                    "--scale",
-                    scale
-                );
-
-
-
-                /* ROTATION */
-
-                const rot1 =
-                    (
-                        Math.random()
-                        *
-                        360
-                    ) + "deg";
-
-
-                const rot2 =
-                    (
-                        Math.random()
-                        *
-                        720
-                    ) + "deg";
-
-
-                const rot3 =
-                    (
-                        Math.random()
-                        *
-                        1080
-                    ) + "deg";
-
-
-                confetti.style.setProperty(
-                    "--rot1",
-                    rot1
-                );
-
-
-                confetti.style.setProperty(
-                    "--rot2",
-                    rot2
-                );
-
-
-                confetti.style.setProperty(
-                    "--rot3",
-                    rot3
-                );
-
-
-
-                /* SIZE */
-
-                const width =
-                    7
-                    +
-                    Math.random()
-                    *
-                    9;
-
-
-                const height =
-                    10
-                    +
-                    Math.random()
-                    *
-                    14;
-
-
-                confetti.style.width =
-                    width + "px";
-
-
-                confetti.style.height =
-                    height + "px";
-
-
-
-                /* SPEED */
-
-                const duration =
-                    3
-                    +
-                    Math.random()
-                    *
-                    4;
-
-
-                confetti.style.setProperty(
-                    "--duration",
-                    duration + "s"
-                );
-
-
-
-                /* DELAY */
-
-                const delay =
-                    Math.random()
-                    *
-                    3;
-
-
-                confetti.style.setProperty(
-                    "--delay",
-                    delay + "s"
-                );
-
-
-
-                page.appendChild(
-                    confetti
-                );
-
-            }
-
-        }
-
-
-
-        /* =====================================================
-           OPEN BIRTHDAY LETTER
-        ===================================================== */
-
-        function openBirthdayLetter() {
-
-            /*
-                GANTI DENGAN LINK PDF BIRTHDAY
-            */
-
-            window.location.href =
-                "PASTE_LINK_DRIVE_BIRTHDAY_DI_SINI";
-
-        }
-
-
-
-        /* =====================================================
-           START CONFETTI
-        ===================================================== */
+        showPage("pageB1");
 
         createConfetti();
 
+        return;
 
-    </script>
+    }
+
+
+    /*
+       PASSWORD PAGE 1
+    */
+
+    if (password === "24122006") {
+
+        showPage("page1");
+
+        return;
+
+    }
+
+
+    /*
+       SALAH
+    */
+
+    message.innerText =
+        "coba lagi ...";
+
+}
+
+
+/* =====================================================
+   PAGE NAVIGATION
+===================================================== */
+
+function showPage(pageId) {
+
+
+    document
+        .querySelectorAll(".page")
+        .forEach(page => {
+
+            page.classList.remove("active");
+
+        });
+
+
+    document
+        .getElementById(pageId)
+        .classList.add("active");
+
+}
+
+
+/* =====================================================
+   BACK HOME
+===================================================== */
+
+function goHome() {
+
+
+    showPage("home");
+
+
+    document
+        .getElementById("password")
+        .value = "";
+
+
+    document
+        .getElementById("message")
+        .innerText = "";
+
+}
+
+
+/* =====================================================
+   ENTER PASSWORD PLACEHOLDER
+===================================================== */
+
+document
+    .getElementById("password")
+    .addEventListener("focus", function() {
+
+        this.placeholder = "";
+
+    });
+
+
+document
+    .getElementById("password")
+    .addEventListener("blur", function() {
+
+        if (this.value === "") {
+
+            this.placeholder =
+                "enter password";
+
+        }
+
+    });
+
+
+/* =====================================================
+   ENTER KEY
+===================================================== */
+
+document
+    .getElementById("password")
+    .addEventListener("keydown", function(event) {
+
+        if (event.key === "Enter") {
+
+            checkPassword();
+
+        }
+
+    });
+
+
+/* =====================================================
+   CREATE STARS
+===================================================== */
+
+function createStars() {
+
+
+    const container =
+        document.getElementById("stars");
+
+
+    const colors = [
+
+        "#F6E7A1",
+
+        "#F7C6C7",
+
+        "#C6DEF1",
+
+        "#C9E4C5",
+
+        "#E2C6F1",
+
+        "#F9D5A7"
+
+    ];
+
+
+    for (let i = 0; i < 30; i++) {
+
+
+        const star =
+            document.createElement("div");
+
+
+        star.classList.add("star");
+
+
+        const size =
+            15 + Math.random() * 25;
+
+
+        star.style.setProperty(
+            "--size",
+            size + "px"
+        );
+
+
+        star.style.left =
+            Math.random() * 100 + "vw";
+
+
+        star.style.top =
+            Math.random() * 100 + "vh";
+
+
+        star.style.setProperty(
+            "--color",
+            colors[
+                Math.floor(
+                    Math.random() * colors.length
+                )
+            ]
+        );
+
+
+        /*
+           Gerakan kecil random
+           di sekitar posisi awal.
+        */
+
+        star.style.setProperty(
+            "--move1",
+            (-15 + Math.random() * 30) + "px"
+        );
+
+
+        star.style.setProperty(
+            "--move2",
+            (-30 + Math.random() * 60) + "px"
+        );
+
+
+        star.style.setProperty(
+            "--move3",
+            (-15 + Math.random() * 30) + "px"
+        );
+
+
+        star.style.setProperty(
+            "--moveY1",
+            (-10 + Math.random() * 20) + "px"
+        );
+
+
+        star.style.setProperty(
+            "--moveY2",
+            (-15 + Math.random() * 30) + "px"
+        );
+
+
+        star.style.setProperty(
+            "--moveY3",
+            (-10 + Math.random() * 20) + "px"
+        );
+
+
+        star.style.setProperty(
+            "--duration",
+            (7 + Math.random() * 7) + "s"
+        );
+
+
+        container.appendChild(star);
+
+    }
+
+}
+
+
+/* =====================================================
+   CREATE CONFETTI
+===================================================== */
+
+function createConfetti() {
+
+
+    /*
+       Hapus confetti lama
+    */
+
+    document
+        .querySelectorAll(".confetti")
+        .forEach(c => c.remove());
+
+
+    const colors = [
+
+        "#F6E7A1",
+
+        "#F7C6C7",
+
+        "#C6DEF1",
+
+        "#C9E4C5",
+
+        "#E2C6F1",
+
+        "#F9D5A7"
+
+    ];
+
+
+    /*
+       Banyak confetti
+    */
+
+    for (let i = 0; i < 100; i++) {
+
+
+        const confetti =
+            document.createElement("div");
+
+
+        confetti.classList.add("confetti");
+
+
+        /*
+           Warna
+        */
+
+        confetti.style.setProperty(
+            "--color",
+            colors[
+                Math.floor(
+                    Math.random() * colors.length
+                )
+            ]
+        );
+
+
+        /*
+           Ukuran
+        */
+
+        confetti.style.setProperty(
+            "--width",
+            (6 + Math.random() * 8) + "px"
+        );
+
+
+        confetti.style.setProperty(
+            "--height",
+            (10 + Math.random() * 14) + "px"
+        );
+
+
+        /*
+           Arah burst
+        */
+
+        const angle =
+            Math.random() * Math.PI * 2;
+
+
+        const distance =
+            180 + Math.random() * 300;
+
+
+        const x =
+            Math.cos(angle) * distance;
+
+
+        const y =
+            Math.sin(angle) * distance;
+
+
+        confetti.style.setProperty(
+            "--x",
+            x + "px"
+        );
+
+
+        confetti.style.setProperty(
+            "--y",
+            y + "px"
+        );
+
+
+        /*
+           Rotasi
+        */
+
+        confetti.style.setProperty(
+            "--rotation",
+            (-360 + Math.random() * 720) + "deg"
+        );
+
+
+        /*
+           Kecepatan berbeda
+        */
+
+        confetti.style.setProperty(
+            "--duration",
+            (2.5 + Math.random() * 2.5) + "s"
+        );
+
+
+        document
+            .getElementById("pageB1")
+            .appendChild(confetti);
+
+    }
+
+}
+
+
+/* =====================================================
+   BIRTHDAY LETTER
+===================================================== */
+
+function openBirthdayLetter() {
+
+
+    /*
+       GANTI LINK INI NANTI
+       dengan link Google Drive PDF
+    */
+
+    window.location.href =
+        "https://drive.google.com";
+
+
+}
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+createStars();
+
+</script>
 
 
 </body>
