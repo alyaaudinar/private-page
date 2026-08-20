@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,9 +9,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-
 
 <style>
 
@@ -24,20 +21,17 @@
     box-sizing: border-box;
 }
 
+html,
 body {
-
     margin: 0;
-
-    min-height: 100vh;
-
+    width: 100%;
+    min-height: 100%;
     font-family: 'Poppins', sans-serif;
+}
 
+body {
     background: #f7f5f2;
-
-    color: #333;
-
     overflow: hidden;
-
 }
 
 
@@ -46,25 +40,21 @@ body {
 ===================================================== */
 
 .page {
-
-    min-height: 100vh;
-
     width: 100%;
+    min-height: 100vh;
 
     display: none;
 
     position: relative;
 
     justify-content: center;
-
     align-items: center;
 
+    overflow: hidden;
 }
 
 .page.active {
-
     display: flex;
-
 }
 
 
@@ -77,19 +67,13 @@ body {
     position: fixed;
 
     top: 20px;
-
     left: 20px;
 
     z-index: 9999;
 
-    width: auto;
-
     padding: 9px 18px;
 
-    margin: 0;
-
     border: none;
-
     border-radius: 10px;
 
     background: rgba(54, 69, 79, 0.7);
@@ -97,9 +81,7 @@ body {
     color: white;
 
     font-family: 'Poppins', sans-serif;
-
-    font-size: 14px;
-
+    font-size: 13px;
     font-weight: 700;
 
     cursor: pointer;
@@ -107,7 +89,6 @@ body {
     transition:
         transform 0.25s ease,
         background 0.25s ease;
-
 }
 
 .back-button:hover {
@@ -115,26 +96,27 @@ body {
     background: #36454F;
 
     transform: scale(1.08);
-
 }
 
 
 /* =====================================================
-   MAIN LOGIN PAGE
+   HOME
 ===================================================== */
+
+#home {
+    background: #f7f5f2;
+}
 
 .login-box {
 
     width: 90%;
-
     max-width: 400px;
 
     text-align: center;
 
     position: relative;
 
-    z-index: 10;
-
+    z-index: 20;
 }
 
 .login-box h1 {
@@ -143,8 +125,9 @@ body {
 
     font-weight: 700;
 
-    margin-bottom: 10px;
+    color: #333;
 
+    margin-bottom: 10px;
 }
 
 .clue {
@@ -154,7 +137,6 @@ body {
     font-size: 14px;
 
     margin-bottom: 25px;
-
 }
 
 .password-input {
@@ -167,6 +149,8 @@ body {
 
     border-radius: 8px;
 
+    background: white;
+
     text-align: center;
 
     font-family: 'Poppins', sans-serif;
@@ -174,7 +158,6 @@ body {
     font-size: 15px;
 
     outline: none;
-
 }
 
 .unlock-button {
@@ -202,9 +185,8 @@ body {
     cursor: pointer;
 
     transition:
-        transform 0.25s ease,
-        background 0.25s ease;
-
+        background 0.25s ease,
+        transform 0.25s ease;
 }
 
 .unlock-button:hover {
@@ -212,15 +194,15 @@ body {
     background: #777;
 
     transform: scale(1.05);
-
 }
 
 #message {
 
+    margin-top: 18px;
+
     font-size: 14px;
 
-    margin-top: 15px;
-
+    color: #555;
 }
 
 
@@ -233,8 +215,10 @@ body {
     position: fixed;
 
     width: var(--size);
-
     height: var(--size);
+
+    left: var(--left);
+    top: var(--top);
 
     background: var(--color);
 
@@ -251,58 +235,36 @@ body {
         39% 35%
     );
 
-    opacity: 0.7;
+    opacity: 0.65;
 
     pointer-events: none;
 
-    z-index: 1;
-
     animation:
-        starFloat var(--duration) ease-in-out infinite alternate;
-
+        starMovement var(--duration)
+        ease-in-out
+        infinite
+        alternate;
 }
 
-
-/*
-   Gerakan random kiri-kanan,
-   bukan dari ujung kiri ke kanan.
-*/
-
-@keyframes starFloat {
+@keyframes starMovement {
 
     0% {
-
         transform:
-            translate(
-                var(--move1),
-                var(--moveY1)
-            )
+            translate(var(--x1), var(--y1))
             rotate(0deg);
-
     }
 
     50% {
-
         transform:
-            translate(
-                var(--move2),
-                var(--moveY2)
-            )
+            translate(var(--x2), var(--y2))
             rotate(8deg);
-
     }
 
     100% {
-
         transform:
-            translate(
-                var(--move3),
-                var(--moveY3)
-            )
+            translate(var(--x3), var(--y3))
             rotate(-8deg);
-
     }
-
 }
 
 
@@ -314,10 +276,9 @@ body {
 
     background: #f7f5f2;
 
-    overflow: hidden;
-
     flex-direction: column;
 
+    text-align: center;
 }
 
 
@@ -327,105 +288,92 @@ body {
 
     position: relative;
 
-    z-index: 20;
+    z-index: 50;
 
-    margin: 0 20px 15px;
-
-    text-align: center;
+    margin: 0 20px 20px;
 
     font-size: clamp(28px, 7vw, 52px);
 
     line-height: 1.2;
 
-    color: #373757;
-
     font-weight: 700;
 
-    text-shadow:
-        2px 2px 0 rgba(0,0,0,0.2);
+    color: #373757;
 
+    /*
+       BLACK SHADOW
+       NON-BLUR
+       APPROX 20% OPACITY
+    */
+
+    text-shadow:
+        2px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
 
-/* =====================================================
-   BIRTHDAY PHOTO
-===================================================== */
+/* PHOTO */
 
 .birthday-photo {
 
     position: relative;
 
-    z-index: 20;
+    z-index: 50;
 
-    width: min(500px, 75vw);
-
-    height: auto;
+    width: min(520px, 82vw);
 
     max-height: 55vh;
+
+    height: auto;
 
     object-fit: contain;
 
     display: block;
 
-    background: transparent;
-
     border: none;
+
+    background: transparent;
 
     box-shadow: none;
 
-    animation: heartbeat 2.2s ease-in-out infinite;
-
+    animation:
+        heartbeat
+        2.2s
+        ease-in-out
+        infinite;
 }
 
-
-/*
-   Foto membesar-kecil seperti heartbeat
-*/
 
 @keyframes heartbeat {
 
     0% {
-
         transform: scale(1);
-
     }
 
     25% {
-
-        transform: scale(1.035);
-
+        transform: scale(1.04);
     }
 
     40% {
-
         transform: scale(1);
-
     }
 
     60% {
-
         transform: scale(1.045);
-
     }
 
     100% {
-
         transform: scale(1);
-
     }
-
 }
 
 
-/* =====================================================
-   BIRTHDAY LETTER BUTTON
-===================================================== */
+/* BIRTHDAY BUTTON */
 
 .birthday-letter-button {
 
     position: relative;
 
-    z-index: 30;
+    z-index: 60;
 
     margin-top: 25px;
 
@@ -443,7 +391,7 @@ body {
 
     font-family: 'Poppins', sans-serif;
 
-    font-size: 15px;
+    font-size: 14px;
 
     font-weight: 700;
 
@@ -454,26 +402,18 @@ body {
     box-shadow:
         0 8px 20px rgba(0,0,0,0.25);
 
-    transition:
-        transform 0.25s ease,
-        font-weight 0.25s ease,
-        background 0.25s ease;
-
     text-shadow: none;
 
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
 }
-
-
-/* Hover */
 
 .birthday-letter-button:hover {
 
     transform: scale(1.08);
 
-    font-weight: 700;
-
     background: rgba(20, 38, 70, 0.75);
-
 }
 
 
@@ -486,50 +426,40 @@ body {
     position: fixed;
 
     left: 50%;
-
     top: 50%;
 
     width: var(--width);
-
     height: var(--height);
 
     background: var(--color);
 
     border-radius: 2px;
 
+    z-index: 30;
+
     pointer-events: none;
 
-    z-index: 10;
-
     animation:
-        confettiBurst var(--duration) cubic-bezier(0.15,0.8,0.2,1) infinite alternate;
-
+        confettiMovement
+        var(--duration)
+        cubic-bezier(0.15, 0.8, 0.2, 1)
+        infinite
+        alternate;
 }
 
-
-/*
-   Burst keluar dari tengah,
-   lalu perlahan kembali sedikit.
-   Tidak fade.
-*/
-
-@keyframes confettiBurst {
+@keyframes confettiMovement {
 
     0% {
 
-        opacity: 1;
-
         transform:
             translate(-50%, -50%)
-            translate(0,0)
+            translate(0, 0)
             rotate(0deg)
             scale(0.5);
 
     }
 
     60% {
-
-        opacity: 1;
 
         transform:
             translate(-50%, -50%)
@@ -541,8 +471,6 @@ body {
 
     100% {
 
-        opacity: 1;
-
         transform:
             translate(-50%, -50%)
             translate(
@@ -553,7 +481,6 @@ body {
             scale(1.8);
 
     }
-
 }
 
 
@@ -568,28 +495,163 @@ body {
     flex-direction: column;
 
     text-align: center;
-
 }
 
-.page1-title {
+.og-title {
 
     font-size: 30px;
 
-    font-weight: 700;
+    color: #373757;
 
+    font-weight: 700;
 }
 
-.page1-text {
-
-    font-size: 16px;
+.og-text {
 
     color: #555;
+
+    font-size: 15px;
+}
+
+
+/* OG BUTTON */
+
+.og-letter-button {
+
+    margin-top: 20px;
+
+    padding: 16px 25px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: rgba(54, 54, 54, 0.7);
+
+    color: white;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.25);
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+.og-letter-button:hover {
+
+    transform: scale(1.08);
+
+    background: rgba(30,30,30,0.9);
+}
+
+
+/* =====================================================
+   PAGE 3
+===================================================== */
+
+#page3 {
+
+    background: #f7f5f2;
+
+    flex-direction: column;
+
+    padding: 80px 20px 40px;
+
+    overflow-y: auto;
+
+    text-align: center;
+}
+
+.stuffs-title {
+
+    font-size: 30px;
+
+    color: #373757;
+
+    font-weight: 700;
+
+    margin-bottom: 30px;
+}
+
+
+/* BUTTON CONTAINER */
+
+.stuffs-container {
+
+    width: min(500px, 90vw);
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+}
+
+
+/* GENERAL STUFF BUTTON */
+
+.stuff-button {
+
+    min-height: 70px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: rgba(54, 54, 54, 0.75);
+
+    color: white;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 15px rgba(0,0,0,0.2);
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        font-weight 0.25s ease;
+}
+
+.stuff-button:hover {
+
+    background: #252525;
+
+    transform: scale(1.07);
+
+    font-weight: 700;
+}
+
+
+/* RANDOM DAY LETTER */
+
+.random-button {
+
+    background: rgba(120, 100, 80, 0.75);
+}
+
+.random-button:hover {
+
+    background: #80694F;
 
 }
 
 
 /* =====================================================
-   RESPONSIVE
+   MOBILE
 ===================================================== */
 
 @media (max-width: 600px) {
@@ -602,7 +664,7 @@ body {
 
     .birthday-photo {
 
-        width: 78vw;
+        width: 85vw;
 
         max-height: 48vh;
 
@@ -610,16 +672,21 @@ body {
 
     .birthday-letter-button {
 
-        font-size: 13px;
+        font-size: 12px;
 
-        padding: 14px 18px;
+        padding: 14px 17px;
+
+    }
+
+    .stuffs-container {
+
+        grid-template-columns: 1fr;
 
     }
 
 }
 
 </style>
-
 </head>
 
 
@@ -627,16 +694,12 @@ body {
 
 
 <!-- =====================================================
-     PAGE UTAMA
+     HOME
 ===================================================== -->
 
 <section id="home" class="page active">
 
-
-    <!-- BINTANG -->
-
     <div id="stars"></div>
-
 
     <div class="login-box">
 
@@ -644,11 +707,9 @@ body {
             Access Password
         </h1>
 
-
         <p class="clue">
             tanggal lahir pemilik website
         </p>
-
 
         <input
             id="password"
@@ -657,14 +718,12 @@ body {
             placeholder="enter password"
         >
 
-
         <button
             class="unlock-button"
             onclick="checkPassword()"
         >
             Unlock
         </button>
-
 
         <p id="message"></p>
 
@@ -680,7 +739,6 @@ body {
 
 <section id="pageB1" class="page">
 
-
     <button
         class="back-button"
         onclick="goHome()"
@@ -688,13 +746,9 @@ body {
         BACK
     </button>
 
-
     <h1 class="birthday-title">
-
         SELAMAT ULANG TAHUN JAFAR!!!
-
     </h1>
-
 
     <img
         src="BIRTHDAY.PNG"
@@ -702,16 +756,12 @@ body {
         class="birthday-photo"
     >
 
-
     <button
         class="birthday-letter-button"
         onclick="openBirthdayLetter()"
     >
-
         CLICK HERE TO READ YOUR BIRTHDAY LETTER FROM ALYA AUDINAR
-
     </button>
-
 
 </section>
 
@@ -723,7 +773,6 @@ body {
 
 <section id="page1" class="page">
 
-
     <button
         class="back-button"
         onclick="goHome()"
@@ -731,20 +780,122 @@ body {
         BACK
     </button>
 
-
-    <h1 class="page1-title">
-
-        PAGE 1
-
+    <h1 class="og-title">
+        OG LETTER
     </h1>
 
-
-    <p class="page1-text">
-
-        OG LETTER PAGE
-
+    <p class="og-text">
+        your original letter is waiting here
     </p>
 
+    <button
+        class="og-letter-button"
+        onclick="showPage('page3')"
+    >
+        CLICK HERE TO READ THE OG LETTER FROM ALYA AUDINAR
+    </button>
+
+</section>
+
+
+
+<!-- =====================================================
+     PAGE 3
+===================================================== -->
+
+<section id="page3" class="page">
+
+    <button
+        class="back-button"
+        onclick="showPage('page1')"
+    >
+        BACK
+    </button>
+
+    <h1 class="stuffs-title">
+        WHICH STUFFS DO U WANT TO READ?
+    </h1>
+
+    <div class="stuffs-container">
+
+        <button
+            class="stuff-button"
+            onclick="openPDF('JACKET_LINK')"
+        >
+            JACKET
+        </button>
+
+        <button
+            class="stuff-button"
+            onclick="openPDF('BOOKS_LINK')"
+        >
+            BOOKS
+        </button>
+
+        <button
+            class="stuff-button"
+            onclick="openPDF('FRAME_FOTO_LINK')"
+        >
+            FRAME FOTO
+        </button>
+
+        <button
+            class="stuff-button"
+            onclick="openPDF('KEYCHAIN_LINK')"
+        >
+            KEYCHAIN
+        </button>
+
+        <button
+            class="stuff-button"
+            onclick="openPDF('OUR_PHOTOS_LINK')"
+        >
+            OUR PHOTOS
+        </button>
+
+        <button
+            class="stuff-button random-button"
+            onclick="showPage('pageL1')"
+        >
+            RANDOM DAY LETTER
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     L1 — TEMPORARY PLACEHOLDER
+===================================================== -->
+
+<section id="pageL1" class="page">
+
+    <button
+        class="back-button"
+        onclick="showPage('page3')"
+    >
+        BACK
+    </button>
+
+    <h1>
+        PILIH SALAH SATU
+    </h1>
+
+    <button
+        class="stuff-button"
+        onclick="alert('LT1 akan kita buat di tahap berikutnya')"
+    >
+        INGIN MENULIS RANDOM DAY LETTER
+    </button>
+
+    <button
+        class="stuff-button"
+        onclick="alert('LB1 akan kita buat di tahap berikutnya')"
+    >
+        INGIN MEMBACA RANDOM DAY LETTER
+    </button>
 
 </section>
 
@@ -754,23 +905,59 @@ body {
 
 
 /* =====================================================
+   PAGE NAVIGATION
+===================================================== */
+
+function showPage(pageId) {
+
+    document
+        .querySelectorAll(".page")
+        .forEach(page => {
+
+            page.classList.remove("active");
+
+        });
+
+    document
+        .getElementById(pageId)
+        .classList.add("active");
+
+}
+
+
+/* =====================================================
+   HOME
+===================================================== */
+
+function goHome() {
+
+    showPage("home");
+
+    document
+        .getElementById("password")
+        .value = "";
+
+    document
+        .getElementById("message")
+        .innerText = "";
+
+}
+
+
+/* =====================================================
    PASSWORD
 ===================================================== */
 
 function checkPassword() {
 
-
     const password =
         document.getElementById("password").value;
-
 
     const message =
         document.getElementById("message");
 
 
-    /*
-       PASSWORD B1
-    */
+    /* 20061215 → B1 */
 
     if (password === "20061215") {
 
@@ -783,9 +970,7 @@ function checkPassword() {
     }
 
 
-    /*
-       PASSWORD PAGE 1
-    */
+    /* 24122006 → PAGE 1 */
 
     if (password === "24122006") {
 
@@ -796,9 +981,7 @@ function checkPassword() {
     }
 
 
-    /*
-       SALAH
-    */
+    /* WRONG */
 
     message.innerText =
         "coba lagi ...";
@@ -807,52 +990,7 @@ function checkPassword() {
 
 
 /* =====================================================
-   PAGE NAVIGATION
-===================================================== */
-
-function showPage(pageId) {
-
-
-    document
-        .querySelectorAll(".page")
-        .forEach(page => {
-
-            page.classList.remove("active");
-
-        });
-
-
-    document
-        .getElementById(pageId)
-        .classList.add("active");
-
-}
-
-
-/* =====================================================
-   BACK HOME
-===================================================== */
-
-function goHome() {
-
-
-    showPage("home");
-
-
-    document
-        .getElementById("password")
-        .value = "";
-
-
-    document
-        .getElementById("message")
-        .innerText = "";
-
-}
-
-
-/* =====================================================
-   ENTER PASSWORD PLACEHOLDER
+   ENTER PASSWORD
 ===================================================== */
 
 document
@@ -863,24 +1001,6 @@ document
 
     });
 
-
-document
-    .getElementById("password")
-    .addEventListener("blur", function() {
-
-        if (this.value === "") {
-
-            this.placeholder =
-                "enter password";
-
-        }
-
-    });
-
-
-/* =====================================================
-   ENTER KEY
-===================================================== */
 
 document
     .getElementById("password")
@@ -901,23 +1021,16 @@ document
 
 function createStars() {
 
-
     const container =
         document.getElementById("stars");
-
 
     const colors = [
 
         "#F6E7A1",
-
         "#F7C6C7",
-
         "#C6DEF1",
-
         "#C9E4C5",
-
         "#E2C6F1",
-
         "#F9D5A7"
 
     ];
@@ -925,17 +1038,14 @@ function createStars() {
 
     for (let i = 0; i < 30; i++) {
 
-
         const star =
             document.createElement("div");
-
 
         star.classList.add("star");
 
 
         const size =
-            15 + Math.random() * 25;
-
+            18 + Math.random() * 25;
 
         star.style.setProperty(
             "--size",
@@ -943,12 +1053,16 @@ function createStars() {
         );
 
 
-        star.style.left =
-            Math.random() * 100 + "vw";
+        star.style.setProperty(
+            "--left",
+            Math.random() * 100 + "vw"
+        );
 
 
-        star.style.top =
-            Math.random() * 100 + "vh";
+        star.style.setProperty(
+            "--top",
+            Math.random() * 100 + "vh"
+        );
 
 
         star.style.setProperty(
@@ -962,49 +1076,45 @@ function createStars() {
 
 
         /*
-           Gerakan kecil random
-           di sekitar posisi awal.
+           Gerakan kecil di sekitar
+           posisi awal.
         */
 
         star.style.setProperty(
-            "--move1",
-            (-15 + Math.random() * 30) + "px"
+            "--x1",
+            (-18 + Math.random() * 36) + "px"
+        );
+
+        star.style.setProperty(
+            "--x2",
+            (-35 + Math.random() * 70) + "px"
+        );
+
+        star.style.setProperty(
+            "--x3",
+            (-18 + Math.random() * 36) + "px"
         );
 
 
         star.style.setProperty(
-            "--move2",
-            (-30 + Math.random() * 60) + "px"
+            "--y1",
+            (-12 + Math.random() * 24) + "px"
         );
 
-
         star.style.setProperty(
-            "--move3",
-            (-15 + Math.random() * 30) + "px"
+            "--y2",
+            (-20 + Math.random() * 40) + "px"
         );
 
-
         star.style.setProperty(
-            "--moveY1",
-            (-10 + Math.random() * 20) + "px"
-        );
-
-
-        star.style.setProperty(
-            "--moveY2",
-            (-15 + Math.random() * 30) + "px"
-        );
-
-
-        star.style.setProperty(
-            "--moveY3",
-            (-10 + Math.random() * 20) + "px"
+            "--y3",
+            (-12 + Math.random() * 24) + "px"
         );
 
 
         star.style.setProperty(
             "--duration",
-            (7 + Math.random() * 7) + "s"
+            (8 + Math.random() * 7) + "s"
         );
 
 
@@ -1016,15 +1126,10 @@ function createStars() {
 
 
 /* =====================================================
-   CREATE CONFETTI
+   CONFETTI
 ===================================================== */
 
 function createConfetti() {
-
-
-    /*
-       Hapus confetti lama
-    */
 
     document
         .querySelectorAll(".confetti")
@@ -1034,37 +1139,22 @@ function createConfetti() {
     const colors = [
 
         "#F6E7A1",
-
         "#F7C6C7",
-
         "#C6DEF1",
-
         "#C9E4C5",
-
         "#E2C6F1",
-
         "#F9D5A7"
 
     ];
 
 
-    /*
-       Banyak confetti
-    */
-
-    for (let i = 0; i < 100; i++) {
-
+    for (let i = 0; i < 130; i++) {
 
         const confetti =
             document.createElement("div");
 
-
         confetti.classList.add("confetti");
 
-
-        /*
-           Warna
-        */
 
         confetti.style.setProperty(
             "--color",
@@ -1075,10 +1165,6 @@ function createConfetti() {
             ]
         );
 
-
-        /*
-           Ukuran
-        */
 
         confetti.style.setProperty(
             "--width",
@@ -1092,16 +1178,12 @@ function createConfetti() {
         );
 
 
-        /*
-           Arah burst
-        */
-
         const angle =
             Math.random() * Math.PI * 2;
 
 
         const distance =
-            180 + Math.random() * 300;
+            220 + Math.random() * 380;
 
 
         const x =
@@ -1124,23 +1206,15 @@ function createConfetti() {
         );
 
 
-        /*
-           Rotasi
-        */
-
         confetti.style.setProperty(
             "--rotation",
             (-360 + Math.random() * 720) + "deg"
         );
 
 
-        /*
-           Kecepatan berbeda
-        */
-
         confetti.style.setProperty(
             "--duration",
-            (2.5 + Math.random() * 2.5) + "s"
+            (2.5 + Math.random() * 3) + "s"
         );
 
 
@@ -1154,20 +1228,55 @@ function createConfetti() {
 
 
 /* =====================================================
-   BIRTHDAY LETTER
+   BIRTHDAY PDF
 ===================================================== */
 
 function openBirthdayLetter() {
 
-
     /*
-       GANTI LINK INI NANTI
-       dengan link Google Drive PDF
+       NANTI GANTI DENGAN LINK PDF
     */
 
     window.location.href =
         "https://drive.google.com";
 
+}
+
+
+/* =====================================================
+   PDF BUTTONS
+===================================================== */
+
+function openPDF(link) {
+
+    /*
+       NANTI GANTI PLACEHOLDER:
+
+       JACKET_LINK
+       BOOKS_LINK
+       FRAME_FOTO_LINK
+       KEYCHAIN_LINK
+       OUR_PHOTOS_LINK
+    */
+
+    if (
+        link === "JACKET_LINK" ||
+        link === "BOOKS_LINK" ||
+        link === "FRAME_FOTO_LINK" ||
+        link === "KEYCHAIN_LINK" ||
+        link === "OUR_PHOTOS_LINK"
+    ) {
+
+        alert(
+            "Link PDF belum dimasukkan."
+        );
+
+        return;
+
+    }
+
+
+    window.location.href = link;
 
 }
 
@@ -1180,7 +1289,5 @@ createStars();
 
 </script>
 
-
 </body>
-
 </html>
