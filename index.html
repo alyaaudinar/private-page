@@ -6,22 +6,26 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+content="width=device-width, initial-scale=1.0">
 
-<title>Access</title>
-
-<link rel="preconnect"
-      href="https://fonts.googleapis.com">
+<title>Private Page</title>
 
 <link rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin>
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
-      rel="stylesheet">
+rel="stylesheet">
 
 
 <style>
+
+/* =========================
+   GLOBAL
+========================= */
 
 * {
     box-sizing: border-box;
@@ -33,13 +37,13 @@ body {
 
     min-height: 100vh;
 
-    background: #f7f5f2;
-
     font-family: 'Poppins', sans-serif;
+
+    background: #f7f5f2;
 
     color: #333;
 
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 
@@ -49,89 +53,26 @@ body {
 
 .page {
 
-    position: relative;
-
-    width: 100%;
-    min-height: 100vh;
-
     display: none;
 
+    min-height: 100vh;
+
+    width: 100%;
+
     justify-content: center;
+
     align-items: center;
 
+    flex-direction: column;
+
     text-align: center;
+
+    padding: 30px;
 }
 
 .page.active {
 
     display: flex;
-}
-
-
-/* =========================
-   MAIN CONTAINER
-========================= */
-
-.content {
-
-    width: 90%;
-
-    max-width: 500px;
-
-    margin: auto;
-}
-
-
-/* =========================
-   HEADINGS
-========================= */
-
-h1 {
-
-    font-family: 'Poppins', sans-serif;
-
-    font-weight: 700;
-
-    line-height: 1.4;
-}
-
-
-/* =========================
-   BUTTON
-========================= */
-
-.main-button {
-
-    border: none;
-
-    border-radius: 10px;
-
-    padding: 14px 24px;
-
-    margin: 8px;
-
-    background: #A6A6A6;
-
-    color: white;
-
-    font-family: 'Poppins', sans-serif;
-
-    font-size: 15px;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.25s ease,
-        background 0.25s ease;
-}
-
-.main-button:hover {
-
-    transform: scale(1.06);
-
-    background: #777;
 }
 
 
@@ -147,17 +88,19 @@ h1 {
 
     left: 20px;
 
-    z-index: 9999;
+    width: auto;
+
+    padding: 8px 18px;
+
+    margin: 0;
+
+    background: #36454F;
+
+    color: white;
 
     border: none;
 
     border-radius: 8px;
-
-    padding: 10px 18px;
-
-    background: rgba(54,54,54,0.7);
-
-    color: white;
 
     font-family: 'Poppins', sans-serif;
 
@@ -165,14 +108,46 @@ h1 {
 
     cursor: pointer;
 
-    transition: 0.25s;
+    z-index: 9999;
 }
 
-.back-button:hover {
 
-    transform: scale(1.08);
+/* =========================
+   GENERAL BUTTON
+========================= */
 
-    background: rgba(30,30,30,0.9);
+.main-button {
+
+    width: min(90%, 400px);
+
+    padding: 14px 20px;
+
+    margin: 8px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #555;
+
+    color: white;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-weight: 700;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+.main-button:hover {
+
+    background: #333;
+
+    transform: scale(1.05);
 }
 
 
@@ -180,45 +155,225 @@ h1 {
    INPUT
 ========================= */
 
-.password-input {
-
-    width: 100%;
-
-    padding: 13px;
-
-    border: 1px solid #ccc;
-
-    border-radius: 8px;
-
-    text-align: center;
+input,
+textarea {
 
     font-family: 'Poppins', sans-serif;
 
-    font-size: 15px;
-
-    outline: none;
 }
 
 
 /* =========================
-   HIDE PLACEHOLDER
+   PAGE 1
 ========================= */
 
-.password-input:focus::placeholder {
+#page1 {
 
-    color: transparent;
+    background: #f7f5f2;
 }
 
 
 /* =========================
-   MESSAGE
+   PAGE 3
 ========================= */
 
-#message {
+#page3 {
 
-    margin-top: 18px;
+    background: #f7f5f2;
+}
 
-    font-size: 14px;
+#page3 h1 {
+
+    font-weight: 700;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   RANDOM DAY LETTER
+========================= */
+
+#L1 {
+
+    background: #f7f5f2;
+}
+
+
+/* =========================
+   WRITE LETTER
+========================= */
+
+#LT1 {
+
+    background: #e8dfd3;
+}
+
+.letter-paper {
+
+    width: min(90%, 600px);
+
+    background: #f8efd9;
+
+    padding: 30px;
+
+    border-radius: 5px;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.2);
+
+    text-align: left;
+}
+
+.letter-paper input,
+.letter-paper textarea {
+
+    width: 100%;
+
+    margin: 8px 0 15px;
+
+    padding: 10px;
+
+    border: 1px solid #c7b99f;
+
+    background: #fffaf0;
+
+    border-radius: 5px;
+}
+
+.letter-paper textarea {
+
+    min-height: 200px;
+
+    resize: vertical;
+}
+
+
+/* =========================
+   READ LETTER
+========================= */
+
+#LB1 {
+
+    background: #e8dfd3;
+}
+
+.letter-list {
+
+    width: min(90%, 600px);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.letter-card {
+
+    width: 100%;
+
+    padding: 20px;
+
+    margin: 8px;
+
+    background: #8b6b4a;
+
+    color: #fff3d6;
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 6px 15px rgba(0,0,0,0.25);
+
+    cursor: pointer;
+
+    font-weight: 700;
+
+    transition: 0.25s;
+}
+
+.letter-card:hover {
+
+    transform: scale(1.03);
+
+    background: #705338;
+}
+
+
+/* =========================
+   BIRTHDAY PAGE
+========================= */
+
+#B1 {
+
+    background: #f7f5f2;
+
+}
+
+.birthday-title {
+
+    font-size: clamp(28px, 6vw, 55px);
+
+    font-weight: 700;
+
+    color: #e8c9a9;
+
+    text-shadow:
+        3px 3px 0 #36454F;
+
+}
+
+
+/* =========================
+   PHOTO
+========================= */
+
+.birthday-photo {
+
+    width: min(80vw, 400px);
+
+    max-height: 400px;
+
+    object-fit: cover;
+
+    margin: 20px;
+
+    border-radius: 12px;
+
+    box-shadow:
+        8px 8px 0 #36454F;
+}
+
+
+/* =========================
+   LETTER LINK BOX
+========================= */
+
+.letter-link {
+
+    padding: 18px 25px;
+
+    background: rgba(0, 0, 0, 0.7);
+
+    color: white;
+
+    font-weight: 700;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+
+    max-width: 90%;
+}
+
+.letter-link:hover {
+
+    transform: scale(1.08);
+
+    background: rgba(0, 0, 0, 0.85);
 }
 
 </style>
@@ -233,82 +388,26 @@ h1 {
      PAGE UTAMA
 ================================================== -->
 
-<section
-    id="main"
-    class="page active">
+<section id="home" class="page active">
 
-    <div class="content">
+    <h1>Access Password</h1>
 
-        <h1>
-            Access Password
-        </h1>
+    <p>clue: tanggal lahir</p>
 
-        <p>
-            clue: tanggal lahir
-        </p>
-
-        <input
-            id="password"
-            class="password-input"
-            type="password"
-            placeholder="enter password"
-        >
-
-        <button
-            class="main-button"
-            onclick="checkPassword()">
-
-            Unlock
-
-        </button>
-
-        <p id="message"></p>
-
-    </div>
-
-</section>
-
-
-<!-- ==================================================
-     B1
-================================================== -->
-
-<section
-    id="b1"
-    class="page">
+    <input
+        id="password"
+        type="password"
+        placeholder="enter password"
+    >
 
     <button
-        class="back-button"
-        onclick="showPage('main')">
-
-        BACK
-
+        class="main-button"
+        onclick="checkMainPassword()"
+    >
+        Unlock
     </button>
 
-    <div class="content">
-
-        <h1>
-            SELAMAT ULANG TAHUN JAFAR
-        </h1>
-
-        <img
-            src="BIRTHDAY.PNG"
-            width="250"
-            alt="Birthday">
-
-        <br><br>
-
-        <button
-            class="main-button"
-            onclick="openBirthdayLetter()">
-
-            CLICK HERE TO READ
-            YOUR BIRTHDAY LETTER
-            FROM ALYA AUDINAR
-
-        </button>
-
-    </div>
+    <p id="message"></p>
 
 </section>
 
@@ -317,42 +416,27 @@ h1 {
      PAGE 1
 ================================================== -->
 
-<section
-    id="page1"
-    class="page">
+<section id="page1" class="page">
 
     <button
         class="back-button"
-        onclick="showPage('main')">
-
-        BACK
-
+        onclick="goBack()"
+    >
+        Back
     </button>
 
-    <div class="content">
+    <h1>PAGE 1</h1>
 
-        <h1>
-            yey selamat jawabanmu benar!!!
-        </h1>
+    <p>
+        OG LETTER
+    </p>
 
-        <img
-            src="KUMISENANG.PNG"
-            width="250"
-            alt="Kumi senang">
-
-        <br><br>
-
-        <button
-            class="main-button"
-            onclick="showPage('page3')">
-
-            CLICK HERE TO READ
-            THE OG LETTER
-            FROM ALYA AUDINAR
-
-        </button>
-
-    </div>
+    <button
+        class="main-button"
+        onclick="showPage('page3')"
+    >
+        click here to read the OG LETTER from Alya Audinar
+    </button>
 
 </section>
 
@@ -361,72 +445,78 @@ h1 {
      PAGE 3
 ================================================== -->
 
-<section
-    id="page3"
-    class="page">
+<section id="page3" class="page">
 
     <button
         class="back-button"
-        onclick="showPage('page1')">
-
-        BACK
-
+        onclick="goBack()"
+    >
+        Back
     </button>
 
-    <div class="content">
+    <h1>
+        which stuffs do u want to read?
+    </h1>
 
-        <h1>
-            which stuffs do u want to read?
-        </h1>
+    <button class="main-button">
+        JACKET
+    </button>
 
-        <button
-            class="main-button"
-            onclick="openJacket()">
+    <button class="main-button">
+        BOOKS
+    </button>
 
-            JACKET
+    <button class="main-button">
+        FRAME FOTO
+    </button>
 
-        </button>
+    <button class="main-button">
+        KEYCHAIN
+    </button>
 
-        <button
-            class="main-button"
-            onclick="openBooks()">
+    <button class="main-button">
+        OUR PHOTOS
+    </button>
 
-            BOOKS
+    <button
+        class="main-button"
+        onclick="showPage('L1')"
+    >
+        RANDOM DAY LETTER
+    </button>
 
-        </button>
+</section>
 
-        <button
-            class="main-button"
-            onclick="openFrame()">
 
-            FRAME FOTO
+<!-- ==================================================
+     B1
+================================================== -->
 
-        </button>
+<section id="B1" class="page">
 
-        <button
-            class="main-button"
-            onclick="openKeychain()">
+    <button
+        class="back-button"
+        onclick="goBack()"
+    >
+        Back
+    </button>
 
-            KEYCHAIN
+    <h1 class="birthday-title">
+        SELAMAT ULANG TAHUN JAFAR
+    </h1>
 
-        </button>
+    <img
+        src="BIRTHDAY.PNG"
+        class="birthday-photo"
+        alt="Birthday"
+    >
 
-        <button
-            class="main-button"
-            onclick="openPhotos()">
-
-            OUR PHOTOS
-
-        </button>
-
-        <button
-            class="main-button"
-            onclick="showPage('l1')">
-
-            RANDOM DAY LETTER
-
-        </button>
-
+    <div
+        class="letter-link"
+        onclick="openBirthdayLetter()"
+    >
+        click here to read YOUR BIRTHDAY LETTER
+        from Alya Audinar
     </div>
 
 </section>
@@ -436,43 +526,32 @@ h1 {
      L1
 ================================================== -->
 
-<section
-    id="l1"
-    class="page">
+<section id="L1" class="page">
 
     <button
         class="back-button"
-        onclick="showPage('page3')">
-
-        BACK
-
+        onclick="goBack()"
+    >
+        Back
     </button>
 
-    <div class="content">
+    <h1>
+        pilih salah satu
+    </h1>
 
-        <h1>
-            pilih salah satu
-        </h1>
+    <button
+        class="main-button"
+        onclick="showPage('LB1')"
+    >
+        ingin membaca random day letter
+    </button>
 
-        <button
-            class="main-button"
-            onclick="showPage('lt1')">
-
-            INGIN MENULIS
-            RANDOM DAY LETTER
-
-        </button>
-
-        <button
-            class="main-button"
-            onclick="showPage('lb1')">
-
-            INGIN MEMBACA
-            RANDOM DAY LETTER
-
-        </button>
-
-    </div>
+    <button
+        class="main-button"
+        onclick="showPage('LT1')"
+    >
+        ingin menulis random day letter
+    </button>
 
 </section>
 
@@ -481,59 +560,67 @@ h1 {
      LT1
 ================================================== -->
 
-<section
-    id="lt1"
-    class="page">
+<section id="LT1" class="page">
 
     <button
         class="back-button"
-        onclick="showPage('l1')">
-
-        BACK
-
+        onclick="goBack()"
+    >
+        Back
     </button>
 
-    <div class="content">
+    <div class="letter-paper">
 
         <h1>
-            WRITE YOUR LETTER
+            Write Your Random Day Letter
         </h1>
+
+        <label>
+            Tanggal / Bulan / Tahun
+        </label>
 
         <input
             id="letterDate"
-            type="date">
+            type="date"
+        >
 
-        <br><br>
+
+        <label>
+            Jam
+        </label>
 
         <input
             id="letterTime"
-            type="time">
+            type="time"
+        >
 
-        <br><br>
+
+        <label>
+            Isi pesan
+        </label>
 
         <textarea
             id="letterMessage"
-            placeholder="write your message..."
-            rows="8"
-            style="width:100%; padding:12px;">
-        </textarea>
+            placeholder="tulis suratmu di sini..."
+        ></textarea>
 
-        <br><br>
+
+        <label>
+            Nama penulis
+        </label>
 
         <input
-            id="letterName"
+            id="letterAuthor"
             type="text"
-            placeholder="your name"
-            style="width:100%; padding:12px;">
+            placeholder="nama kamu"
+        >
 
-        <br>
 
         <button
             class="main-button"
-            onclick="sendLetter()">
-
+            onclick="sendLetter()"
+        >
             KIRIM
-
         </button>
 
     </div>
@@ -545,167 +632,302 @@ h1 {
      LB1
 ================================================== -->
 
-<section
-    id="lb1"
-    class="page">
+<section id="LB1" class="page">
 
     <button
         class="back-button"
-        onclick="showPage('l1')">
-
-        BACK
-
+        onclick="goBack()"
+    >
+        Back
     </button>
 
-    <div class="content">
+    <h1>
+        Random Day Letters
+    </h1>
 
-        <h1>
-            RANDOM DAY LETTERS
-        </h1>
+    <div
+        id="letterList"
+        class="letter-list"
+    >
 
-        <div id="lettersContainer">
-
-            <p>
-                Belum ada surat.
-            </p>
-
-        </div>
+        <p>
+            Belum ada surat.
+        </p>
 
     </div>
 
 </section>
 
 
-
 <script>
-
 
 /* ==================================================
    PAGE NAVIGATION
 ================================================== */
 
+let pageHistory = [];
+
+
 function showPage(pageId) {
 
-    document
-        .querySelectorAll(".page")
-        .forEach(page => {
+    const current =
+        document.querySelector(".page.active");
 
-            page.classList.remove("active");
+    if (current) {
 
-        });
+        pageHistory.push(current.id);
+
+        current.classList.remove("active");
+
+    }
 
     document
         .getElementById(pageId)
+        .classList.add("active");
+}
+
+
+function goBack() {
+
+    if (pageHistory.length === 0) {
+
+        return;
+
+    }
+
+    const current =
+        document.querySelector(".page.active");
+
+    current.classList.remove("active");
+
+
+    const previous =
+        pageHistory.pop();
+
+    document
+        .getElementById(previous)
         .classList.add("active");
 
 }
 
 
 /* ==================================================
-   PASSWORD
+   MAIN PASSWORD
 ================================================== */
 
-function checkPassword() {
+function checkMainPassword() {
 
     const password =
-        document
-        .getElementById("password")
-        .value;
+        document.getElementById("password").value;
 
     const message =
-        document
-        .getElementById("message");
+        document.getElementById("message");
 
 
-    if (password === "20061215") {
+    /*
+       PASSWORD 1
+       → PAGE 1
+    */
 
-        message.innerText = "";
-
-        showPage("b1");
-
-    }
-
-    else if (password === "24122006") {
-
-        message.innerText = "";
+    if (password === "24122006") {
 
         showPage("page1");
 
-    }
-
-    else {
-
-        message.innerText =
-            "astaga? kok salah?";
+        return;
 
     }
+
+
+    /*
+       PASSWORD 2
+       → B1
+    */
+
+    if (password === "20061215") {
+
+        showPage("B1");
+
+        return;
+
+    }
+
+
+    /*
+       WRONG PASSWORD
+    */
+
+    message.innerText =
+        "astaga? kok salah?";
 
 }
 
 
 /* ==================================================
-   GOOGLE DRIVE
+   BIRTHDAY LETTER
 ================================================== */
 
 function openBirthdayLetter() {
 
     window.location.href =
-        "LINK_BIRTHDAY_DRIVE";
-
-}
-
-
-function openJacket() {
-
-    window.location.href =
-        "LINK_JACKET_DRIVE";
-
-}
-
-
-function openBooks() {
-
-    window.location.href =
-        "LINK_BOOKS_DRIVE";
-
-}
-
-
-function openFrame() {
-
-    window.location.href =
-        "LINK_FRAME_DRIVE";
-
-}
-
-
-function openKeychain() {
-
-    window.location.href =
-        "LINK_KEYCHAIN_DRIVE";
-
-}
-
-
-function openPhotos() {
-
-    window.location.href =
-        "LINK_OUR_PHOTOS_DRIVE";
+        "MASUKKAN_LINK_GOOGLE_DRIVE_BIRTHDAY_DI_SINI";
 
 }
 
 
 /* ==================================================
-   RANDOM LETTER
+   RANDOM DAY LETTER
 ================================================== */
 
 function sendLetter() {
 
-    alert(
-        "Bagian penyimpanan surat belum dipasang. Kita akan menghubungkannya ke Firebase di tahap berikutnya."
+    const date =
+        document.getElementById("letterDate").value;
+
+    const time =
+        document.getElementById("letterTime").value;
+
+    const message =
+        document.getElementById("letterMessage").value;
+
+    const author =
+        document.getElementById("letterAuthor").value;
+
+
+    if (
+        !date ||
+        !time ||
+        !message ||
+        !author
+    ) {
+
+        alert("lengkapi suratnya dulu ya");
+
+        return;
+
+    }
+
+
+    /*
+       UNTUK SEKARANG:
+       data hanya disimpan di browser.
+
+       NANTI KITA GANTI DENGAN DATABASE
+       AGAR BISA DILIHAT ORANG LAIN.
+    */
+
+    const letters =
+        JSON.parse(
+            localStorage.getItem("letters") || "[]"
+        );
+
+
+    letters.push({
+
+        date: date,
+
+        time: time,
+
+        message: message,
+
+        author: author
+
+    });
+
+
+    localStorage.setItem(
+        "letters",
+        JSON.stringify(letters)
     );
 
+
+    document
+        .getElementById("letterDate")
+        .value = "";
+
+    document
+        .getElementById("letterTime")
+        .value = "";
+
+    document
+        .getElementById("letterMessage")
+        .value = "";
+
+    document
+        .getElementById("letterAuthor")
+        .value = "";
+
+
+    loadLetters();
+
+    showPage("LB1");
+
 }
+
+
+/* ==================================================
+   LOAD LETTERS
+================================================== */
+
+function loadLetters() {
+
+    const container =
+        document.getElementById("letterList");
+
+
+    const letters =
+        JSON.parse(
+            localStorage.getItem("letters") || "[]"
+        );
+
+
+    container.innerHTML = "";
+
+
+    if (letters.length === 0) {
+
+        container.innerHTML =
+            "<p>Belum ada surat.</p>";
+
+        return;
+
+    }
+
+
+    letters.forEach(function(letter, index) {
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "letter-card";
+
+
+        card.innerHTML =
+            `
+            ${letter.date}
+            <br>
+            ${letter.author}
+            `;
+
+
+        card.onclick =
+            function() {
+
+                alert(
+                    letter.message
+                );
+
+            };
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+loadLetters();
 
 </script>
 
