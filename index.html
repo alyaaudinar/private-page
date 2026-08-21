@@ -492,23 +492,45 @@
         }
 
 
-        /* B1 SPOTIFY PLAYER */
+        /* B1 MUSIC PLAYER */
 
-        .spotify-wrapper {
+        .music-player {
             position: relative;
 
             z-index: 120;
 
-            width: min(400px, 90vw);
-
             margin-top: 22px;
+        }
 
-            border-radius: 12px;
+        .music-toggle-button {
+            padding: 13px 24px;
 
-            overflow: hidden;
+            border: none;
+            border-radius: 30px;
+
+            background: rgba(20, 38, 70, 0.5);
+
+            color: white;
+
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+
+            cursor: pointer;
 
             box-shadow:
                 0 8px 20px rgba(0, 0, 0, 0.25);
+
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease;
+        }
+
+        .music-toggle-button:hover {
+            transform: scale(1.08);
+
+            background: rgba(20, 38, 70, 0.70);
         }
 
 
@@ -587,7 +609,7 @@
 
 
         /* =====================================================
-           PAGE 1 — OG LETTER
+           PAGE 1 — OG LETTER (PAGE 2)
         ===================================================== */
 
         #page1 {
@@ -596,49 +618,201 @@
             flex-direction: column;
 
             text-align: center;
+
+            position: relative;
+
+            isolation: isolate;
         }
 
-        .og-title {
-            color: #373757;
 
-            font-size: 30px;
+        /* PAGE2 TITLE — "YEY BENARR!!" */
+
+        .page2-title {
+            position: relative;
+
+            z-index: 100;
+
+            margin: 0 20px 20px;
+
+            color: #2E3863;
+
+            font-family: 'Poppins', sans-serif;
+
+            font-size: clamp(28px, 6.5vw, 48px);
+            line-height: 1.2;
 
             font-weight: 700;
+
+            text-shadow:
+                2px 2px 4px rgba(0, 0, 0, 0.20);
         }
 
-        .og-text {
-            color: #555;
+        .page2-title .letter {
+            display: inline-block;
 
-            font-size: 15px;
+            opacity: 0;
+
+            transform:
+                translateY(30px)
+                scale(0.3);
+
+            animation:
+                letterBouncePop
+                0.6s
+                cubic-bezier(0.34, 1.6, 0.64, 1)
+                forwards;
         }
 
-        .og-letter-button {
-            margin-top: 20px;
-            padding: 16px 25px;
+        .page2-title .letter.space {
+            width: 0.3em;
+        }
+
+        @keyframes letterBouncePop {
+
+            0% {
+                opacity: 0;
+
+                transform:
+                    translateY(30px)
+                    scale(0.3);
+            }
+
+            65% {
+                opacity: 1;
+
+                transform:
+                    translateY(-10px)
+                    scale(1.25);
+            }
+
+            85% {
+                transform:
+                    translateY(4px)
+                    scale(0.92);
+            }
+
+            100% {
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+        }
+
+
+        /* PAGE2 PHOTO — polos, tanpa frame/shadow/background */
+
+        .page2-photo {
+            position: relative;
+
+            z-index: 100;
+
+            width: min(480px, 85vw);
+            max-height: 55vh;
+
+            height: auto;
+
+            object-fit: contain;
+
+            display: block;
+
+            border: none;
+
+            background: transparent;
+
+            box-shadow: none;
+
+            outline: none;
+
+            opacity: 0;
+
+            transform: scale(0.3);
+
+            animation:
+                photo2PopIn
+                0.7s
+                ease-out
+                forwards;
+        }
+
+        @keyframes photo2PopIn {
+
+            0% {
+                opacity: 0;
+
+                transform: scale(0.3);
+            }
+
+            60% {
+                opacity: 1;
+
+                transform: scale(1.1);
+            }
+
+            100% {
+                opacity: 1;
+
+                transform: scale(1);
+            }
+        }
+
+
+        /* PAGE2 BUTTON — muncul 3 detik kemudian */
+
+        .page2-button {
+            position: relative;
+
+            z-index: 120;
+
+            margin-top: 26px;
+            padding: 16px 26px;
 
             border: none;
             border-radius: 12px;
 
-            background: rgba(54, 54, 54, 0.7);
+            background: rgba(235, 235, 240, 0.5);
 
-            color: white;
+            color: #2E3863;
 
             font-family: 'Poppins', sans-serif;
-
+            font-size: 14px;
             font-weight: 700;
+            letter-spacing: 0.3px;
 
             cursor: pointer;
 
-            box-shadow:
-                0 8px 20px rgba(0, 0, 0, 0.25);
+            opacity: 0;
 
-            transition: 0.25s ease;
+            transform:
+                translateY(12px)
+                scale(0.9);
+
+            pointer-events: none;
+
+            transition:
+                opacity 0.5s ease,
+                transform 0.5s ease,
+                background 0.25s ease,
+                letter-spacing 0.25s ease;
         }
 
-        .og-letter-button:hover {
-            background: rgba(30, 30, 30, 0.9);
+        .page2-button.show {
+            opacity: 1;
 
-            transform: scale(1.08);
+            transform:
+                translateY(0)
+                scale(1);
+
+            pointer-events: auto;
+        }
+
+        .page2-button:hover {
+            transform: scale(1.12);
+
+            background: rgba(235, 235, 240, 0.75);
+
+            -webkit-text-stroke: 0.5px #2E3863;
         }
 
 
@@ -773,6 +947,39 @@
                     )
                     rotate(var(--rotation))
                     scale(1.9);
+            }
+        }
+
+        /* Setelah membesar, confetti tetap bergerak pelan (melayang) */
+
+        .confetti-grow.floating {
+
+            animation:
+                confettiFloat
+                var(--float-duration)
+                ease-in-out
+                infinite
+                alternate;
+        }
+
+        @keyframes confettiFloat {
+
+            0% {
+                transform:
+                    translate(-50%, -50%)
+                    translate(var(--x), var(--y))
+                    rotate(var(--rotation))
+                    scale(1.9)
+                    translate(0, 0);
+            }
+
+            100% {
+                transform:
+                    translate(-50%, -50%)
+                    translate(var(--x), var(--y))
+                    rotate(var(--rotation))
+                    scale(1.9)
+                    translate(var(--fx), var(--fy));
             }
         }
 
@@ -1342,17 +1549,23 @@
             CLICK HERE TO READ YOUR BIRTHDAY LETTER FROM ALYA AUDINAR
         </button>
 
-        <div class="spotify-wrapper">
-            <iframe
-                id="spotifyPlayer"
-                src="https://open.spotify.com/embed/playlist/3M7mGKYSMTX5nWS1It3A95?utm_source=generator&theme=0"
-                width="100%"
-                height="152"
-                frameborder="0"
-                allowfullscreen=""
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"
-            ></iframe>
+        <div class="music-player">
+
+            <audio
+                id="bgMusic"
+                src="MRSMAGIC.MP3"
+                loop
+                preload="auto"
+            ></audio>
+
+            <button
+                id="musicToggleButton"
+                class="music-toggle-button"
+                onclick="toggleMusic()"
+            >
+                ⏸ PAUSE MUSIC
+            </button>
+
         </div>
 
     </section>
@@ -1371,19 +1584,21 @@
             BACK
         </button>
 
-        <h1 class="og-title">
-            OG LETTER
-        </h1>
+        <h1 id="page2Title" class="page2-title"></h1>
 
-        <p class="og-text">
-            your original letter is waiting here
-        </p>
+        <img
+            id="page2Photo"
+            src="KUMISENANG.PNG"
+            alt="Yey Benar"
+            class="page2-photo"
+        >
 
         <button
-            class="og-letter-button"
+            id="page2Button"
+            class="page2-button"
             onclick="showPage('page3')"
         >
-            CLICK HERE TO READ THE OG LETTER FROM ALYA AUDINAR
+            CLICK HERE TO SEE SOMETHING COOL
         </button>
 
     </section>
@@ -1695,6 +1910,11 @@
                 createConfetti();
                 playBirthdayTitle();
                 settlePhoto();
+                playBackgroundMusic();
+
+            } else {
+
+                pauseBackgroundMusic();
 
             }
 
@@ -1703,6 +1923,9 @@
             if (pageId === "page1") {
 
                 createGrowConfetti();
+                playPage2Title();
+                popPage2Photo();
+                revealPage2Button();
 
             }
 
@@ -1806,6 +2029,82 @@
 
                 }
             );
+
+        }
+
+
+        /* =====================================================
+           BACKGROUND MUSIC
+        ===================================================== */
+
+        function playBackgroundMusic() {
+
+            const music =
+                document.getElementById("bgMusic");
+
+            const button =
+                document.getElementById("musicToggleButton");
+
+
+            music
+                .play()
+                .then(function () {
+
+                    button.innerText =
+                        "⏸ PAUSE MUSIC";
+
+                })
+                .catch(function () {
+
+                    // Kalau browser tetap memblokir autoplay,
+                    // tombol akan tampil "PLAY MUSIC" agar user tinggal klik sekali
+                    button.innerText =
+                        "▶ PLAY MUSIC";
+
+                });
+
+        }
+
+
+        function pauseBackgroundMusic() {
+
+            const music =
+                document.getElementById("bgMusic");
+
+
+            music.pause();
+
+        }
+
+
+        function toggleMusic() {
+
+            const music =
+                document.getElementById("bgMusic");
+
+            const button =
+                document.getElementById("musicToggleButton");
+
+
+            if (music.paused) {
+
+                music
+                    .play()
+                    .then(function () {
+
+                        button.innerText =
+                            "⏸ PAUSE MUSIC";
+
+                    });
+
+            } else {
+
+                music.pause();
+
+                button.innerText =
+                    "▶ PLAY MUSIC";
+
+            }
 
         }
 
@@ -2225,10 +2524,45 @@
                 );
 
 
-                // Melambat menuju akhir animasi, lalu diam (forwards)
+                // Melambat menuju akhir animasi, lalu diam sesaat sebelum melayang pelan
                 confetti.style.setProperty(
                     "--duration",
-                    (5 + Math.random() * 3) + "s"
+                    (2.5 + Math.random() * 1.5) + "s"
+                );
+
+
+                // Setelah membesar, ganti ke animasi melayang pelan
+                confetti.addEventListener(
+                    "animationend",
+                    function handler(event) {
+
+                        if (event.animationName === "confettiGrowSettle") {
+
+                            confetti.style.setProperty(
+                                "--fx",
+                                (-18 + Math.random() * 36) + "px"
+                            );
+
+                            confetti.style.setProperty(
+                                "--fy",
+                                (-18 + Math.random() * 36) + "px"
+                            );
+
+                            confetti.style.setProperty(
+                                "--float-duration",
+                                (4 + Math.random() * 4) + "s"
+                            );
+
+                            confetti.classList.add("floating");
+
+                            confetti.removeEventListener(
+                                "animationend",
+                                handler
+                            );
+
+                        }
+
+                    }
                 );
 
 
@@ -2237,6 +2571,120 @@
                     .appendChild(confetti);
 
             }
+
+        }
+
+
+        /* =====================================================
+           PAGE2 TITLE — "YEY BENARR!!" (bounce per huruf random)
+        ===================================================== */
+
+        function playPage2Title() {
+
+            const el =
+                document.getElementById("page2Title");
+
+
+            const text =
+                "YEY BENARR!!";
+
+
+            if (el.dataset.played === "1") {
+
+                return;
+
+            }
+
+            el.dataset.played = "1";
+
+
+            el.innerHTML = "";
+
+
+            text
+                .split("")
+                .forEach((char) => {
+
+                    const span =
+                        document.createElement("span");
+
+
+                    span.classList.add("letter");
+
+                    if (char === " ") {
+
+                        span.classList.add("space");
+                        span.innerHTML = "&nbsp;";
+
+                    } else {
+
+                        span.textContent = char;
+
+                    }
+
+
+                    // Delay acak per huruf (bukan berurutan)
+                    span.style.animationDelay =
+                        (Math.random() * 0.9) + "s";
+
+
+                    el.appendChild(span);
+
+                });
+
+        }
+
+
+        /* =====================================================
+           PAGE2 PHOTO — pop up polos
+        ===================================================== */
+
+        function popPage2Photo() {
+
+            const photo =
+                document.getElementById("page2Photo");
+
+
+            if (photo.dataset.played === "1") {
+
+                return;
+
+            }
+
+            photo.dataset.played = "1";
+
+
+            // Restart animasi (elemen sudah ada di DOM sejak awal)
+            photo.style.animation = "none";
+
+            void photo.offsetWidth;
+
+            photo.style.animation = "";
+
+        }
+
+
+        /* =====================================================
+           PAGE2 BUTTON — muncul 3 detik kemudian
+        ===================================================== */
+
+        function revealPage2Button() {
+
+            const button =
+                document.getElementById("page2Button");
+
+
+            button.classList.remove("show");
+
+
+            setTimeout(
+                function () {
+
+                    button.classList.add("show");
+
+                },
+                3000
+            );
 
         }
 
