@@ -2788,7 +2788,54 @@
 
     </div>
 
+<!-- =====================================================
+     SPOTIFY SONG SEARCH MODAL
+===================================================== -->
 
+<div
+    id="songSearchModal"
+    class="song-search-modal"
+>
+
+    <div class="song-search-box">
+
+        <button
+            class="close-song-search"
+            onclick="closeSongSearch()"
+        >
+            ×
+        </button>
+
+        <h2>
+            ADD SONG
+        </h2>
+
+        <p>
+            SEARCH YOUR SONG
+        </p>
+
+        <input
+            id="songSearchInput"
+            class="song-search-input"
+            type="text"
+            placeholder="search song..."
+        >
+
+        <button
+            class="song-search-button"
+            onclick="searchSpotifySong()"
+        >
+            SEARCH
+        </button>
+
+        <div
+            id="songSearchResults"
+            class="song-search-results"
+        ></div>
+
+    </div>
+
+</div>
     <!-- =====================================================
          LETTER MODAL
     ===================================================== -->
