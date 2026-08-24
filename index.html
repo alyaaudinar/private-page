@@ -2194,42 +2194,132 @@
            PASSWORD
         ===================================================== */
 
-        function checkPassword() {
+       function checkPassword() {
+    const password =
+        document.getElementById("password").value;
 
-            const password =
-                document.getElementById("password").value;
+    // Password Birthday Page
+    if (password === "20061215") {
+        showPage("pageB1");
+        return;
+    }
 
-            const message =
-                document.getElementById("message");
+    // Password OG Letter
+    if (password === "24122006") {
+        showPage("page1");
+        return;
+    }
 
+    // Password salah
+    showWrongPasswordPopup();
+}
 
-            // Password Birthday Page
-            if (password === "20061215") {
+/* =====================================================
+   WRONG PASSWORD POPUP
+===================================================== */
 
-                showPage("pageB1");
+function showWrongPasswordPopup() {
 
-                return;
+    // Buat overlay
+    const overlay =
+        document.createElement("div");
 
-            }
+    overlay.className =
+        "error-overlay";
 
+    // Buat isi popup
+    const content =
+        document.createElement("div");
 
-            // Password OG Letter
-            if (password === "24122006") {
+    content.className =
+        "error-content";
 
-                showPage("page1");
+    // Foto KUMIMARAH
+    const image =
+        document.createElement("img");
 
-                return;
+    image.src =
+        "KUMIMARAH.PNG";
 
-            }
+    image.alt =
+        "Password Salah";
 
+    // Tulisan SALAH!
+    const title =
+        document.createElement("div");
 
-            // Password salah
-            message.innerText =
-                "coba lagi ...";
+    title.className =
+        "error-title";
 
-        }
+    title.innerText =
+        "SALAH!";
 
+    content.appendChild(image);
+    content.appendChild(title);
 
+    // Buat burst tanda tanya
+    for (let i = 0; i < 12; i++) {
+
+        const question =
+            document.createElement("span");
+
+        question.className =
+            "question-mark";
+
+        question.innerText =
+            "?";
+
+        const angle =
+            (Math.PI * 2 / 12) * i;
+
+        const distance =
+            90 + Math.random() * 80;
+
+        const x =
+            Math.cos(angle) * distance;
+
+        const y =
+            Math.sin(angle) * distance;
+
+        question.style.setProperty(
+            "--tx",
+            x + "px"
+        );
+
+        question.style.setProperty(
+            "--ty",
+            y + "px"
+        );
+
+        question.style.setProperty(
+            "--rot",
+            (-35 + Math.random() * 70) + "deg"
+        );
+
+        content.appendChild(question);
+    }
+
+    overlay.appendChild(content);
+
+    document.body.appendChild(overlay);
+
+    // Kembali ke Home setelah popup selesai
+    setTimeout(function () {
+
+        overlay.remove();
+
+        document
+            .getElementById("password")
+            .value = "";
+
+        document
+            .getElementById("message")
+            .innerText = "";
+
+        showPage("home");
+
+    }, 1800);
+}
         /* =====================================================
            PASSWORD INPUT
         ===================================================== */
