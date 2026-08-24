@@ -4835,7 +4835,64 @@ function showWrongPasswordPopup() {
 
 function openSongSearch() {
 
-    alert("Fitur pencarian Spotify akan ditambahkan pada tahap berikutnya.");
+    const modal =
+        document.getElementById("songSearchModal");
+
+    const input =
+        document.getElementById("songSearchInput");
+
+    const results =
+        document.getElementById("songSearchResults");
+
+    modal.classList.add("active");
+
+    input.value = "";
+
+    results.innerHTML = "";
+
+    setTimeout(function () {
+
+        input.focus();
+
+    }, 150);
+
+}
+
+
+function closeSongSearch() {
+
+    document
+        .getElementById("songSearchModal")
+        .classList
+        .remove("active");
+
+}
+        function searchSpotifySong() {
+
+    const input =
+        document.getElementById("songSearchInput");
+
+    const results =
+        document.getElementById("songSearchResults");
+
+    const keyword =
+        input.value.trim();
+
+    if (!keyword) {
+
+        results.innerHTML =
+            '<p style="color:#8F0B0B; font-family:Montserrat,sans-serif; font-size:13px;">' +
+            'Masukkan nama lagu terlebih dahulu.' +
+            '</p>';
+
+        return;
+
+    }
+
+    results.innerHTML =
+        '<p style="color:#888; font-family:Montserrat,sans-serif; font-size:13px;">' +
+        'Pencarian Spotify akan terhubung pada tahap berikutnya.' +
+        '</p>';
 
 }
         /* =====================================================
