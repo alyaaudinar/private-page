@@ -18,52 +18,73 @@
 /* --- Pop-up Error Home --- */
 .error-overlay {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.7);
+  top: 0; 
+  left: 0;
+  width: 100vw; 
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px); /* Efek blur halus pada background */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
+  z-index: 99999;
 }
+
 .error-content {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
+
 .error-content img {
   width: 180px;
+  max-width: 75vw;
   height: auto;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  object-fit: contain;
 }
+
 .error-title {
   color: #8F0B0B;
   font-size: 2.2rem;
   font-weight: 900;
   margin-top: 15px;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* Burst Tanda Tanya */
+/* Burst Tanda Tanya (#8F0B0B) */
 .question-mark {
   position: absolute;
   color: #8F0B0B;
-  font-weight: bold;
-  font-size: 2.2rem;
+  font-weight: 900;
+  font-size: 2.5rem;
   pointer-events: none;
-  animation: burstOut 0.8s forwards ease-out;
+  user-select: none;
+  text-shadow: 0 0 6px rgba(143, 11, 11, 0.4);
+  animation: burstOut 0.85s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
 @keyframes popIn {
-  0% { transform: scale(0.5); opacity: 0; }
+  0% { transform: scale(0.4); opacity: 0; }
   100% { transform: scale(1); opacity: 1; }
 }
 
 @keyframes burstOut {
-  0% { transform: translate(0, 0) scale(0.5) rotate(0deg); opacity: 1; }
-  100% { transform: translate(var(--tx), var(--ty)) scale(1.4) rotate(var(--rot)); opacity: 0; }
+  0% { 
+    transform: translate(0, 0) scale(0.4) rotate(0deg); 
+    opacity: 1; 
+  }
+  100% { 
+    transform: translate(var(--tx), var(--ty)) scale(1.4) rotate(var(--rot)); 
+    opacity: 0; 
+  }
 }
 
 /* --- Bintang Bergerak di Page 3 --- */
@@ -71,28 +92,34 @@
   position: relative;
   overflow: hidden;
 }
+
 .star-bg {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;
   pointer-events: none;
   z-index: 0;
 }
+
 .star {
   position: absolute;
   color: #DEC5A0;
-  animation: floatSlow 4s infinite ease-in-out alternate;
+  user-select: none;
+  animation: floatSlow 4s ease-in-out infinite alternate;
 }
 
 @keyframes floatSlow {
-  0% { transform: translateX(-15px) rotate(-5deg); }
-  100% { transform: translateX(15px) rotate(5deg); }
+  0% { transform: translateX(-15px) rotate(-8deg); }
+  100% { transform: translateX(15px) rotate(8deg); }
 }
 
-/* Warna Tombol Random Day Letter (#B8A98A) */
+/* Tombol Random Day Letter (#B8A98A) */
 .btn-random-letter {
   background-color: #B8A98A !important;
   color: #ffffff !important;
+  border: none;
 }
     <style>
 
@@ -1687,66 +1714,23 @@
     ===================================================== -->
 
     <section id="page3" class="page">
+  <!-- Elemen Bintang Melayang -->
+  <div class="star-bg" id="starContainer"></div>
 
-        <button
-            class="back-button"
-            onclick="showPage('page1')"
-        >
-            BACK
-        </button>
-
-        <h1 class="stuffs-title">
-            WHICH STUFFS DO U WANT TO READ?
-        </h1>
-
-        <div class="stuffs-container">
-
-            <button
-                class="stuff-button"
-                onclick="openPDF('JACKET_LINK')"
-            >
-                JACKET
-            </button>
-
-            <button
-                class="stuff-button"
-                onclick="openPDF('BOOKS_LINK')"
-            >
-                BOOKS
-            </button>
-
-            <button
-                class="stuff-button"
-                onclick="openPDF('FRAME_FOTO_LINK')"
-            >
-                FRAME FOTO
-            </button>
-
-            <button
-                class="stuff-button"
-                onclick="openPDF('KEYCHAIN_LINK')"
-            >
-                KEYCHAIN
-            </button>
-
-            <button
-                class="stuff-button"
-                onclick="openPDF('OUR_PHOTOS_LINK')"
-            >
-                OUR PHOTOS
-            </button>
-
-            <button
-                class="stuff-button random-button"
-                onclick="showPage('pageL1')"
-            >
-                RANDOM DAY LETTER
-            </button>
-
-        </div>
-
-    </section>
-
+  <!-- Isi Page 3 -->
+  <div style="position: relative; z-index: 1;">
+    <h2>Pilih Surat</h2>
+    
+    <button onclick="askPassword('Kaos', 'kumi', 'nama kucing BSH abu milik dinar', 'LINK_DRIVE_KAOS_KAMU')">Kaos</button>
+    <button onclick="askPassword('Books', 'dory', 'nama kucing persia orange/cream milik dinar', 'LINK_DRIVE_BOOKS_KAMU')">Books</button>
+    <button onclick="askPassword('Frame Foto', 'desember', 'bulan berapa ulang tahun dinar', 'LINK_DRIVE_FRAME_KAMU')">Frame Foto</button>
+    <button onclick="askPassword('Keychain', 'C031251109', 'NIMnya dinar (C03...)', 'LINK_DRIVE_KEYCHAIN_KAMU')">Keychain</button>
+    <button onclick="askPassword('Our Photos', 'abu', 'warna fav guwejh (dinar)', 'LINK_DRIVE_PHOTOS_KAMU')">Our Photos</button>
+    
+    <!-- Tombol Khusus Random Day Letter -->
+    <button class="btn-random-letter" onclick="showPage('pageL1')">Random Day Letter</button>
+  </div>
+</section>
 
     <!-- =====================================================
          L1 — RANDOM DAY LETTER MENU
