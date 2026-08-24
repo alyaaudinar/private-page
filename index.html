@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Pinyon+Script&display=swap"
         rel="stylesheet"
     >
 
@@ -39,6 +39,30 @@
             justify-content: center;
 
             z-index: 99999;
+        }
+
+
+        /* FADE OUT SEBELUM KEMBALI KE HOME */
+
+        .error-overlay.fade-out {
+            animation:
+                overlayFadeOut
+                0.6s
+                ease
+                forwards;
+        }
+
+
+        @keyframes overlayFadeOut {
+
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+
         }
 
 
@@ -177,46 +201,63 @@
         }
 
 
-       .star {
-    position: absolute;
+       /* BINTANG 5 SISI — PAGE 3 */
 
-    color: #DEC5A0;
+        .star-p3 {
+            position: absolute;
 
-    user-select: none;
-    pointer-events: none;
+            width: var(--size);
+            height: var(--size);
 
-    opacity: 0.8;
+            left: var(--left);
+            top: var(--top);
 
-    animation:
-        floatSlow
-        var(--duration)
-        ease-in-out
-        infinite
-        alternate;
-}
+            background: #DEC5A0;
+
+            clip-path: polygon(
+                50% 0%,
+                61% 35%,
+                98% 35%,
+                68% 57%,
+                79% 91%,
+                50% 70%,
+                21% 91%,
+                32% 57%,
+                2% 35%,
+                39% 35%
+            );
+
+            opacity: var(--opacity);
+
+            filter: blur(var(--blur));
+
+            user-select: none;
+            pointer-events: none;
+
+            animation:
+                starDrift
+                var(--duration)
+                ease-in-out
+                infinite
+                alternate;
+        }
 
 
-@keyframes floatSlow {
+        @keyframes starDrift {
 
-    0% {
-        transform:
-            translateX(-20px)
-            rotate(-8deg);
-    }
+            0% {
+                transform:
+                    translateX(var(--x1))
+                    rotate(var(--r1));
+            }
 
-    50% {
-        transform:
-            translateX(20px)
-            rotate(8deg);
-    }
+            100% {
+                transform:
+                    translateX(var(--x2))
+                    rotate(var(--r2));
+            }
 
-    100% {
-        transform:
-            translateX(-20px)
-            rotate(-8deg);
-    }
-
-}
+        }
 
         /* =====================================================
            RANDOM DAY LETTER BUTTON
@@ -229,6 +270,127 @@
             color: #ffffff !important;
 
             border: none;
+        }
+
+
+        /* =====================================================
+           LOCK MODAL — PASSWORD TIAP STUFF
+        ===================================================== */
+
+        .lock-modal {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 10001;
+
+            display: none;
+
+            justify-content: center;
+            align-items: center;
+
+            padding: 20px;
+
+            background: rgba(25, 25, 25, 0.72);
+
+            backdrop-filter: blur(4px);
+        }
+
+
+        .lock-modal.active {
+            display: flex;
+        }
+
+
+        .lock-modal.fade-out {
+            animation:
+                overlayFadeOut
+                0.6s
+                ease
+                forwards;
+        }
+
+
+        .lock-box {
+            position: relative;
+
+            width: min(400px, 92vw);
+
+            padding: 38px 28px 30px;
+
+            background: #f7f5f2;
+
+            border-radius: 14px;
+
+            text-align: center;
+
+            box-shadow:
+                0 18px 40px rgba(0, 0, 0, 0.35);
+
+            animation:
+                popIn
+                0.35s
+                cubic-bezier(0.175, 0.885, 0.32, 1.275)
+                forwards;
+        }
+
+
+        .lock-box h2 {
+            margin: 0 0 10px;
+
+            color: #333;
+
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+
+            letter-spacing: 0.5px;
+        }
+
+
+        .lock-message {
+            min-height: 22px;
+
+            margin: 16px 0 0;
+
+            color: #8F0B0B;
+
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+
+        .close-lock {
+            position: absolute;
+
+            top: 8px;
+            right: 14px;
+
+            width: 32px;
+            height: 32px;
+
+            border: none;
+
+            background: transparent;
+
+            color: #777;
+
+            font-family: Arial, sans-serif;
+            font-size: 26px;
+
+            line-height: 32px;
+
+            cursor: pointer;
+
+            transition: transform 0.2s ease;
+        }
+
+
+        .close-lock:hover {
+            transform: scale(1.2);
+
+            color: #333;
         }
 
     </style>
@@ -1051,6 +1213,10 @@
         }
 
         .stuffs-title {
+            position: relative;
+
+            z-index: 2;
+
             margin-bottom: 30px;
 
             color: #373757;
@@ -1061,6 +1227,10 @@
         }
 
         .stuffs-container {
+            position: relative;
+
+            z-index: 2;
+
             width: min(500px, 90vw);
 
             display: grid;
@@ -1099,11 +1269,11 @@
         }
 
         .random-button {
-            background: rgba(120, 100, 80, 0.75);
+            background: #B8A98A;
         }
 
         .random-button:hover {
-            background: #80694F;
+            background: #A2916F;
         }
 
 
@@ -1658,6 +1828,374 @@
 
 
         /* =====================================================
+           B2 & B3 — SPECIAL LETTER
+        ===================================================== */
+
+        #pageB2,
+        #pageB3 {
+            background: #f7f5f2;
+
+            flex-direction: column;
+
+            text-align: center;
+
+            padding: 80px 20px 60px;
+
+            overflow-y: auto;
+
+            position: relative;
+
+            isolation: isolate;
+        }
+
+
+        /* FOTO LETTER.PNG */
+
+        .letter-photo {
+            position: relative;
+
+            z-index: 100;
+
+            width: min(420px, 80vw);
+
+            height: auto;
+
+            display: block;
+
+            cursor: pointer;
+
+            opacity: 0;
+
+            transform: scale(0.2);
+
+            animation:
+                letterPhotoPop
+                0.9s
+                cubic-bezier(0.22, 1.4, 0.4, 1)
+                forwards;
+        }
+
+        .letter-photo.beating {
+            opacity: 1;
+
+            transform: scale(1);
+
+            animation:
+                heartbeat
+                2.2s
+                ease-in-out
+                infinite;
+        }
+
+        .letter-photo.fade-away {
+            animation:
+                letterPhotoFade
+                0.5s
+                ease
+                forwards;
+        }
+
+        @keyframes letterPhotoPop {
+
+            0% {
+                opacity: 0;
+                transform: scale(0.2);
+            }
+
+            60% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes letterPhotoFade {
+
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+        }
+
+
+        /* KERTAS SURAT */
+
+        .special-paper {
+            position: relative;
+
+            z-index: 100;
+
+            width: min(720px, 92vw);
+
+            padding: 45px 45px 40px;
+
+            display: none;
+
+            background:
+                linear-gradient(
+                    #FFF8EB,
+                    #E8D7BA
+                );
+
+            border: 1px solid #B5A07F;
+            border-radius: 4px;
+
+            box-shadow:
+                0 14px 34px rgba(0, 0, 0, 0.18);
+        }
+
+        /* B2 — fade sambil membesar */
+
+        .special-paper.show {
+            display: block;
+
+            animation:
+                paperFadeGrow
+                0.8s
+                ease
+                forwards;
+        }
+
+        @keyframes paperFadeGrow {
+
+            0% {
+                opacity: 0;
+                transform: scale(0.75);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* B3 — pop up membesar */
+
+        .special-paper.pop {
+            display: block;
+
+            animation:
+                paperPopIn
+                0.8s
+                cubic-bezier(0.22, 1.4, 0.4, 1)
+                forwards;
+        }
+
+        @keyframes paperPopIn {
+
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+
+            60% {
+                opacity: 1;
+                transform: scale(1.08);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .special-paper.beating {
+            opacity: 1;
+
+            animation:
+                heartbeat
+                2.6s
+                ease-in-out
+                infinite;
+        }
+
+
+        /* HEADLINE */
+
+        .special-headline {
+            margin: 0 0 25px;
+
+            font-family: 'Pinyon Script', cursive;
+
+            font-size: clamp(34px, 7vw, 54px);
+            font-weight: 400;
+
+            line-height: 1.3;
+
+            color: #383024;
+
+            text-shadow: none;
+        }
+
+
+        /* TYPEWRITER */
+
+        .typewriter-wrap {
+            position: relative;
+        }
+
+        .typewriter-ghost,
+        .typewriter-text {
+            margin: 0;
+
+            white-space: pre-wrap;
+        }
+
+        .typewriter-ghost {
+            visibility: hidden;
+        }
+
+        .typewriter-text {
+            position: absolute;
+
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .letter-body {
+            font-family: 'Poppins', sans-serif;
+            font-style: italic;
+            font-weight: 400;
+
+            font-size: 15px;
+            line-height: 1.9;
+
+            text-align: left;
+
+            color: #383024;
+
+            text-shadow: none;
+        }
+
+        .b3-line {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+
+            font-size: clamp(16px, 3.4vw, 22px);
+            line-height: 1.7;
+
+            text-align: center;
+
+            color: #383024;
+
+            text-shadow: none;
+        }
+
+
+        /* TOMBOL HADIAH */
+
+        .gift-button {
+            display: block;
+
+            margin: 32px auto 0;
+            padding: 16px 30px;
+
+            border: none;
+            border-radius: 10px;
+
+            background: rgba(56, 48, 36, 0.5);
+
+            color: #FFF8EB;
+
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+
+            cursor: pointer;
+
+            opacity: 0;
+
+            transform:
+                translateY(10px)
+                scale(0.9);
+
+            pointer-events: none;
+
+            transition:
+                opacity 0.5s ease,
+                transform 0.35s ease,
+                background 0.25s ease;
+        }
+
+        .gift-button.show {
+            opacity: 1;
+
+            transform:
+                translateY(0)
+                scale(1);
+
+            pointer-events: auto;
+        }
+
+        .gift-button:hover {
+            transform: scale(1.12);
+
+            background: rgba(56, 48, 36, 0.65);
+
+            -webkit-text-stroke: 0.6px #FFF8EB;
+        }
+
+
+        /* CONFETTI B3 */
+
+        .confetti-b3 {
+            position: fixed;
+
+            left: 50%;
+            top: 50%;
+
+            width: var(--width);
+            height: var(--height);
+
+            z-index: 5;
+
+            pointer-events: none;
+
+            animation:
+                confettiGrowSettle
+                var(--duration)
+                cubic-bezier(0.15, 0.8, 0.25, 1)
+                forwards;
+        }
+
+        .confetti-b3.floating {
+
+            animation:
+                confettiFloat
+                var(--float-duration)
+                ease-in-out
+                infinite
+                alternate;
+        }
+
+        .confetti-b3-inner {
+            width: 100%;
+            height: 100%;
+
+            background: var(--color);
+
+            border-radius: 2px;
+
+            animation:
+                heartbeat
+                2.4s
+                ease-in-out
+                infinite;
+        }
+
+
+        /* =====================================================
            MOBILE
         ===================================================== */
 
@@ -1689,6 +2227,10 @@
                 min-height: 580px;
 
                 padding: 25px;
+            }
+
+            .special-paper {
+                padding: 30px 24px 26px;
             }
         }
 
@@ -1790,6 +2332,94 @@
 
 
     <!-- =====================================================
+         B2 — SPECIAL LETTER
+    ===================================================== -->
+
+    <section id="pageB2" class="page">
+
+        <button
+            class="back-button"
+            onclick="showPage('pageB1')"
+        >
+            BACK
+        </button>
+
+        <img
+            id="letterPhoto"
+            src="LETTER.PNG"
+            alt="Buka Surat"
+            class="letter-photo"
+            onclick="openSpecialLetter()"
+        >
+
+        <div id="b2Paper" class="special-paper">
+
+            <h2 class="special-headline">
+                Halo Jafar, Apa Kabar?
+            </h2>
+
+            <div class="typewriter-wrap">
+
+                <p
+                    id="b2Ghost"
+                    class="typewriter-ghost letter-body"
+                ></p>
+
+                <p
+                    id="b2Text"
+                    class="typewriter-text letter-body"
+                ></p>
+
+            </div>
+
+            <button
+                id="b2Button"
+                class="gift-button"
+                onclick="showPage('pageB3')"
+            >
+                HADIAHMU ADA DISINI!
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         B3 — PETUNJUK HADIAH
+    ===================================================== -->
+
+    <section id="pageB3" class="page">
+
+        <button
+            class="back-button"
+            onclick="showPage('pageB2')"
+        >
+            BACK
+        </button>
+
+        <div id="b3Paper" class="special-paper">
+
+            <div class="typewriter-wrap">
+
+                <p
+                    id="b3Ghost"
+                    class="typewriter-ghost b3-line"
+                ></p>
+
+                <p
+                    id="b3Text"
+                    class="typewriter-text b3-line"
+                ></p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
          PAGE 1 — OG LETTER
     ===================================================== -->
 
@@ -1828,6 +2458,11 @@
 
      <section id="page3" class="page">
 
+        <div
+            id="starContainer"
+            class="star-bg"
+        ></div>
+
         <button
             class="back-button"
             onclick="showPage('page1')"
@@ -1843,35 +2478,35 @@
 
             <button
                 class="stuff-button"
-                onclick="openPDF('KAOS_LINK')"
+                onclick="openLock('kaos')"
             >
                 KAOS
             </button>
 
             <button
                 class="stuff-button"
-                onclick="openPDF('BOOKS_LINK')"
+                onclick="openLock('books')"
             >
                 BOOKS
             </button>
 
             <button
                 class="stuff-button"
-                onclick="openPDF('FRAME_FOTO_LINK')"
+                onclick="openLock('frame')"
             >
                 FRAME FOTO
             </button>
 
             <button
                 class="stuff-button"
-                onclick="openPDF('KEYCHAIN_LINK')"
+                onclick="openLock('keychain')"
             >
                 KEYCHAIN
             </button>
 
             <button
                 class="stuff-button"
-                onclick="openPDF('OUR_PHOTOS_LINK')"
+                onclick="openLock('photos')"
             >
                 OUR PHOTOS
             </button>
@@ -2036,6 +2671,49 @@
 
 
     <!-- =====================================================
+         LOCK MODAL — PASSWORD TIAP STUFF
+    ===================================================== -->
+
+    <div
+        id="lockModal"
+        class="lock-modal"
+    >
+
+        <div class="lock-box">
+
+            <button
+                class="close-lock"
+                onclick="closeLock()"
+            >
+                ×
+            </button>
+
+            <h2 id="lockTitle"></h2>
+
+            <p id="lockClue" class="clue"></p>
+
+            <input
+                id="lockPassword"
+                class="password-input"
+                type="password"
+                placeholder="enter password"
+            >
+
+            <button
+                class="unlock-button"
+                onclick="checkLockPassword()"
+            >
+                Unlock
+            </button>
+
+            <p id="lockMessage" class="lock-message"></p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
          LETTER MODAL
     ===================================================== -->
 
@@ -2106,6 +2784,16 @@
             }
 
 
+            // Hapus confetti B3 jika meninggalkan B3
+            if (pageId !== "pageB3") {
+
+                document
+                    .querySelectorAll(".confetti-b3")
+                    .forEach(confetti => confetti.remove());
+
+            }
+
+
             // Sembunyikan semua page
             document
                 .querySelectorAll(".page")
@@ -2128,11 +2816,38 @@
                 createConfetti();
                 playBirthdayTitle();
                 settlePhoto();
+
+            }
+
+
+            // Musik tetap berjalan di seluruh rangkaian birthday
+            if (
+                pageId === "pageB1" ||
+                pageId === "pageB2" ||
+                pageId === "pageB3"
+            ) {
+
                 playBackgroundMusic();
 
             } else {
 
                 pauseBackgroundMusic();
+
+            }
+
+
+            // Special letter
+            if (pageId === "pageB2") {
+
+                playPageB2();
+
+            }
+
+
+            // Petunjuk hadiah
+            if (pageId === "pageB3") {
+
+                playPageB3();
 
             }
 
@@ -2464,22 +3179,29 @@ function showWrongPasswordPopup() {
 
     document.body.appendChild(overlay);
 
-    // Kembali ke Home setelah 4 detik
+    // Setelah 1.5 detik, mulai fade out
     setTimeout(function () {
 
-        overlay.remove();
+        overlay.classList.add("fade-out");
 
-        document
-            .getElementById("password")
-            .value = "";
+        // Setelah fade out selesai, hapus popup & kembali ke Home
+        setTimeout(function () {
 
-        document
-            .getElementById("message")
-            .innerText = "";
+            overlay.remove();
 
-        showPage("home");
+            document
+                .getElementById("password")
+                .value = "";
 
-    }, 4000);
+            document
+                .getElementById("message")
+                .innerText = "";
+
+            showPage("home");
+
+        }, 600);
+
+    }, 1500);
 }
         /* =====================================================
            PASSWORD INPUT
@@ -2653,40 +3375,100 @@ function showWrongPasswordPopup() {
         page3Container.innerHTML = "";
 
 
-        const numberOfStars = 18;
+        const columns = 5;
+        const rows = 4;
+
+        const numberOfStars = columns * rows;
 
 
         for (let i = 0; i < numberOfStars; i++) {
 
             const star =
-                document.createElement("span");
+                document.createElement("div");
 
-            star.classList.add("star");
-
-
-            // Bentuk bintang
-            star.innerText = "✦";
+            star.classList.add("star-p3");
 
 
-            // Posisi random
-            star.style.left =
-                (Math.random() * 95) + "%";
-
-            star.style.top =
-                (Math.random() * 95) + "%";
-
-
-            // Ukuran random
+            // Ukuran kecil & berbeda-beda
             const size =
-                22 + Math.random() * 28;
+                20 + Math.random() * 28;
 
-            star.style.fontSize =
-                size + "px";
+            star.style.setProperty(
+                "--size",
+                size + "px"
+            );
 
 
-            // Durasi random
+            // Sebar merata: satu bintang per sel grid,
+            // dengan sedikit pergeseran acak di dalam selnya
+            const column = i % columns;
+            const row = Math.floor(i / columns);
+
+            const cellWidth = 100 / columns;
+            const cellHeight = 100 / rows;
+
+            const left =
+                (column * cellWidth) +
+                (cellWidth * 0.15) +
+                (Math.random() * cellWidth * 0.55);
+
+            const top =
+                (row * cellHeight) +
+                (cellHeight * 0.15) +
+                (Math.random() * cellHeight * 0.55);
+
+            star.style.setProperty(
+                "--left",
+                left + "%"
+            );
+
+            star.style.setProperty(
+                "--top",
+                top + "%"
+            );
+
+
+            // Blur random
+            star.style.setProperty(
+                "--blur",
+                (Math.random() * 2.5) + "px"
+            );
+
+
+            // Transparansi random
+            star.style.setProperty(
+                "--opacity",
+                (0.35 + Math.random() * 0.45).toFixed(2)
+            );
+
+
+            // Gerak kiri-kanan random
+            star.style.setProperty(
+                "--x1",
+                (-25 - Math.random() * 20) + "px"
+            );
+
+            star.style.setProperty(
+                "--x2",
+                (25 + Math.random() * 20) + "px"
+            );
+
+
+            // Rotasi halus
+            star.style.setProperty(
+                "--r1",
+                (-12 - Math.random() * 10) + "deg"
+            );
+
+            star.style.setProperty(
+                "--r2",
+                (12 + Math.random() * 10) + "deg"
+            );
+
+
+            // Durasi lambat & random
             const duration =
-                10 + Math.random() * 6;
+                12 + Math.random() * 10;
 
             star.style.setProperty(
                 "--duration",
@@ -2694,7 +3476,7 @@ function showWrongPasswordPopup() {
             );
 
 
-            // Delay random
+            // Delay random supaya tidak serempak
             star.style.animationDelay =
                 (-Math.random() * duration) + "s";
 
@@ -3071,47 +3853,698 @@ function showWrongPasswordPopup() {
 
 
         /* =====================================================
-           BIRTHDAY LETTER
+           BIRTHDAY LETTER — menuju page B2
         ===================================================== */
 
         function openBirthdayLetter() {
 
-            // Ganti URL ini dengan link PDF birthday letter
-            window.location.href =
-                "https://drive.google.com";
+            showPage("pageB2");
 
         }
 
 
         /* =====================================================
-           PDF BUTTONS
+           ISI SURAT
         ===================================================== */
 
-        function openPDF(link) {
+        const b2LetterText =
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
+            "Phasellus sit amet commodo augue. Morbi viverra diam et ipsum " +
+            "dictum ullamcorper. Nam lobortis lobortis mauris, eget iaculis " +
+            "metus aliquet at. Pellentesque ac ex placerat sem ornare tempus " +
+            "porta eu mi. Vestibulum finibus, massa at molestie pharetra, " +
+            "nunc lectus cursus nulla, in commodo felis est ac dolor. Nullam " +
+            "tempor odio et est viverra, in pellentesque neque pretium. Cras " +
+            "mollis vitae purus elementum dapibus. In libero libero, aliquam " +
+            "ut leo vel, feugiat accumsan enim. Quisque eu felis urna. Proin " +
+            "commodo, ex venenatis ultrices sagittis, justo turpis egestas " +
+            "ante, sed aliquet mi neque ac lacus. Vestibulum sit amet magna " +
+            "id tellus consectetur ultricies non a ante. Quisque eget urna " +
+            "tellus. In sed vulputate ipsum. Proin vel dui at nibh condimentum " +
+            "consequat nec eu ipsum. In tempus mollis tortor, et efficitur " +
+            "justo egestas id. Integer pellentesque id erat et placerat.";
 
-            const emptyLinks = [
-                "JACKET_LINK",
-                "BOOKS_LINK",
-                "FRAME_FOTO_LINK",
-                "KEYCHAIN_LINK",
-                "OUR_PHOTOS_LINK"
-            ];
+
+        const b3LetterText =
+            "COBA BUKA BAGIAN BELAKANG FRAME FOTO YANG PERNAH KUKASIH";
 
 
-            if (emptyLinks.includes(link)) {
+        /* =====================================================
+           TYPEWRITER
+        ===================================================== */
 
-                alert(
-                    "Link PDF belum dimasukkan."
+        function runTypewriter(element, text, duration, onFinish) {
+
+            // Hentikan ketikan sebelumnya kalau ada
+            if (element.typingTimer) {
+
+                clearInterval(element.typingTimer);
+
+            }
+
+
+            element.innerText = "";
+
+
+            let index = 0;
+
+
+            const speed =
+                Math.max(
+                    12,
+                    Math.round(duration / text.length)
                 );
+
+
+            element.typingTimer =
+                setInterval(
+                    function () {
+
+                        index++;
+
+                        element.innerText =
+                            text.slice(0, index);
+
+
+                        if (index >= text.length) {
+
+                            clearInterval(element.typingTimer);
+
+                            element.typingTimer = null;
+
+
+                            if (onFinish) {
+
+                                onFinish();
+
+                            }
+
+                        }
+
+                    },
+                    speed
+                );
+
+        }
+
+
+        /* =====================================================
+           PAGE B2 — RESET & FOTO LETTER
+        ===================================================== */
+
+        function playPageB2() {
+
+            const photo =
+                document.getElementById("letterPhoto");
+
+            const paper =
+                document.getElementById("b2Paper");
+
+            const ghost =
+                document.getElementById("b2Ghost");
+
+            const text =
+                document.getElementById("b2Text");
+
+            const button =
+                document.getElementById("b2Button");
+
+
+            // Hentikan ketikan yang mungkin sedang berjalan
+            if (text.typingTimer) {
+
+                clearInterval(text.typingTimer);
+
+                text.typingTimer = null;
+
+            }
+
+
+            // Reset kertas surat
+            paper.classList.remove("show");
+
+            ghost.innerText = b2LetterText;
+
+            text.innerText = "";
+
+            button.classList.remove("show");
+
+
+            // Reset foto
+            photo.classList.remove("fade-away");
+            photo.classList.remove("beating");
+
+            photo.style.display = "block";
+
+
+            // Ulangi animasi pop up foto
+            photo.style.animation = "none";
+
+            void photo.offsetWidth;
+
+            photo.style.animation = "";
+
+
+            // Setelah pop up selesai, lanjut ke heartbeat
+            photo.addEventListener(
+                "animationend",
+                function handler(event) {
+
+                    if (event.animationName === "letterPhotoPop") {
+
+                        photo.classList.add("beating");
+
+                        photo.removeEventListener(
+                            "animationend",
+                            handler
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           BUKA SURAT — foto fade, kertas muncul
+        ===================================================== */
+
+        function openSpecialLetter() {
+
+            const photo =
+                document.getElementById("letterPhoto");
+
+            const paper =
+                document.getElementById("b2Paper");
+
+            const text =
+                document.getElementById("b2Text");
+
+            const button =
+                document.getElementById("b2Button");
+
+
+            // Cegah klik berulang
+            if (photo.classList.contains("fade-away")) {
 
                 return;
 
             }
 
 
-            window.location.href = link;
+            photo.classList.remove("beating");
+
+            photo.classList.add("fade-away");
+
+
+            // Setelah foto hilang, kertas muncul
+            setTimeout(
+                function () {
+
+                    photo.style.display = "none";
+
+                    paper.classList.add("show");
+
+
+                    // Mulai mengetik setelah kertas selesai membesar
+                    setTimeout(
+                        function () {
+
+                            runTypewriter(
+                                text,
+                                b2LetterText,
+                                15000,
+                                function () {
+
+                                    button.classList.add("show");
+
+                                }
+                            );
+
+                        },
+                        800
+                    );
+
+                },
+                500
+            );
 
         }
+
+
+        /* =====================================================
+           PAGE B3 — KERTAS, TEKS & CONFETTI
+        ===================================================== */
+
+        function playPageB3() {
+
+            const paper =
+                document.getElementById("b3Paper");
+
+            const ghost =
+                document.getElementById("b3Ghost");
+
+            const text =
+                document.getElementById("b3Text");
+
+
+            // Hentikan ketikan yang mungkin sedang berjalan
+            if (text.typingTimer) {
+
+                clearInterval(text.typingTimer);
+
+                text.typingTimer = null;
+
+            }
+
+
+            ghost.innerText = b3LetterText;
+
+            text.innerText = "";
+
+
+            // Ulangi animasi pop up kertas
+            paper.classList.remove("pop");
+            paper.classList.remove("beating");
+
+            void paper.offsetWidth;
+
+            paper.classList.add("pop");
+
+
+            // Setelah pop up selesai, kertas berdetak
+            paper.addEventListener(
+                "animationend",
+                function handler(event) {
+
+                    if (event.animationName === "paperPopIn") {
+
+                        paper.classList.add("beating");
+
+                        paper.removeEventListener(
+                            "animationend",
+                            handler
+                        );
+
+                    }
+
+                }
+            );
+
+
+            // Confetti di belakang kertas
+            createB3Confetti();
+
+
+            // Mulai mengetik
+            setTimeout(
+                function () {
+
+                    runTypewriter(
+                        text,
+                        b3LetterText,
+                        b3LetterText.length * 45
+                    );
+
+                },
+                800
+            );
+
+        }
+
+
+        /* =====================================================
+           CONFETTI PAGE B3
+        ===================================================== */
+
+        function createB3Confetti() {
+
+            // Bersihkan confetti lama
+            document
+                .querySelectorAll(".confetti-b3")
+                .forEach(confetti => confetti.remove());
+
+
+            const colors = [
+                "#F6E7A1",
+                "#F7C6C7",
+                "#C6DEF1",
+                "#C9E4C5",
+                "#E2C6F1",
+                "#F9D5A7"
+            ];
+
+
+            for (let i = 0; i < 140; i++) {
+
+                const confetti =
+                    document.createElement("div");
+
+                confetti.classList.add("confetti-b3");
+
+
+                const inner =
+                    document.createElement("div");
+
+                inner.classList.add("confetti-b3-inner");
+
+                confetti.appendChild(inner);
+
+
+                confetti.style.setProperty(
+                    "--color",
+                    colors[
+                        Math.floor(
+                            Math.random() * colors.length
+                        )
+                    ]
+                );
+
+
+                confetti.style.setProperty(
+                    "--width",
+                    (5 + Math.random() * 9) + "px"
+                );
+
+                confetti.style.setProperty(
+                    "--height",
+                    (8 + Math.random() * 16) + "px"
+                );
+
+
+                const angle =
+                    Math.random() * Math.PI * 2;
+
+
+                const distance =
+                    280 + Math.random() * 650;
+
+
+                confetti.style.setProperty(
+                    "--x",
+                    (Math.cos(angle) * distance) + "px"
+                );
+
+                confetti.style.setProperty(
+                    "--y",
+                    (Math.sin(angle) * distance) + "px"
+                );
+
+
+                confetti.style.setProperty(
+                    "--rotation",
+                    (-720 + Math.random() * 1440) + "deg"
+                );
+
+
+                confetti.style.setProperty(
+                    "--duration",
+                    (2.5 + Math.random() * 1.5) + "s"
+                );
+
+
+                // Setelah menyebar, melayang pelan
+                confetti.addEventListener(
+                    "animationend",
+                    function handler(event) {
+
+                        if (event.animationName === "confettiGrowSettle") {
+
+                            confetti.style.setProperty(
+                                "--fx",
+                                (-18 + Math.random() * 36) + "px"
+                            );
+
+                            confetti.style.setProperty(
+                                "--fy",
+                                (-18 + Math.random() * 36) + "px"
+                            );
+
+                            confetti.style.setProperty(
+                                "--float-duration",
+                                (4 + Math.random() * 4) + "s"
+                            );
+
+                            confetti.classList.add("floating");
+
+                            confetti.removeEventListener(
+                                "animationend",
+                                handler
+                            );
+
+                        }
+
+                    }
+                );
+
+
+                document
+                    .getElementById("pageB3")
+                    .appendChild(confetti);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           STUFF LOCKS — PASSWORD TIAP TOMBOL
+
+           Ganti nilai "link" di bawah dengan URL Google Drive
+           masing-masing surat. Selama masih "", tombol hanya
+           menampilkan peringatan bahwa link belum diisi.
+        ===================================================== */
+
+        const stuffLocks = {
+
+            kaos: {
+                title: "KAOS",
+                clue: "clue: nama kucing BSH abu milik dinar",
+                answer: "kumi",
+                link: ""
+            },
+
+            books: {
+                title: "BOOKS",
+                clue: "clue: nama kucing persia orange/cream milik dinar",
+                answer: "dory",
+                link: ""
+            },
+
+            frame: {
+                title: "FRAME FOTO",
+                clue: "clue: bulan berapa ulang tahun dinar",
+                answer: "desember",
+                link: ""
+            },
+
+            keychain: {
+                title: "KEYCHAIN",
+                clue: "clue: NIMnya dinar (C03...)",
+                answer: "c031251109",
+                link: ""
+            },
+
+            photos: {
+                title: "OUR PHOTOS",
+                clue: "clue: warna fav guwejh (dinar)",
+                answer: "abu",
+                link: ""
+            }
+
+        };
+
+
+        let currentLock = null;
+
+
+        /* =====================================================
+           OPEN LOCK
+        ===================================================== */
+
+        function openLock(key) {
+
+            const lock = stuffLocks[key];
+
+
+            if (!lock) {
+
+                return;
+
+            }
+
+
+            currentLock = key;
+
+
+            document
+                .getElementById("lockTitle")
+                .innerText = lock.title;
+
+
+            document
+                .getElementById("lockClue")
+                .innerText = lock.clue;
+
+
+            document
+                .getElementById("lockPassword")
+                .value = "";
+
+
+            document
+                .getElementById("lockMessage")
+                .innerText = "";
+
+
+            document
+                .getElementById("lockModal")
+                .classList
+                .add("active");
+
+
+            // Fokus otomatis ke input
+            setTimeout(function () {
+
+                document
+                    .getElementById("lockPassword")
+                    .focus();
+
+            }, 150);
+
+        }
+
+
+        /* =====================================================
+           CLOSE LOCK — kembali ke page 3
+        ===================================================== */
+
+        function closeLock() {
+
+            const modal =
+                document.getElementById("lockModal");
+
+
+            modal.classList.remove("active");
+
+            modal.classList.remove("fade-out");
+
+
+            document
+                .getElementById("lockPassword")
+                .value = "";
+
+
+            document
+                .getElementById("lockMessage")
+                .innerText = "";
+
+
+            currentLock = null;
+
+        }
+
+
+        /* =====================================================
+           CHECK LOCK PASSWORD
+        ===================================================== */
+
+        function checkLockPassword() {
+
+            if (!currentLock) {
+
+                return;
+
+            }
+
+
+            const lock =
+                stuffLocks[currentLock];
+
+
+            const input =
+                document
+                    .getElementById("lockPassword")
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+            // Password benar
+            if (input === lock.answer) {
+
+                if (!lock.link) {
+
+                    alert(
+                        "Link PDF belum dimasukkan."
+                    );
+
+                    return;
+
+                }
+
+
+                window.location.href = lock.link;
+
+                return;
+
+            }
+
+
+            // Password salah
+            document
+                .getElementById("lockMessage")
+                .innerText = "netnot password salah";
+
+
+            // Tutup dengan fade out & kembali ke page 3
+            setTimeout(
+                function () {
+
+                    document
+                        .getElementById("lockModal")
+                        .classList
+                        .add("fade-out");
+
+
+                    setTimeout(
+                        function () {
+
+                            closeLock();
+
+                        },
+                        600
+                    );
+
+                },
+                1500
+            );
+
+        }
+
+
+        /* =====================================================
+           LOCK INPUT — ENTER
+        ===================================================== */
+
+        document
+            .getElementById("lockPassword")
+            .addEventListener(
+                "keydown",
+                function (event) {
+
+                    if (event.key === "Enter") {
+
+                        event.preventDefault();
+
+                        checkLockPassword();
+
+                    }
+
+                }
+            );
 
 
         /* =====================================================
