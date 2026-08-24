@@ -5326,7 +5326,18 @@ function closeSongSearch() {
             }
 
         };
+function searchSpotify() {
+    const query = document.getElementById("songSearch").value.trim();
 
+    if (!query) {
+        alert("Please enter a song name.");
+        return;
+    }
+
+    const spotifyUrl = `https://open.spotify.com/search/${encodeURIComponent(query)}`;
+
+    window.open(spotifyUrl, "_blank");
+}
     </script>
 
 </body>
