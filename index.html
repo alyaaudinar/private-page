@@ -2490,110 +2490,178 @@ function showWrongPasswordPopup() {
            CREATE STARS
         ===================================================== */
 
-        function createStars() {
+     function createStars() {
 
-            const container =
-                document.getElementById("stars");
+    /* =====================================================
+       BINTANG HOME
+    ===================================================== */
 
-
-            const colors = [
-                "#F6E7A1",
-                "#F7C6C7",
-                "#C6DEF1",
-                "#C9E4C5",
-                "#E2C6F1",
-                "#F9D5A7"
-            ];
+    const homeContainer =
+        document.getElementById("stars");
 
 
-            for (let i = 0; i < 30; i++) {
+    if (homeContainer) {
 
-                const star =
-                    document.createElement("div");
-
-
-                star.classList.add("star");
-
-
-                // Ukuran
-                const size =
-                    18 + Math.random() * 25;
-
-                star.style.setProperty(
-                    "--size",
-                    size + "px"
-                );
+        const colors = [
+            "#F6E7A1",
+            "#F7C6C7",
+            "#C6DEF1",
+            "#C9E4C5",
+            "#E2C6F1",
+            "#F9D5A7"
+        ];
 
 
-                // Posisi
-                star.style.setProperty(
-                    "--left",
-                    Math.random() * 100 + "vw"
-                );
+        for (let i = 0; i < 30; i++) {
 
-                star.style.setProperty(
-                    "--top",
-                    Math.random() * 100 + "vh"
-                );
+            const star =
+                document.createElement("div");
+
+            star.classList.add("star");
 
 
-                // Warna
-                star.style.setProperty(
-                    "--color",
-                    colors[
-                        Math.floor(
-                            Math.random() * colors.length
-                        )
-                    ]
-                );
+            const size =
+                18 + Math.random() * 25;
+
+            star.style.setProperty(
+                "--size",
+                size + "px"
+            );
 
 
-                // Gerakan X
-                star.style.setProperty(
-                    "--x1",
-                    (-18 + Math.random() * 36) + "px"
-                );
-
-                star.style.setProperty(
-                    "--x2",
-                    (-35 + Math.random() * 70) + "px"
-                );
-
-                star.style.setProperty(
-                    "--x3",
-                    (-18 + Math.random() * 36) + "px"
-                );
+            star.style.setProperty(
+                "--left",
+                Math.random() * 100 + "vw"
+            );
 
 
-                // Gerakan Y
-                star.style.setProperty(
-                    "--y1",
-                    (-12 + Math.random() * 24) + "px"
-                );
-
-                star.style.setProperty(
-                    "--y2",
-                    (-20 + Math.random() * 40) + "px"
-                );
-
-                star.style.setProperty(
-                    "--y3",
-                    (-12 + Math.random() * 24) + "px"
-                );
+            star.style.setProperty(
+                "--top",
+                Math.random() * 100 + "vh"
+            );
 
 
-                // Durasi
-                star.style.setProperty(
-                    "--duration",
-                    (10 + Math.random() * 7) + "s"
-                );
+            star.style.setProperty(
+                "--color",
+                colors[
+                    Math.floor(
+                        Math.random() * colors.length
+                    )
+                ]
+            );
 
 
-                container.appendChild(star);
+            star.style.setProperty(
+                "--x1",
+                (-18 + Math.random() * 36) + "px"
+            );
 
-            }
+            star.style.setProperty(
+                "--x2",
+                (-35 + Math.random() * 70) + "px"
+            );
+
+            star.style.setProperty(
+                "--x3",
+                (-18 + Math.random() * 36) + "px"
+            );
+
+
+            star.style.setProperty(
+                "--y1",
+                (-12 + Math.random() * 24) + "px"
+            );
+
+            star.style.setProperty(
+                "--y2",
+                (-20 + Math.random() * 40) + "px"
+            );
+
+            star.style.setProperty(
+                "--y3",
+                (-12 + Math.random() * 24) + "px"
+            );
+
+
+            star.style.setProperty(
+                "--duration",
+                (10 + Math.random() * 7) + "s"
+            );
+
+
+            homeContainer.appendChild(star);
 
         }
+
+    }
+
+
+    /* =====================================================
+       BINTANG PAGE 3
+    ===================================================== */
+
+    const page3Container =
+        document.getElementById("starContainer");
+
+
+    if (page3Container) {
+
+        page3Container.innerHTML = "";
+
+
+        const numberOfStars = 18;
+
+
+        for (let i = 0; i < numberOfStars; i++) {
+
+            const star =
+                document.createElement("span");
+
+            star.classList.add("star");
+
+
+            // Bentuk bintang
+            star.innerText = "✦";
+
+
+            // Posisi random
+            star.style.left =
+                (Math.random() * 95) + "%";
+
+            star.style.top =
+                (Math.random() * 95) + "%";
+
+
+            // Ukuran random
+            const size =
+                22 + Math.random() * 28;
+
+            star.style.fontSize =
+                size + "px";
+
+
+            // Durasi random
+            const duration =
+                10 + Math.random() * 6;
+
+            star.style.setProperty(
+                "--duration",
+                duration + "s"
+            );
+
+
+            // Delay random
+            star.style.animationDelay =
+                (-Math.random() * duration) + "s";
+
+
+            page3Container.appendChild(star);
+
+        }
+
+    }
+
+}
 
 
         /* =====================================================
