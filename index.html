@@ -731,12 +731,11 @@
 
             display: block;
 
-            border: 10px solid white;
+            border: none;
 
-            background: white;
+            background: transparent;
 
-            box-shadow:
-                0 14px 30px rgba(0, 0, 0, 0.28);
+            box-shadow: none;
 
             opacity: 0;
 
@@ -4548,201 +4547,12 @@ function showWrongPasswordPopup() {
 
 
         /* =====================================================
-           SEND RANDOM DAY LETTER
+           RANDOM DAY LETTER
+
+           sendLetter() dan loadLetters() didefinisikan di
+           bagian Firebase pada script paling bawah, supaya
+           surat tersimpan online dan bisa dibaca semua orang.
         ===================================================== */
-
-        function sendLetter() {
-
-            const date =
-                document
-                    .getElementById("letterDate")
-                    .value;
-
-
-            const time =
-                document
-                    .getElementById("letterTime")
-                    .value;
-
-
-            const message =
-                document
-                    .getElementById("letterMessage")
-                    .value
-                    .trim();
-
-
-            const author =
-                document
-                    .getElementById("letterAuthor")
-                    .value
-                    .trim();
-
-
-            // Validasi
-            if (!date || !time || !message || !author) {
-
-                alert(
-                    "Tolong isi semua bagian surat terlebih dahulu."
-                );
-
-                return;
-
-            }
-
-
-            // Ambil surat lama
-            const letters =
-                JSON.parse(
-                    localStorage.getItem(
-                        "randomDayLetters"
-                    ) || "[]"
-                );
-
-
-            // Tambahkan surat baru
-            letters.push({
-
-                id: Date.now(),
-
-                date: date,
-
-                time: time,
-
-                message: message,
-
-                author: author
-
-            });
-
-
-            // Simpan
-            localStorage.setItem(
-                "randomDayLetters",
-                JSON.stringify(letters)
-            );
-
-
-            // Reset form
-            document
-                .getElementById("letterDate")
-                .value = "";
-
-            document
-                .getElementById("letterTime")
-                .value = "";
-
-            document
-                .getElementById("letterMessage")
-                .value = "";
-
-            document
-                .getElementById("letterAuthor")
-                .value = "";
-
-
-            alert(
-                "Surat berhasil dikirim ♡"
-            );
-
-
-            // Tampilkan daftar surat
-            showPage("pageLB1");
-
-            loadLetters();
-
-        }
-
-
-        /* =====================================================
-           LOAD LETTERS
-        ===================================================== */
-
-        function loadLetters() {
-
-            const container =
-                document.getElementById(
-                    "lettersContainer"
-                );
-
-
-            container.innerHTML = "";
-
-
-            const letters =
-                JSON.parse(
-                    localStorage.getItem(
-                        "randomDayLetters"
-                    ) || "[]"
-                );
-
-
-            // Belum ada surat
-            if (letters.length === 0) {
-
-                container.innerHTML = `
-
-                    <p style="
-                        text-align: center;
-                        color: #80694F;
-                        font-family: Georgia, serif;
-                    ">
-                        belum ada random day letter.
-                    </p>
-
-                `;
-
-                return;
-
-            }
-
-
-            // Surat terbaru berada di atas
-            letters
-                .slice()
-                .reverse()
-                .forEach(letter => {
-
-                    const button =
-                        document.createElement(
-                            "button"
-                        );
-
-
-                    button.className =
-                        "saved-letter-button";
-
-
-                    const formattedDate =
-                        formatDate(letter.date);
-
-
-                    button.innerHTML = `
-
-                        <span class="saved-letter-date">
-                            ${formattedDate}
-                        </span>
-
-                        <span class="saved-letter-name">
-                            ${escapeHTML(letter.author)}
-                        </span>
-
-                    `;
-
-
-                    button.onclick =
-                        function () {
-
-                            openLetter(letter);
-
-                        };
-
-
-                    container.appendChild(button);
-
-                });
-
-        }
 
 
         /* =====================================================
@@ -4846,6 +4656,336 @@ function showWrongPasswordPopup() {
         ===================================================== */
 
         createStars();
+
+    </script>
+
+    <!-- =====================================================
+         FIREBASE — RANDOM DAY LETTER ONLINE
+
+         Surat disimpan di Firestore supaya siapa pun yang
+         membuka website ini bisa membaca surat dari siapa pun.
+
+         >>> ISI firebaseConfig DI BAWAH DENGAN MILIKMU <<<
+    ===================================================== -->
+
+    <script type="module">
+
+        import { initializeApp }
+            from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+
+        import {
+            getFirestore,
+            collection,
+            addDoc,
+            query,
+            orderBy,
+            onSnapshot,
+            serverTimestamp
+        } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+
+        /* =====================================================
+           KONFIGURASI FIREBASE
+
+           Ganti seluruh nilai "PASTE_..." dengan config dari
+           Firebase Console milikmu.
+        ===================================================== */
+
+        const firebaseConfig = {
+            apiKey:            "PASTE_API_KEY",
+            authDomain:        "PASTE_AUTH_DOMAIN",
+            projectId:         "PASTE_PROJECT_ID",
+            storageBucket:     "PASTE_STORAGE_BUCKET",
+            messagingSenderId: "PASTE_MESSAGING_SENDER_ID",
+            appId:             "PASTE_APP_ID"
+        };
+
+
+        const isConfigured =
+            !JSON.stringify(firebaseConfig).includes("PASTE_");
+
+
+        let lettersCache = [];
+
+        let isLoaded = false;
+
+        let db = null;
+
+
+        /* =====================================================
+           PESAN DI DAFTAR SURAT
+        ===================================================== */
+
+        function showListMessage(message) {
+
+            const container =
+                document.getElementById("lettersContainer");
+
+
+            if (!container) {
+
+                return;
+
+            }
+
+
+            container.innerHTML =
+                '<p style="text-align:center; color:#80694F;' +
+                ' font-family:Georgia, serif;">' +
+                message +
+                '</p>';
+
+        }
+
+
+        /* =====================================================
+           TAMPILKAN DAFTAR SURAT
+        ===================================================== */
+
+        function renderLetters() {
+
+            const container =
+                document.getElementById("lettersContainer");
+
+
+            if (!container) {
+
+                return;
+
+            }
+
+
+            if (!isConfigured) {
+
+                showListMessage(
+                    "firebase belum diatur, surat belum bisa dibaca."
+                );
+
+                return;
+
+            }
+
+
+            if (!isLoaded) {
+
+                showListMessage("memuat surat...");
+
+                return;
+
+            }
+
+
+            if (lettersCache.length === 0) {
+
+                showListMessage("belum ada random day letter.");
+
+                return;
+
+            }
+
+
+            container.innerHTML = "";
+
+
+            lettersCache.forEach(letter => {
+
+                const button =
+                    document.createElement("button");
+
+                button.className =
+                    "saved-letter-button";
+
+
+                button.innerHTML =
+                    '<span class="saved-letter-date">' +
+                    window.formatDate(letter.date) +
+                    '</span>' +
+                    '<span class="saved-letter-name">' +
+                    window.escapeHTML(letter.author) +
+                    '</span>';
+
+
+                button.onclick = function () {
+
+                    window.openLetter(letter);
+
+                };
+
+
+                container.appendChild(button);
+
+            });
+
+        }
+
+
+        /* =====================================================
+           HUBUNGKAN KE FIRESTORE
+        ===================================================== */
+
+        if (isConfigured) {
+
+            try {
+
+                const app =
+                    initializeApp(firebaseConfig);
+
+                db = getFirestore(app);
+
+
+                const lettersQuery =
+                    query(
+                        collection(db, "randomDayLetters"),
+                        orderBy("createdAt", "desc")
+                    );
+
+
+                // Realtime: surat baru langsung muncul
+                onSnapshot(
+                    lettersQuery,
+                    function (snapshot) {
+
+                        lettersCache =
+                            snapshot.docs.map(doc => doc.data());
+
+                        isLoaded = true;
+
+                        renderLetters();
+
+                    },
+                    function (error) {
+
+                        console.error(error);
+
+                        showListMessage(
+                            "gagal memuat surat, coba muat ulang halaman."
+                        );
+
+                    }
+                );
+
+            } catch (error) {
+
+                console.error(error);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           LOAD LETTERS — dipanggil tombol di page L1
+        ===================================================== */
+
+        window.loadLetters = function () {
+
+            renderLetters();
+
+        };
+
+
+        /* =====================================================
+           SEND LETTER — simpan ke Firestore
+        ===================================================== */
+
+        window.sendLetter = async function () {
+
+            const dateField =
+                document.getElementById("letterDate");
+
+            const timeField =
+                document.getElementById("letterTime");
+
+            const messageField =
+                document.getElementById("letterMessage");
+
+            const authorField =
+                document.getElementById("letterAuthor");
+
+
+            const date = dateField.value;
+            const time = timeField.value;
+            const message = messageField.value.trim();
+            const author = authorField.value.trim();
+
+
+            // Validasi
+            if (!date || !time || !message || !author) {
+
+                alert(
+                    "Tolong isi semua bagian surat terlebih dahulu."
+                );
+
+                return;
+
+            }
+
+
+            if (!isConfigured || !db) {
+
+                alert(
+                    "Firebase belum diatur, surat belum bisa dikirim."
+                );
+
+                return;
+
+            }
+
+
+            const sendButton =
+                document.querySelector(".send-letter-button");
+
+
+            sendButton.disabled = true;
+
+            sendButton.innerText = "MENGIRIM...";
+
+
+            try {
+
+                await addDoc(
+                    collection(db, "randomDayLetters"),
+                    {
+                        date: date,
+                        time: time,
+                        message: message,
+                        author: author,
+                        createdAt: serverTimestamp()
+                    }
+                );
+
+
+                // Reset form
+                dateField.value = "";
+                timeField.value = "";
+                messageField.value = "";
+                authorField.value = "";
+
+
+                alert("Surat berhasil dikirim ♡");
+
+
+                window.showPage("pageLB1");
+
+                renderLetters();
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert(
+                    "Surat gagal dikirim, coba lagi sebentar."
+                );
+
+            } finally {
+
+                sendButton.disabled = false;
+
+                sendButton.innerText = "KIRIM";
+
+            }
+
+        };
 
     </script>
 
