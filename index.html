@@ -1830,24 +1830,67 @@
          PAGE 3 — STUFFS
     ===================================================== -->
 
-    <section id="page3" class="page">
-  <!-- Elemen Bintang Melayang -->
-  <div class="star-bg" id="starContainer"></div>
+     <section id="page3" class="page">
 
-  <!-- Isi Page 3 -->
-  <div style="position: relative; z-index: 1;">
-    <h2>Pilih Surat</h2>
-    
-    <button onclick="askPassword('Kaos', 'kumi', 'nama kucing BSH abu milik dinar', 'LINK_DRIVE_KAOS_KAMU')">Kaos</button>
-    <button onclick="askPassword('Books', 'dory', 'nama kucing persia orange/cream milik dinar', 'LINK_DRIVE_BOOKS_KAMU')">Books</button>
-    <button onclick="askPassword('Frame Foto', 'desember', 'bulan berapa ulang tahun dinar', 'LINK_DRIVE_FRAME_KAMU')">Frame Foto</button>
-    <button onclick="askPassword('Keychain', 'C031251109', 'NIMnya dinar (C03...)', 'LINK_DRIVE_KEYCHAIN_KAMU')">Keychain</button>
-    <button onclick="askPassword('Our Photos', 'abu', 'warna fav guwejh (dinar)', 'LINK_DRIVE_PHOTOS_KAMU')">Our Photos</button>
-    
-    <!-- Tombol Khusus Random Day Letter -->
-    <button class="btn-random-letter" onclick="showPage('pageL1')">Random Day Letter</button>
-  </div>
-</section>
+        <button
+            class="back-button"
+            onclick="showPage('page1')"
+        >
+            BACK
+        </button>
+
+        <h1 class="stuffs-title">
+            WHICH STUFFS DO U WANT TO READ?
+        </h1>
+
+        <div class="stuffs-container">
+
+            <button
+                class="stuff-button"
+                onclick="openPDF('KAOS_LINK')"
+            >
+                KAOS
+            </button>
+
+            <button
+                class="stuff-button"
+                onclick="openPDF('BOOKS_LINK')"
+            >
+                BOOKS
+            </button>
+
+            <button
+                class="stuff-button"
+                onclick="openPDF('FRAME_FOTO_LINK')"
+            >
+                FRAME FOTO
+            </button>
+
+            <button
+                class="stuff-button"
+                onclick="openPDF('KEYCHAIN_LINK')"
+            >
+                KEYCHAIN
+            </button>
+
+            <button
+                class="stuff-button"
+                onclick="openPDF('OUR_PHOTOS_LINK')"
+            >
+                OUR PHOTOS
+            </button>
+
+            <button
+                class="stuff-button random-button"
+                onclick="showPage('pageL1')"
+            >
+                RANDOM DAY LETTER
+            </button>
+
+        </div>
+
+    </section>
+
 
     <!-- =====================================================
          L1 — RANDOM DAY LETTER MENU
