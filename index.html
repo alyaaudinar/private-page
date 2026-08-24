@@ -2466,19 +2466,17 @@ function showWrongPasswordPopup() {
     // Kembali ke Home setelah popup selesai
     setTimeout(function () {
 
-        overlay.remove();
+    document
+        .getElementById("password")
+        .value = "";
 
-        document
-            .getElementById("password")
-            .value = "";
+    document
+        .getElementById("message")
+        .innerText = "";
 
-        document
-            .getElementById("message")
-            .innerText = "";
+    showPage("home");
 
-        showPage("home");
-
-    }, 1800);
+}, 600);
 }
         /* =====================================================
            PASSWORD INPUT
