@@ -2376,6 +2376,11 @@
 
 function showWrongPasswordPopup() {
 
+    // Cegah popup menumpuk kalau tombol ditekan berulang
+    if (document.querySelector(".error-overlay")) {
+        return;
+    }
+
     // Buat overlay
     const overlay =
         document.createElement("div");
@@ -2459,20 +2464,22 @@ function showWrongPasswordPopup() {
 
     document.body.appendChild(overlay);
 
-    // Kembali ke Home setelah popup selesai
+    // Kembali ke Home setelah 4 detik
     setTimeout(function () {
 
-    document
-        .getElementById("password")
-        .value = "";
+        overlay.remove();
 
-    document
-        .getElementById("message")
-        .innerText = "";
+        document
+            .getElementById("password")
+            .value = "";
 
-    showPage("home");
+        document
+            .getElementById("message")
+            .innerText = "";
 
-}, 600);
+        showPage("home");
+
+    }, 4000);
 }
         /* =====================================================
            PASSWORD INPUT
