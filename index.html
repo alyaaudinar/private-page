@@ -181,45 +181,46 @@
         }
 
 
-        .star {
-            position: absolute;
+       .star {
+    position: absolute;
 
-            color: #DEC5A0;
+    color: #DEC5A0;
 
-            user-select: none;
-            pointer-events: none;
+    user-select: none;
+    pointer-events: none;
 
-            animation:
-                floatSlow
-                var(--duration)
-                ease-in-out
-                infinite
-                alternate;
-        }
+    opacity: 0.8;
+
+    animation:
+        floatSlow
+        var(--duration)
+        ease-in-out
+        infinite
+        alternate;
+}
 
 
-        @keyframes floatSlow {
+@keyframes floatSlow {
 
-            0% {
-                transform:
-                    translateX(var(--x1))
-                    rotate(var(--r1));
-            }
+    0% {
+        transform:
+            translateX(-20px)
+            rotate(-8deg);
+    }
 
-            50% {
-                transform:
-                    translateX(var(--x2))
-                    rotate(var(--r2));
-            }
+    50% {
+        transform:
+            translateX(20px)
+            rotate(8deg);
+    }
 
-            100% {
-                transform:
-                    translateX(var(--x3))
-                    rotate(var(--r3));
-            }
+    100% {
+        transform:
+            translateX(-20px)
+            rotate(-8deg);
+    }
 
-        }
-
+}
 
         /* =====================================================
            RANDOM DAY LETTER BUTTON
