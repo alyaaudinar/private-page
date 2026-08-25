@@ -2727,6 +2727,40 @@
         }
 
 
+        /* TOMBOL MUSIK DI SURAT STUFF */
+
+        .stuff-music-button {
+            display: block;
+
+            margin: 30px auto 0;
+            padding: 12px 24px;
+
+            border: none;
+            border-radius: 30px;
+
+            background: rgba(56, 48, 36, 0.5);
+
+            color: #FFF8EB;
+
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease;
+        }
+
+        .stuff-music-button:hover {
+            transform: scale(1.08);
+
+            background: rgba(56, 48, 36, 0.65);
+        }
+
+
         /* CONFETTI B3 */
 
         .confetti-b3 {
@@ -3044,6 +3078,14 @@
                 ></p>
 
             </div>
+
+            <button
+                id="stuffMusicButton"
+                class="stuff-music-button"
+                onclick="toggleStuffMusic()"
+            >
+                ⏸ PAUSE MUSIC
+            </button>
 
         </div>
 
@@ -5059,7 +5101,7 @@ function showWrongPasswordPopup() {
                 title: "BOOKS",
                 clue: "clue: nama kucing persia orange/cream milik dinar",
                 answer: "dory",
-                song: "KEEPME.MP3",
+                song: "FUTILE.MP3",
                 headline: "Wow Hi Anak Kuat?",
                 body:
                     "books books books books books books books\n" +
@@ -5195,6 +5237,11 @@ function showWrongPasswordPopup() {
             }
 
 
+            document
+                .getElementById("stuffMusicButton")
+                .innerText = "⏸ PAUSE MUSIC";
+
+
             // Reset piringan hitam
             vinyl.classList.remove("fade-away");
             vinyl.classList.remove("spinning");
@@ -5270,11 +5317,22 @@ function showWrongPasswordPopup() {
 
 
             // Putar lagu
-            music.play().catch(function (error) {
+            music
+                .play()
+                .then(function () {
 
-                console.error(error);
+                    document
+                        .getElementById("stuffMusicButton")
+                        .innerText = "⏸ PAUSE MUSIC";
 
-            });
+                })
+                .catch(function () {
+
+                    document
+                        .getElementById("stuffMusicButton")
+                        .innerText = "▶ PLAY MUSIC";
+
+                });
 
 
             vinyl.classList.remove("spinning");
@@ -5327,6 +5385,45 @@ function showWrongPasswordPopup() {
             music.pause();
 
             music.currentTime = 0;
+
+        }
+
+
+        /* =====================================================
+           PAUSE / PLAY LAGU STUFF
+        ===================================================== */
+
+        function toggleStuffMusic() {
+
+            const music =
+                document.getElementById("stuffMusic");
+
+            const button =
+                document.getElementById("stuffMusicButton");
+
+
+            if (music.paused) {
+
+                music
+                    .play()
+                    .then(function () {
+
+                        button.innerText = "⏸ PAUSE MUSIC";
+
+                    })
+                    .catch(function (error) {
+
+                        console.error(error);
+
+                    });
+
+            } else {
+
+                music.pause();
+
+                button.innerText = "▶ PLAY MUSIC";
+
+            }
 
         }
 
@@ -6669,7 +6766,7 @@ function showWrongPasswordPopup() {
                 window.clearSelectedSong();
 
 
-                alert("Surat berhasil dikirim ♡");
+                alert("Surat berhasil dikirim :D");
 
 
                 window.showPage("pageLB1");
