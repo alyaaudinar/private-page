@@ -630,11 +630,7 @@
         }
 
 
-        /* =====================================================
-           B1 
-        ===================================================== */
-
-        #p4 {
+        #x1 {
             background: #f7f5f2;
 
             flex-direction: column;
@@ -2319,12 +2315,8 @@
         }
 
 
-        /* =====================================================
-           B2 & B3 — SPECIAL LETTER
-        ===================================================== */
-
-        #p5,
-        #pageB3,
+        #x2,
+        #x3,
         #pageStuff {
             background: #f7f5f2;
 
@@ -2920,139 +2912,7 @@
          B1 
     ===================================================== -->
 
-    <section id="p4" class="page">
-
-        <button
-            class="back-button"
-            onclick="goHome()"
-        >
-            BACK
-        </button>
-
-        <h1 id="titleA" class="title-a"></h1>
-
-        <img
-            id="photoA"
-            src="IMG_A.PNG"
-            alt=""
-            class="photo-a"
-        >
-
-        <button
-            class="letter-button-a"
-            onclick="openLetterA()"
-        >
-            CLICK HERE TO READ YOUR LETTER FROM ALYA AUDINAR
-        </button>
-
-        <div class="music-player">
-
-            <audio
-                id="bgMusic"
-                src="MRSMAGIC.MP3"
-                loop
-                preload="auto"
-            ></audio>
-
-            <button
-                id="musicToggleButton"
-                class="music-toggle-button"
-                onclick="toggleMusic()"
-            >
-                ⏸ PAUSE MUSIC
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         B2 
-    ===================================================== -->
-
-    <section id="p5" class="page">
-
-        <button
-            class="back-button"
-            onclick="showPage('p4')"
-        >
-            BACK
-        </button>
-
-        <img
-            id="letterPhoto"
-            src="LETTER.PNG"
-            alt="Buka Surat"
-            class="letter-photo"
-            onclick="openSpecialLetter()"
-        >
-
-        <div id="b2Paper" class="special-paper">
-
-            <h2 class="special-headline">
-                Halo Jafar, Apa Kabar?
-            </h2>
-
-            <div class="typewriter-wrap">
-
-                <p
-                    id="b2Ghost"
-                    class="typewriter-ghost letter-body"
-                ></p>
-
-                <p
-                    id="b2Text"
-                    class="typewriter-text letter-body"
-                ></p>
-
-            </div>
-
-            <button
-                id="b2Button"
-                class="gift-button"
-                onclick="showPage('pageB3')"
-            >
-                HADIAHMU ADA DISINI!
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         B3 
-    ===================================================== -->
-
-    <section id="pageB3" class="page">
-
-        <button
-            class="back-button"
-            onclick="showPage('p5')"
-        >
-            BACK
-        </button>
-
-        <div id="b3Paper" class="special-paper">
-
-            <div class="typewriter-wrap">
-
-                <p
-                    id="b3Ghost"
-                    class="typewriter-ghost b3-line"
-                ></p>
-
-                <p
-                    id="b3Text"
-                    class="typewriter-text b3-line"
-                ></p>
-
-            </div>
-
-        </div>
-
-    </section>
+    
 
 
     <!-- =====================================================
@@ -3543,7 +3403,7 @@
         function showPage(pageId) {
 
             // Hapus confetti B1 jika meninggalkan B1
-            if (pageId !== "p4") {
+            if (pageId !== "x1") {
 
                 document
                     .querySelectorAll(".confetti")
@@ -3563,7 +3423,7 @@
 
 
             // Hapus confetti B3 jika meninggalkan B3
-            if (pageId !== "pageB3") {
+            if (pageId !== "x3") {
 
                 document
                     .querySelectorAll(".confetti-b3")
@@ -3589,20 +3449,20 @@
 
 
             // Buat confetti ketika masuk B1
-            if (pageId === "p4") {
+            if (pageId === "x1") {
 
                 createConfetti();
-                playTitleA();
-                settlePhoto();
+                initX1();
+                initX1Photo();
 
             }
 
 
             // Musik tetap berjalan di seluruh rangkaian
             if (
-                pageId === "p4" ||
-                pageId === "p5" ||
-                pageId === "pageB3"
+                pageId === "x1" ||
+                pageId === "x2" ||
+                pageId === "x3"
             ) {
 
                 playBackgroundMusic();
@@ -3615,17 +3475,17 @@
 
 
             // Special letter
-            if (pageId === "p5") {
+            if (pageId === "x2") {
 
-                playPageA2();
+                initX2();
 
             }
 
 
             // Petunjuk hadiah
-            if (pageId === "pageB3") {
+            if (pageId === "x3") {
 
-                playPageB3();
+                initX3();
 
             }
 
@@ -3659,101 +3519,14 @@
            BD TITLE — POP UP PER HURUF
         ===================================================== */
 
-        function playTitleA() {
-
-            const el =
-                document.getElementById("titleA");
-
-
-            const text =
-                "SELAMAT ULANG TAHUN JAFAR!!!";
-
-
-            // Jangan diulang animasinya kalau sudah pernah jalan
-            if (el.dataset.played === "1") {
-
-                return;
-
-            }
-
-            el.dataset.played = "1";
-
-
-            el.innerHTML = "";
-
-
-            text
-                .split("")
-                .forEach((char, index) => {
-
-                    const span =
-                        document.createElement("span");
-
-
-                    span.classList.add("letter");
-
-                    if (char === " ") {
-
-                        span.classList.add("space");
-                        span.innerHTML = "&nbsp;";
-
-                    } else {
-
-                        span.textContent = char;
-
-                    }
-
-
-                    span.style.animationDelay =
-                        (index * 0.06) + "s";
-
-
-                    el.appendChild(span);
-
-                });
-
-        }
+        
 
 
         /* =====================================================
            BD  — SETTLE INTO HEARTBEAT
         ===================================================== */
 
-        function settlePhoto() {
-
-            const photo =
-                document.getElementById("photoA");
-
-
-            if (photo.dataset.settled === "1") {
-
-                photo.classList.add("settled");
-
-                return;
-
-            }
-
-
-            photo.addEventListener(
-                "animationend",
-                function handler(event) {
-
-                    if (event.animationName === "scrapbookPopIn") {
-
-                        photo.classList.add("settled");
-                        photo.dataset.settled = "1";
-
-                        photo.removeEventListener(
-                            "animationend",
-                            handler
-                        );
-
-                    }
-
-                }
-            );
-
-        }
+        
 
 
         /* =====================================================
@@ -3861,22 +3634,150 @@
     return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, "0")).join("");
 }
 
-async function checkPassword() {
-    const password = document.getElementById("password").value.trim();
-    const hashedPassword = await hashPassword(password);
 
-    if (hashedPassword === "48b41a01d75ecc839f0a8c658bc4354426cd991a8eb623a48f0d8efbfcbb0439") {
-        showPage("p4");
+async function decodePrivateData(password) {
+
+    const response =
+        await fetch(
+            "private-data.enc.json",
+            {
+                cache: "no-store"
+            }
+        );
+
+    if (!response.ok) {
+        throw new Error("Encrypted data gagal dimuat.");
+    }
+
+    const encrypted =
+        await response.json();
+
+    function b64(value) {
+        const binary = atob(value);
+        const bytes =
+            new Uint8Array(binary.length);
+
+        for (let i = 0; i < binary.length; i++) {
+            bytes[i] =
+                binary.charCodeAt(i);
+        }
+
+        return bytes;
+    }
+
+    const keyMaterial =
+        await crypto.subtle.importKey(
+            "raw",
+            new TextEncoder().encode(password),
+            "PBKDF2",
+            false,
+            ["deriveKey"]
+        );
+
+    const key =
+        await crypto.subtle.deriveKey(
+            {
+                name: "PBKDF2",
+                salt: b64(encrypted.salt),
+                iterations: 310000,
+                hash: "SHA-256"
+            },
+            keyMaterial,
+            {
+                name: "AES-GCM",
+                length: 256
+            },
+            false,
+            ["decrypt"]
+        );
+
+    const data = b64(encrypted.data);
+    const tag = b64(encrypted.tag);
+
+    const combined =
+        new Uint8Array(
+            data.length + tag.length
+        );
+
+    combined.set(data);
+    combined.set(tag, data.length);
+
+    const decrypted =
+        await crypto.subtle.decrypt(
+            {
+                name: "AES-GCM",
+                iv: b64(encrypted.iv),
+                tagLength: 128
+            },
+            key,
+            combined
+        );
+
+    const payload =
+        JSON.parse(
+            new TextDecoder().decode(decrypted)
+        );
+
+    document.body.insertAdjacentHTML(
+        "beforeend",
+        payload.html
+    );
+
+    const script =
+        document.createElement("script");
+
+    script.textContent =
+        payload.js;
+
+    document.body.appendChild(script);
+}
+
+
+async function checkPassword() {
+
+    const password =
+        document
+            .getElementById("password")
+            .value
+            .trim();
+
+    const hashedPassword =
+        await hashPassword(password);
+
+    if (
+        hashedPassword ===
+        "48b41a01d75ecc839f0a8c658bc4354426cd991a8eb623a48f0d8efbfcbb0439"
+    ) {
+
+        try {
+
+            await decodePrivateData(password);
+
+            showPage("x1");
+
+        } catch (error) {
+
+            console.error(error);
+
+            showWrongPasswordPopup();
+        }
+
         return;
     }
 
-    if (hashedPassword === "f7ad7f20ade9a977c779590638c3a30c05230681260fdd9376be6279a397fd78") {
+    if (
+        hashedPassword ===
+        "f7ad7f20ade9a977c779590638c3a30c05230681260fdd9376be6279a397fd78"
+    ) {
+
         showPage("page1");
+
         return;
     }
 
     showWrongPasswordPopup();
 }
+
 
 /* =====================================================
    WRONG PASSWORD POPUP
@@ -4383,7 +4284,7 @@ function showWrongPasswordPopup() {
 
                 // Masukkan ke B1
                 document
-                    .getElementById("p4")
+                    .getElementById("x1")
                     .appendChild(confetti);
 
             }
@@ -4649,37 +4550,17 @@ function showWrongPasswordPopup() {
            BDY LETTER — menuju page B2
         ===================================================== */
 
-        function openLetterA() {
-
-            showPage("p5");
-
-        }
+        
 
 
         /* =====================================================
            ISI SURAT
         ===================================================== */
 
-        const b2LetterText =
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
-            "Phasellus sit amet commodo augue. Morbi viverra diam et ipsum " +
-            "dictum ullamcorper. Nam lobortis lobortis mauris, eget iaculis " +
-            "metus aliquet at. Pellentesque ac ex placerat sem ornare tempus " +
-            "porta eu mi. Vestibulum finibus, massa at molestie pharetra, " +
-            "nunc lectus cursus nulla, in commodo felis est ac dolor. Nullam " +
-            "tempor odio et est viverra, in pellentesque neque pretium. Cras " +
-            "mollis vitae purus elementum dapibus. In libero libero, aliquam " +
-            "ut leo vel, feugiat accumsan enim. Quisque eu felis urna. Proin " +
-            "commodo, ex venenatis ultrices sagittis, justo turpis egestas " +
-            "ante, sed aliquet mi neque ac lacus. Vestibulum sit amet magna " +
-            "id tellus consectetur ultricies non a ante. Quisque eget urna " +
-            "tellus. In sed vulputate ipsum. Proin vel dui at nibh condimentum " +
-            "consequat nec eu ipsum. In tempus mollis tortor, et efficitur " +
-            "justo egestas id. Integer pellentesque id erat et placerat.";
+        
 
 
-        const b3LetterText =
-            "COBA BUKA BAGIAN BELAKANG FRAME FOTO YANG PERNAH KUKASIH";
+        
 
 
         /* =====================================================
@@ -4745,361 +4626,28 @@ function showWrongPasswordPopup() {
            PAGE B2 — RESET & FOTO LETTER
         ===================================================== */
 
-        function playPageA2() {
-
-            const photo =
-                document.getElementById("letterPhoto");
-
-            const paper =
-                document.getElementById("b2Paper");
-
-            const ghost =
-                document.getElementById("b2Ghost");
-
-            const text =
-                document.getElementById("b2Text");
-
-            const button =
-                document.getElementById("b2Button");
-
-
-            // Hentikan ketikan yang mungkin sedang berjalan
-            if (text.typingTimer) {
-
-                clearInterval(text.typingTimer);
-
-                text.typingTimer = null;
-
-            }
-
-
-            // Reset kertas surat
-            paper.classList.remove("show");
-
-            ghost.innerText = b2LetterText;
-
-            text.innerText = "";
-
-            button.classList.remove("show");
-
-
-            // Reset foto
-            photo.classList.remove("fade-away");
-            photo.classList.remove("beating");
-
-            photo.style.display = "block";
-
-
-            // Ulangi animasi pop up foto
-            photo.style.animation = "none";
-
-            void photo.offsetWidth;
-
-            photo.style.animation = "";
-
-
-            // Setelah pop up selesai, lanjut ke heartbeat
-            photo.addEventListener(
-                "animationend",
-                function handler(event) {
-
-                    if (event.animationName === "letterPhotoPop") {
-
-                        photo.classList.add("beating");
-
-                        photo.removeEventListener(
-                            "animationend",
-                            handler
-                        );
-
-                    }
-
-                }
-            );
-
-        }
+        
 
 
         /* =====================================================
            BUKA SURAT — foto fade, kertas muncul
         ===================================================== */
 
-        function openSpecialLetter() {
-
-            const photo =
-                document.getElementById("letterPhoto");
-
-            const paper =
-                document.getElementById("b2Paper");
-
-            const text =
-                document.getElementById("b2Text");
-
-            const button =
-                document.getElementById("b2Button");
-
-
-            // Cegah klik berulang
-            if (photo.classList.contains("fade-away")) {
-
-                return;
-
-            }
-
-
-            photo.classList.remove("beating");
-
-            photo.classList.add("fade-away");
-
-
-            // Setelah foto hilang, kertas muncul
-            setTimeout(
-                function () {
-
-                    photo.style.display = "none";
-
-                    paper.classList.add("show");
-
-
-                    // Mulai mengetik setelah kertas selesai membesar
-                    setTimeout(
-                        function () {
-
-                            runTypewriter(
-                                text,
-                                b2LetterText,
-                                15000,
-                                function () {
-
-                                    button.classList.add("show");
-
-                                }
-                            );
-
-                        },
-                        800
-                    );
-
-                },
-                500
-            );
-
-        }
+        
 
 
         /* =====================================================
            PAGE B3 — KERTAS, TEKS & CONFETTI
         ===================================================== */
 
-        function playPageB3() {
-
-            const paper =
-                document.getElementById("b3Paper");
-
-            const ghost =
-                document.getElementById("b3Ghost");
-
-            const text =
-                document.getElementById("b3Text");
-
-
-            // Hentikan ketikan yang mungkin sedang berjalan
-            if (text.typingTimer) {
-
-                clearInterval(text.typingTimer);
-
-                text.typingTimer = null;
-
-            }
-
-
-            ghost.innerText = b3LetterText;
-
-            text.innerText = "";
-
-
-            // Ulangi animasi pop up kertas
-            paper.classList.remove("pop");
-            paper.classList.remove("beating");
-
-            void paper.offsetWidth;
-
-            paper.classList.add("pop");
-
-
-            // Setelah pop up selesai, kertas berdetak
-            paper.addEventListener(
-                "animationend",
-                function handler(event) {
-
-                    if (event.animationName === "paperPopIn") {
-
-                        paper.classList.add("beating");
-
-                        paper.removeEventListener(
-                            "animationend",
-                            handler
-                        );
-
-                    }
-
-                }
-            );
-
-
-            // Confetti di belakang kertas
-            createB3Confetti();
-
-
-            // Mulai mengetik
-            setTimeout(
-                function () {
-
-                    runTypewriter(
-                        text,
-                        b3LetterText,
-                        b3LetterText.length * 45
-                    );
-
-                },
-                800
-            );
-
-        }
+        
 
 
         /* =====================================================
            CONFETTI PAGE B3
         ===================================================== */
 
-        function createB3Confetti() {
-
-            // Bersihkan confetti lama
-            document
-                .querySelectorAll(".confetti-b3")
-                .forEach(confetti => confetti.remove());
-
-
-            const colors = [
-                "#F6E7A1",
-                "#F7C6C7",
-                "#C6DEF1",
-                "#C9E4C5",
-                "#E2C6F1",
-                "#F9D5A7"
-            ];
-
-
-            for (let i = 0; i < 140; i++) {
-
-                const confetti =
-                    document.createElement("div");
-
-                confetti.classList.add("confetti-b3");
-
-
-                const inner =
-                    document.createElement("div");
-
-                inner.classList.add("confetti-b3-inner");
-
-                confetti.appendChild(inner);
-
-
-                confetti.style.setProperty(
-                    "--color",
-                    colors[
-                        Math.floor(
-                            Math.random() * colors.length
-                        )
-                    ]
-                );
-
-
-                confetti.style.setProperty(
-                    "--width",
-                    (5 + Math.random() * 9) + "px"
-                );
-
-                confetti.style.setProperty(
-                    "--height",
-                    (8 + Math.random() * 16) + "px"
-                );
-
-
-                const angle =
-                    Math.random() * Math.PI * 2;
-
-
-                const distance =
-                    280 + Math.random() * 650;
-
-
-                confetti.style.setProperty(
-                    "--x",
-                    (Math.cos(angle) * distance) + "px"
-                );
-
-                confetti.style.setProperty(
-                    "--y",
-                    (Math.sin(angle) * distance) + "px"
-                );
-
-
-                confetti.style.setProperty(
-                    "--rotation",
-                    (-720 + Math.random() * 1440) + "deg"
-                );
-
-
-                confetti.style.setProperty(
-                    "--duration",
-                    (2.5 + Math.random() * 1.5) + "s"
-                );
-
-
-                // Setelah menyebar, melayang pelan
-                confetti.addEventListener(
-                    "animationend",
-                    function handler(event) {
-
-                        if (event.animationName === "confettiGrowSettle") {
-
-                            confetti.style.setProperty(
-                                "--fx",
-                                (-18 + Math.random() * 36) + "px"
-                            );
-
-                            confetti.style.setProperty(
-                                "--fy",
-                                (-18 + Math.random() * 36) + "px"
-                            );
-
-                            confetti.style.setProperty(
-                                "--float-duration",
-                                (4 + Math.random() * 4) + "s"
-                            );
-
-                            confetti.classList.add("floating");
-
-                            confetti.removeEventListener(
-                                "animationend",
-                                handler
-                            );
-
-                        }
-
-                    }
-                );
-
-
-                document
-                    .getElementById("pageB3")
-                    .appendChild(confetti);
-
-            }
-
-        }
+        
 
 
         /* =====================================================
