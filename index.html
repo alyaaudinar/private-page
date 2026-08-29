@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+<script src="secret-data-obfuscated.js"></script>    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Access</title>
@@ -634,7 +634,7 @@
            B1 
         ===================================================== */
 
-        #pageB1 {
+        #p4 {
             background: #f7f5f2;
 
             flex-direction: column;
@@ -649,7 +649,7 @@
 
         /* B1 TITLE */
 
-        .birthday-title {
+        .title-a {
             position: relative;
 
             z-index: 100;
@@ -667,7 +667,7 @@
                 2px 2px 0 rgba(0, 0, 0, 0.20);
         }
 
-        .birthday-title .letter {
+        .title-a .letter {
             display: inline-block;
 
             opacity: 0;
@@ -683,7 +683,7 @@
                 forwards;
         }
 
-        .birthday-title .letter.space {
+        .title-a .letter.space {
             width: 0.3em;
         }
 
@@ -717,7 +717,7 @@
 
         /* B1 PHOTO */
 
-        .birthday-photo {
+        .photo-a {
             position: relative;
 
             z-index: 100;
@@ -750,7 +750,7 @@
                 forwards;
         }
 
-        .birthday-photo.settled {
+        .photo-a.settled {
 
             border: none;
 
@@ -829,7 +829,7 @@
 
         /* B1 BUTTON */
 
-        .birthday-letter-button {
+        .letter-button-a {
             position: relative;
 
             z-index: 120;
@@ -864,7 +864,7 @@
                 background 0.25s ease;
         }
 
-        .birthday-letter-button:hover {
+        .letter-button-a:hover {
             transform: scale(1.10);
 
             background: rgba(20, 38, 70, 0.70);
@@ -2323,7 +2323,7 @@
            B2 & B3 — SPECIAL LETTER
         ===================================================== */
 
-        #pageB2,
+        #p5,
         #pageB3,
         #pageStuff {
             background: #f7f5f2;
@@ -2839,19 +2839,19 @@
 
         @media (max-width: 600px) {
 
-            .birthday-title {
+            .title-a {
                 margin-bottom: 18px;
 
                 font-size: 30px;
             }
 
-            .birthday-photo {
+            .photo-a {
                 width: 90vw;
 
                 max-height: 50vh;
             }
 
-            .birthday-letter-button {
+            .letter-button-a {
                 padding: 14px 17px;
 
                 font-size: 12px;
@@ -2920,7 +2920,7 @@
          B1 
     ===================================================== -->
 
-    <section id="pageB1" class="page">
+    <section id="p4" class="page">
 
         <button
             class="back-button"
@@ -2929,20 +2929,20 @@
             BACK
         </button>
 
-        <h1 id="birthdayTitle" class="birthday-title"></h1>
+        <h1 id="titleA" class="title-a"></h1>
 
         <img
-            id="birthdayPhoto"
-            src="BD.PNG"
-            alt="Birthday"
-            class="birthday-photo"
+            id="photoA"
+            src="IMG_A.PNG"
+            alt=""
+            class="photo-a"
         >
 
         <button
-            class="birthday-letter-button"
-            onclick="openBirthdayLetter()"
+            class="letter-button-a"
+            onclick="openLetterA()"
         >
-            CLICK HERE TO READ YOUR BIRTHDAY LETTER FROM ALYA AUDINAR
+            CLICK HERE TO READ YOUR LETTER FROM ALYA AUDINAR
         </button>
 
         <div class="music-player">
@@ -2971,11 +2971,11 @@
          B2 
     ===================================================== -->
 
-    <section id="pageB2" class="page">
+    <section id="p5" class="page">
 
         <button
             class="back-button"
-            onclick="showPage('pageB1')"
+            onclick="showPage('p4')"
         >
             BACK
         </button>
@@ -3029,7 +3029,7 @@
 
         <button
             class="back-button"
-            onclick="showPage('pageB2')"
+            onclick="showPage('p5')"
         >
             BACK
         </button>
@@ -3543,7 +3543,7 @@
         function showPage(pageId) {
 
             // Hapus confetti B1 jika meninggalkan B1
-            if (pageId !== "pageB1") {
+            if (pageId !== "p4") {
 
                 document
                     .querySelectorAll(".confetti")
@@ -3589,19 +3589,19 @@
 
 
             // Buat confetti ketika masuk B1
-            if (pageId === "pageB1") {
+            if (pageId === "p4") {
 
                 createConfetti();
-                playBirthdayTitle();
+                playTitleA();
                 settlePhoto();
 
             }
 
 
-            // Musik tetap berjalan di seluruh rangkaian birthday
+            // Musik tetap berjalan di seluruh rangkaian
             if (
-                pageId === "pageB1" ||
-                pageId === "pageB2" ||
+                pageId === "p4" ||
+                pageId === "p5" ||
                 pageId === "pageB3"
             ) {
 
@@ -3615,9 +3615,9 @@
 
 
             // Special letter
-            if (pageId === "pageB2") {
+            if (pageId === "p5") {
 
-                playPageB2();
+                playPageA2();
 
             }
 
@@ -3659,10 +3659,10 @@
            BD TITLE — POP UP PER HURUF
         ===================================================== */
 
-        function playBirthdayTitle() {
+        function playTitleA() {
 
             const el =
-                document.getElementById("birthdayTitle");
+                document.getElementById("titleA");
 
 
             const text =
@@ -3722,7 +3722,7 @@
         function settlePhoto() {
 
             const photo =
-                document.getElementById("birthdayPhoto");
+                document.getElementById("photoA");
 
 
             if (photo.dataset.settled === "1") {
@@ -3866,7 +3866,7 @@ async function checkPassword() {
     const hashedPassword = await hashPassword(password);
 
     if (hashedPassword === "48b41a01d75ecc839f0a8c658bc4354426cd991a8eb623a48f0d8efbfcbb0439") {
-        showPage("pageB1");
+        showPage("p4");
         return;
     }
 
@@ -4383,7 +4383,7 @@ function showWrongPasswordPopup() {
 
                 // Masukkan ke B1
                 document
-                    .getElementById("pageB1")
+                    .getElementById("p4")
                     .appendChild(confetti);
 
             }
@@ -4649,9 +4649,9 @@ function showWrongPasswordPopup() {
            BDY LETTER — menuju page B2
         ===================================================== */
 
-        function openBirthdayLetter() {
+        function openLetterA() {
 
-            showPage("pageB2");
+            showPage("p5");
 
         }
 
@@ -4745,7 +4745,7 @@ function showWrongPasswordPopup() {
            PAGE B2 — RESET & FOTO LETTER
         ===================================================== */
 
-        function playPageB2() {
+        function playPageA2() {
 
             const photo =
                 document.getElementById("letterPhoto");
@@ -6751,7 +6751,6 @@ function showWrongPasswordPopup() {
 
     </script>
 
-<script src="secret-data-obfuscated.js"></script>
 </body>
 
 </html>
