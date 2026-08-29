@@ -3542,6 +3542,15 @@
                 document.getElementById("musicToggleButton");
 
 
+            // Elemen ini baru ada setelah konten rahasia (x1)
+            // di-decrypt, jadi jangan lanjut kalau belum ada
+            if (!music || !button) {
+
+                return;
+
+            }
+
+
             music
                 .play()
                 .then(function () {
@@ -3568,6 +3577,15 @@
                 document.getElementById("bgMusic");
 
 
+            // Elemen ini baru ada setelah konten rahasia (x1)
+            // di-decrypt, jadi jangan lanjut kalau belum ada
+            if (!music) {
+
+                return;
+
+            }
+
+
             music.pause();
 
         }
@@ -3580,6 +3598,13 @@
 
             const button =
                 document.getElementById("musicToggleButton");
+
+
+            if (!music || !button) {
+
+                return;
+
+            }
 
 
             if (music.paused) {
